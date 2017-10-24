@@ -1,0 +1,28 @@
+## Global settings -- these settings override default config settings
+# version specifies the config version -- if not specified, assumed to be the most recent
+version: '1.0'
+# top is a special variable that exists only to contain the global settings
+top:
+  # import other configs
+  import: []
+
+  # db settings
+  db:
+    host: 'localhost'
+    port: 27017
+    name: 'catstuff'
+
+  # hardware settings
+  resources:
+    max_memory: -1
+    max_threads: -1
+
+  # Operations to perform -- required for each level
+  tasks: []
+
+  # Default settings for each module
+  modules: {}
+
+## Group settings
+groups:
+  default: {}

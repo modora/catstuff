@@ -1,0 +1,8 @@
+[Core]
+Name = Checksum
+Module = main
+Build = 1
+
+[Documentation]
+Version = 1.0
+Description = Computes the checksum of a file
