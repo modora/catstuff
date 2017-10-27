@@ -1,8 +1,8 @@
 import yaml
 import os
-import catstuff.toolbox.config as config
-import catstuff.toolbox.dicts as dicts
-from catstuff.toolbox.common import expandpath
+import catstuff.tools.config as config
+import catstuff.tools.dicts as dicts
+from catstuff.tools.common import expandpath
 
 __dir__ = os.path.dirname(expandpath(__file__))
 
@@ -77,12 +77,3 @@ class Config:
     #             self.config = merge(self.config, self.load(path))
     #         else:
     #             print('is dir')
-
-
-class ExplicitDumper(yaml.SafeDumper):
-    """
-    A dumper that will never emit aliases. -- Found from pyyaml ticket #91
-    Usage: yaml.dump(..., Dumper=ExplicitDumper)
-    """
-    def ignore_aliases(self, data):
-        return True

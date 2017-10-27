@@ -1,21 +1,26 @@
-import catstuff.toolbox.modules as mods
-# from catstuff.toolbox.modules import CSModule  # DO NOT IMPORT THIS WAY -- PLUGIN WILL ERROR AT THE INIT
+import catstuff.tools.modules
 import os
 import logging
+import pymongo
 
 __dir__ = os.path.dirname(__file__)
-__mod__, __build__, _ = mods.importCore(os.path.join(__dir__, "fstat.plugin"))
+__mod__, __build__, _ = catstuff.tools.modules.importCore(os.path.join(__dir__, "fstat.plugin"))
 
 
-class FStat(mods.CSModule):
+class FStat(catstuff.tools.modules.CSCollection):
+    indexes = ("device", "inode", "size", "mod_time")
+
     def __init__(self):
         super().__init__(__mod__, __build__)
+        self.coll.create_indexes([
+            pymongo.IndexModel([(index, pymongo.ASCENDING)], name=index) for index in self.indexes
+        ])
 
-    # def __getattribute__(self, item):
-    #     if item == 'data' and self.path == '':
-    #         raise AttributeError('Path not set')
-    #     else:
-    #         super().__getattribute__(item)
+    def __getattribute__(self, item):
+        if item == 'data' and self.path == '':
+            raise AttributeError('Path not set')
+        else:
+            return super().__getattribute__(item)
 
     def data(self):
         fd = os.open(self.path, os.O_RDONLY)
@@ -29,8 +34,8 @@ class FStat(mods.CSModule):
             'mod_time': result.st_mtime
         }
 
-    def main(self, *args, **kwargs):
-        self.set_path(kwargs['path'])
+    def main(self, path, **kwargs):
+        self.set_path(path)
         result = self.data()
 
         self.insert(result)

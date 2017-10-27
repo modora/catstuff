@@ -1,14 +1,14 @@
-import catstuff.toolbox.modules as mods
+import catstuff.tools.modules as mods
 import os
 import hashlib, zlib
-import math
+import collections
 
 __dir__ = os.path.dirname(__file__)
 __mod__, __build__, _ = mods.importCore(os.path.join(__dir__, "checksum.plugin"))
 
-_hashlib_methods = ['sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'blake2b', 'blake2s', 'md5',
-                    'sha3_224', 'sha3_256', 'sha3_384', 'sha3_512', 'shake_128', 'shake_256']
-_zlib_methods = ['crc32', 'adler32']
+_hashlib_methods = {'sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'blake2b', 'blake2s', 'md5',
+                    'sha3_224', 'sha3_256', 'sha3_384', 'sha3_512', 'shake_128', 'shake_256'}
+_zlib_methods = {'crc32', 'adler32'}
 
 
 def checksum(file, method='md5', block_size=None, hex=True):
@@ -85,9 +85,22 @@ def chuck_size(method):
         raise NotImplementedError("default block size not set for {} method".format(method))
 
 
-class Checksum(mods.CSModule):
+class Checksum(mods.CSCollection):
     def __init__(self):
         super().__init__(__mod__, __build__)
 
-    def main(self, *args, **kwargs):
-        raise NotImplementedError('Not implemented')
+    @staticmethod
+    def data(path, methods, block_size=None, hex=True):
+        d = {}
+        assert isinstance(methods, collections.Iterable)
+        methods = (methods,) if isinstance(methods, str) else methods
+        for method in methods:
+            d[method] = checksum(path,  method=method, block_size=block_size, hex=hex)
+        return d
+
+    def main(self, path, methods='md5', block_size=None, hex=True, **kwargs):
+        self.set_path(path)
+        data = self.data(path, methods=methods, block_size=block_size, hex=hex)
+
+        self.replace(data)
+        return data

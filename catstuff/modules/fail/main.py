@@ -1,12 +1,12 @@
-import catstuff.toolbox.modules as mods
-# from catstuff.toolbox.modules import CSModule  # DO NOT IMPORT THIS WAY -- PLUGIN WILL ERROR AT THE INIT
+import catstuff.tools.modules as mods
+# from catstuff.tools.modules import CSModule  # DO NOT IMPORT THIS WAY -- PLUGIN WILL ERROR AT THE INIT
 import os
 
 __dir__ = os.path.dirname(__file__)
 __mod__, __build__, _ = mods.importCore(os.path.join(__dir__, "fail.plugin"))
 
 
-class Fail(mods.CSModule):
+class Fail(mods.CSCollection):
     def __init__(self):
         super().__init__(__mod__, __build__)
 

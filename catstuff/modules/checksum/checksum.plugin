@@ -1,5 +1,5 @@
 [Core]
-Name = Checksum
+Name = checksum
 Module = main
 Build = 1
 

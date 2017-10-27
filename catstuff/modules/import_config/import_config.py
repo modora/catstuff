@@ -1,4 +1,4 @@
-import catstuff.toolbox.config
+import catstuff.tools.config
 import os
 
 class ImportConfig:
@@ -29,7 +29,7 @@ class ImportConfig:
             assert "Path must be absolute"
 
     def get_path_list(self):
-        return catstuff.toolbox.config.import_path_list(
+        return catstuff.tools.config.import_path_list(
             self.name, include=self.include, exclude=self.exclude,
             max_depth=self.depth, follow_links=self.follow_links,
             default_action=self.follow_links

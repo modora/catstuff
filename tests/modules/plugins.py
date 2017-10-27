@@ -1,14 +1,14 @@
 from yapsy.PluginManager import PluginManager
 import os
 import traceback, logging
-import catstuff.toolbox.modules as mods
+import catstuff.tools.modules as mods
 
 from catstuff import __file__ as __base__
 __base__ = os.path.dirname(__base__)
 
 manager = PluginManager(plugin_info_ext='plugin')
 manager.setCategoriesFilter({
-    'Modules': mods.CSModule,
+    'Modules': mods.CSCollection,
 })
 manager.setPluginPlaces([os.path.join(__base__, 'modules')])
 
