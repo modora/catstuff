@@ -4,7 +4,7 @@ import hashlib, zlib
 import collections
 
 __dir__ = os.path.dirname(__file__)
-__mod__, __build__, _ = mods.importCore(os.path.join(__dir__, "checksum.plugin"))
+__mod__, __build__, _ = mods.import_core(os.path.join(__dir__, "checksum.plugin"))
 
 _hashlib_methods = {'sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'blake2b', 'blake2s', 'md5',
                     'sha3_224', 'sha3_256', 'sha3_384', 'sha3_512', 'shake_128', 'shake_256'}

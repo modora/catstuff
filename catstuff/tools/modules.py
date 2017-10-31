@@ -1,9 +1,10 @@
 from yapsy.IPlugin import IPlugin
-from configparser import ConfigParser
+import configparser
 import catstuff.tools.db
+import collections
 
 
-class CSObject(IPlugin):
+class CSModule(IPlugin):
     def __init__(self, name, build):
         super().__init__()
         self.name = name
@@ -14,10 +15,10 @@ class CSObject(IPlugin):
             name=self.name, kwargs=kwargs, cls=self.__class__.__name__))
 
 
-class CSCollection(catstuff.tools.db.Collection, CSObject):
+class CSCollection(catstuff.tools.db.Collection, CSModule):
     def __init__(self, name, build, uid=None, path='', database=None, master_db=None):
         catstuff.tools.db.Collection.__init__(self, name, db=database, uid=uid)
-        CSObject.__init__(self, name, build)
+        CSModule.__init__(self, name, build)
 
         self.master = catstuff.tools.db.Master(db=master_db, uid=self.uid)
 
@@ -63,24 +64,42 @@ class CSCollection(catstuff.tools.db.Collection, CSObject):
         self.unlink() if unlink else None
 
 
-def importCore(path):
-    config = ConfigParser()
+def read_config(path):
+    """
+    Reads an ini config file and returns it as a dict
+    :param path:
+    :return:
+    """
+    config = configparser.ConfigParser()
     config.read(path)
 
-    # Case insensitive options
-    name = config.get('Core', 'Name') or config.get('Core', 'name')
-    build = config.get('Core', 'Build') or config.get('Core', 'build')
-    module = config.get('Core', 'Module') or config.get('Core', 'module')
-
-    if any([key is None for key in (name, build, module)]):
-        raise KeyError("Missing core key in {}".format(path))
-
-    return name, build, module
+    d = {}
+    for section in config.sections():
+        d[section] = {}
+        for option in config.options(section):
+            d[section][option] = config.get(section, option)
+    return d
 
 
-def test():
-    obj = CSObject('test', 1)
-    obj.main()
+def _get_opt(config: dict, option: str):
+    # returns a dict key (first letter, case insensitive)
+    return config.get(option) or config.get(option.lower()) or config.get(option.capitalize())
 
-if __name__ == '__main__':
-    test()
+
+def import_core(path):
+    options = ['build', 'name', 'module']
+
+    config = read_config(path)
+    config = _get_opt(config, option='Core') or {}
+
+    Core = collections.namedtuple('Core', options)
+    return Core(
+        build=_get_opt(config, 'build'),
+        name=_get_opt(config, 'name'),
+        module=_get_opt(config, 'module')
+    )
+
+
+def import_documentation(path):
+    config = read_config(path)
+    return _get_opt(config, 'Documentation')

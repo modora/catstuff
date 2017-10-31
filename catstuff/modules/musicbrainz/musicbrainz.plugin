@@ -1,0 +1,7 @@
+[Core]
+Name = musicbrainz
+Module = main
+Build = 1
+
+[Documentation]
+Version = 0.1

@@ -125,9 +125,10 @@ def import_file_list(top, max_depth=0, followlinks=False,
 
         if depth == max_depth:
             del dirs[:]
-        for i, dir in enumerate(dirs):
-            if not path_filter(dir, include=include, exclude=exclude, mode=mode):
-                del dirs[i]
+        # When mode is blacklist, this will exclude all subdirs so for now, include/exclude only apply to files
+        # for i, dir in enumerate(dirs):
+        #     if not path_filter(dir, include=include, exclude=exclude, mode=mode):
+        #         del dirs[i]
         for file in files:
             f = os.path.join(root, file)
             if path_filter(f, include=include, exclude=exclude, mode=mode):
@@ -142,3 +143,15 @@ class ExplicitDumper(yaml.SafeDumper):
     """
     def ignore_aliases(self, data):
         return True
+
+
+def print_vars(obj):
+    """
+    Prints all non-private attributes variables (does not start with '_' and not method)
+    :param obj:
+    :return:
+    """
+    for attr in dir(obj):
+        if attr[0] is "_" or callable(getattr(obj,attr)):
+            continue
+        print(attr, ":", getattr(obj, attr))

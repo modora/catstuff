@@ -1,14 +1,35 @@
 from yapsy.PluginManager import PluginManager
 import os
 import traceback, logging
-import catstuff.tools.modules as mods
+import catstuff.tools.modules
+import catstuff.core.modules
 
 from catstuff import __file__ as __base__
-__base__ = os.path.dirname(__base__)
+__base__ = os.path.dirname(os.path.realpath(__base__))
+
+## Settings
+global_settings = {
+    'path': r'C:\Users\S\PycharmProjects\catstuff\LICENSE',
+}
+settings = {
+    'filelist': {
+        'path': r'C:\Users\S\PycharmProjects\catstuff\tests',
+        'max_depth': -1,
+        'exclude': ['*.py']
+    },
+    'checksum': {
+        'methods': 'crc32'
+    }
+}  # user-defined, module settings
+
+tasks = [
+    'Success', 'Success', 'Fail', 'Success', 'Nonexistent plugin', 'filelist'
+]
+
 
 manager = PluginManager(plugin_info_ext='plugin')
 manager.setCategoriesFilter({
-    'Modules': mods.CSCollection,
+    'Modules': catstuff.tools.modules.CSCollection,
 })
 manager.setPluginPlaces([os.path.join(__base__, 'modules')])
 
@@ -18,6 +39,9 @@ print('-------------------------------------------------------------------------
 print('Manager Properties')
 print('------------------------------------------------------------------------------------------')
 print('Categories:', manager.getCategories())
+for category in manager.getCategories():
+    print('\t', category, ":",
+          [plugin.name for plugin in manager.getPluginsOfCategory(category)])
 
 print('------------------------------------------------------------------------------------------')
 print('Plugin Properties')
@@ -31,15 +55,6 @@ for plugin in manager.getPluginsOfCategory('Modules'):
 print('------------------------------------------------------------------------------------------')
 print("Main")
 print('------------------------------------------------------------------------------------------')
-args = {}
-kwargs = {}
-
-for plugin in manager.getAllPlugins():
-    print("Name:", plugin.name)
-    a = args.get(plugin.name, [])
-    kw = kwargs.get(plugin.name, {})
-    try:
-        print("Output:", plugin.plugin_object.main(a, kw))
-    except Exception as e:
-        print("FAILED TO EXECUTE '{name}': {error}".format(name=plugin.name, error=e))
-    print('---------------------------------------------')
+catstuff.core.modules.main(global_settings=global_settings,
+                           settings=settings,
+                           tasks=tasks)

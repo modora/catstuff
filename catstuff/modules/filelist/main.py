@@ -4,7 +4,7 @@ import catstuff.tools.modules as mods
 import os
 
 __dir__ = os.path.dirname(__file__)
-__mod__, __build__, _ = mods.importCore(os.path.join(__dir__, "filelist.plugin"))
+__mod__, __build__, _ = mods.import_core(os.path.join(__dir__, "filelist.plugin"))
 
 
 class Filelist(mods.CSCollection):

@@ -4,7 +4,7 @@ import logging
 import pymongo
 
 __dir__ = os.path.dirname(__file__)
-__mod__, __build__, _ = catstuff.tools.modules.importCore(os.path.join(__dir__, "fstat.plugin"))
+__mod__, __build__, _ = catstuff.tools.modules.import_core(os.path.join(__dir__, "fstat.plugin"))
 
 
 class FStat(catstuff.tools.modules.CSCollection):

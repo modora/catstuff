@@ -216,7 +216,7 @@ class Master(Collection):
             self.coll.update_many({'.'.join((mod_name, "_id")): mod_uid}, {'$unset': {mod_name: ""}})
             # It seems mongodb automatically deletes an index if there are no elements in it
             # Therefore we don't need to use the api to delete the indices ourselves
-            # for index in ['.'.join((mod_name, key)) for key in self.index_keys]:
+            # for index in ['.'.join((move, key)) for key in self.index_keys]:
             #     self.coll.drop_index(index)  # custom named indexes must be dropped by name
 
     def get_raw(self, default=None):

@@ -1,0 +1,8 @@
+musicbrainz:
+  # musicbrainz webservice (port # also supported -- 'localhost:8000')
+  host: 'musicbrainz.org'
+  caa_host: 'coverartarchive.org'
+
+  username: 'dersal'
+  password: '$G0M4KrvG60sFsO7'
+

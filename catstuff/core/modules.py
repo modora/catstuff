@@ -1,12 +1,9 @@
 from yapsy.PluginManager import PluginManager
-import catstuff.tools.modules as mods
+import catstuff.tools.modules
 import logging
+import os
 
-global_settings = {}  # settings used across all modules
-settings = {}  # user-defined, module settings
-vars = {}  # persistent variables containing the result after execution and pass between modules
-
-tasks = []  # order in which to run plugin tasks
+__dir__ = os.path.dirname(os.path.realpath(__file__))
 
 """
 global_settings = {
@@ -40,13 +37,18 @@ tasks = [
 
 _restricted_plugin_names = {'path'}
 
-manager = PluginManager(directories_list=["../modules"])
+manager = PluginManager()
+manager.setPluginPlaces([
+    os.path.join(__dir__, "../modules")
+])
 manager.setCategoriesFilter({
-    "Modules": mods.CSCollection
+    "Modules": catstuff.tools.modules.CSModule
 })
 manager.setPluginInfoExtension('plugin')
 
-def main():
+
+def main(global_settings={}, settings={}, tasks=[]):
+    vars = {}
     manager.collectPlugins()
 
     for task in tasks:
@@ -60,6 +62,15 @@ def main():
             raise NameError("The name {} is a forbidden plugin name, rename it!!".format(name))
 
         try:
+            import yaml
+            from catstuff.tools.common import ExplicitDumper
+            print("Executing '{name}' with arguments:".format(name=name))
+            print("\t" + yaml.dump({
+                **global_settings,
+                **settings.get(name, {}),
+                **vars,
+            }, Dumper=ExplicitDumper, default_flow_style=False, indent=2).replace("\n", "\n\t"))
+
             vars[name] = plugin.plugin_object.main(**{
                 **global_settings,
                 **settings.get(name, {}),
@@ -69,79 +80,3 @@ def main():
             print("Failed to execute {} module:".format(name), e)
             pass
 
-
-def test():
-    manager.collectPlugins()
-
-    for plugin in manager.getPluginsOfCategory("Modules"):
-
-        name = plugin.name
-        if name in _restricted_plugin_names:
-            raise NameError("The name {} is a forbidden plugin name, rename it!!".format(name))
-
-        try:
-            print("Executing {} module".format(name))
-            vars[name] = plugin.plugin_object.main(**{
-                **global_settings,
-                **settings.get(name, {}),
-                **vars,
-            })
-        except Exception as e:
-            print("Failed to execute {} module:".format(name), e)
-            pass
-
-    import yaml
-    print()
-    print(yaml.dump(vars))
-
-
-def test_settings():
-    global_settings = {
-        'path': r'C:\Users\S\PycharmProjects\catstuff\LICENSE',
-    }
-    settings = {
-        'filelist': {
-            'path': r'C:\Users\S\PycharmProjects\catstuff\tests',
-            'max_depth': -1,
-            'exclude': ['*.py']
-        },
-        'checksum': {
-            'methods': 'crc32'
-        }
-    }  # user-defined, module settings
-    vars = {
-
-    }  # persistent variables containing the result after execution and pass between modules
-
-    tasks = [
-        'Success', 'Success', 'Fail', 'Success', 'Nonexistent plugin', 'filelist'
-    ]
-
-    out = (global_settings, settings, vars, tasks)
-    return out
-
-
-if __name__ == '__main__':
-    print('---------------------------------------------------------------------------------------')
-    print("Test")
-    print('---------------------------------------------------------------------------------------')
-    global_settings, settings, vars, tasks = test_settings()
-    test()
-
-    print('---------------------------------------------------------------------------------------')
-    print("Main")
-    print('---------------------------------------------------------------------------------------')
-    global_settings, settings, vars, tasks = test_settings()
-    main()
-    import yaml
-    import catstuff.tools.db
-    test = catstuff.tools.db.Master()
-    uid = test.coll.find_one({}, {"_id": 1})["_id"]
-    test.set_uid(uid)
-
-    print()
-    print('Vars:')
-    print(yaml.dump(vars))
-    print()
-    print("db")
-    print(yaml.dump(test.get()))
