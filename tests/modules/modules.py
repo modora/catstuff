@@ -5,7 +5,7 @@ import catstuff.tools.modules
 import catstuff.core.modules
 
 from catstuff import __file__ as __base__
-__base__ = os.path.dirname(os.path.realpath(__base__))
+_base = os.path.dirname(os.path.realpath(__base__))
 
 ## Settings
 global_settings = {
@@ -31,7 +31,7 @@ manager = PluginManager(plugin_info_ext='plugin')
 manager.setCategoriesFilter({
     'Modules': catstuff.tools.modules.CSCollection,
 })
-manager.setPluginPlaces([os.path.join(__base__, 'modules')])
+manager.setPluginPlaces([os.path.join(_base, 'modules')])
 
 manager.collectPlugins()  # Import and categorize plugins
 

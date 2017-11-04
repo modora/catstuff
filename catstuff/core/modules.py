@@ -3,7 +3,7 @@ import catstuff.tools.modules
 import logging
 import os
 
-__dir__ = os.path.dirname(os.path.realpath(__file__))
+_dir = os.path.dirname(os.path.realpath(__file__))
 
 """
 global_settings = {
@@ -39,7 +39,7 @@ _restricted_plugin_names = {'path'}
 
 manager = PluginManager()
 manager.setPluginPlaces([
-    os.path.join(__dir__, "../modules")
+    os.path.join(_dir, "../modules")
 ])
 manager.setCategoriesFilter({
     "Modules": catstuff.tools.modules.CSModule
@@ -80,3 +80,6 @@ def main(global_settings={}, settings={}, tasks=[]):
             print("Failed to execute {} module:".format(name), e)
             pass
 
+
+if __name__ == '__main__':
+    main()

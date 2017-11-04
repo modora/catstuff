@@ -1,7 +1,18 @@
 nose
 sphinx
+
+# ------------ Core ----------------------------
 pyyaml
 pymongo
 
+# ------------ Testing ----------------------------
+# musicbrainz api
 musicbrainzngs
-tinytag
+
+# taglib wrapper -- requires taglib library to be installed
+# http://taglib.github.io/
+# pytaglib
+
+# ------------ DEPRECATED ----------------------------
+# reads audio only, no tagging
+# tinytag

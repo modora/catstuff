@@ -1,10 +1,13 @@
-import catstuff.tools.modules as mods
+import catstuff.tools.modules
 import os
 import hashlib, zlib
 import collections
 
-__dir__ = os.path.dirname(__file__)
-__mod__, __build__, _ = mods.import_core(os.path.join(__dir__, "checksum.plugin"))
+_dir = os.path.dirname(__file__)
+_plugin_file = os.path.join(_dir, "checksum.plugin")
+__version__ = catstuff.tools.modules.import_documentation(_plugin_file).get('Version')
+
+_mod, _build, _ = catstuff.tools.modules.import_core(_plugin_file)
 
 _hashlib_methods = {'sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'blake2b', 'blake2s', 'md5',
                     'sha3_224', 'sha3_256', 'sha3_384', 'sha3_512', 'shake_128', 'shake_256'}
@@ -85,9 +88,9 @@ def chuck_size(method):
         raise NotImplementedError("default block size not set for {} method".format(method))
 
 
-class Checksum(mods.CSCollection):
+class Checksum(catstuff.tools.modules.CSCollection):
     def __init__(self):
-        super().__init__(__mod__, __build__)
+        super().__init__(_mod, _build)
 
     @staticmethod
     def data(path, methods, block_size=None, hex=True):

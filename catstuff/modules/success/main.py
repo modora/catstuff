@@ -2,13 +2,16 @@ import catstuff.tools.modules
 # from catstuff.tools.modules import CSModule  # DO NOT IMPORT THIS WAY -- PLUGIN WILL ERROR AT THE INIT
 import os
 
-__dir__ = os.path.dirname(os.path.realpath(__file__))
-__mod__, __build__, _ = catstuff.tools.modules.import_core(os.path.join(__dir__, "success.plugin"))
+_dir = os.path.dirname(__file__)
+_plugin_file = os.path.join(_dir, "success.plugin")
+__version__ = catstuff.tools.modules.import_documentation(_plugin_file).get('Version')
+
+_mod, _build, _ = catstuff.tools.modules.import_core(_plugin_file)
 
 
 class Success(catstuff.tools.modules.CSModule):
     def __init__(self):
-        super().__init__(__mod__, __build__)
+        super().__init__(_mod, _build)
 
     def main(self, **kwargs):
         print("Success")

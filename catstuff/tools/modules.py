@@ -16,14 +16,30 @@ class CSModule(IPlugin):
 
 
 class CSCollection(catstuff.tools.db.Collection, CSModule):
-    def __init__(self, name, build, uid=None, path='', database=None, master_db=None):
-        catstuff.tools.db.Collection.__init__(self, name, db=database, uid=uid)
+    def __init__(self, name, build, path='', database=None, master_db=None, inherit_uid=True):
+        catstuff.tools.db.Collection.__init__(self, name, db=database)
         CSModule.__init__(self, name, build)
 
-        self.master = catstuff.tools.db.Master(db=master_db, uid=self.uid)
+        self._inherit_uid = inherit_uid
 
-        self.path = ''
-        self.set_path(path)
+        self.master = catstuff.tools.db.Master(db=master_db)
+        self.path = path
+
+    @property
+    def path(self):
+        return self._path
+
+    @path.setter
+    def path(self, value):
+        self._path = value
+        self.master.path = value
+        if self._inherit_uid:
+            self.uid = self.master.uid
+
+    @path.deleter
+    def path(self):
+        self._path = ''
+        del self.master.path
 
     def set_path(self, path, inherit_uid=True):
         self.path = path
@@ -36,17 +52,18 @@ class CSCollection(catstuff.tools.db.Collection, CSModule):
     def unlink(self, unique=False):
         self.master.unlink(self.name, mod_uid=self.uid, unique=unique)
 
-    def replace_uid(self, new_uid=None, uid_generate_method='uuid', unique=False):
+    def replace_uid(self, new_uid=None):
         old_uid = self.uid
-
-        doc = self.get()
-        new_uid = self.generate_uid(method=uid_generate_method, check_unique=True) if new_uid is None else new_uid
-        self.coll.insert_one({**doc, **{"_id": new_uid}})
-        self.delete(unlink=False)
-        self.set_uid(new_uid)
+        if self._inherit_uid:
+            new_uid = self.master.generate_uid(method=self.master._uid_generate_method)
+            self.master.replace_uid(new_uid)
+        else:
+            new_uid = self.generate_uid(self._uid_generate_method)
+        super().replace_uid(new_uid)
+        self.uid = new_uid
 
         field = '.'.join((self.name, "_id"))
-        if unique:
+        if self._inherit_uid:
             self.master.coll.update_one({field: old_uid}, {'$set': {field: self.uid}})
         else:
             self.master.coll.update_many({field: old_uid}, {'$set': {field: self.uid}})
@@ -82,7 +99,7 @@ def read_config(path):
 
 
 def _get_opt(config: dict, option: str):
-    # returns a dict key (first letter, case insensitive)
+    # returns a key of a dict (first letter, case insensitive)
     return config.get(option) or config.get(option.lower()) or config.get(option.capitalize())
 
 

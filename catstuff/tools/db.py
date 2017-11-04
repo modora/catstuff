@@ -1,7 +1,17 @@
 import pymongo, bson
 import logging
-import uuid, datetime
+import uuid, datetime, time
 import collections
+
+
+def generate_uid(method):
+    if method == 'uuid':
+        uid = uuid.uuid4().hex
+    elif method == 'objectid':
+        uid = bson.ObjectId()
+    else:
+        raise NotImplementedError
+    return uid
 
 
 def connect(host='localhost', port=27017):
@@ -13,96 +23,113 @@ def connect(host='localhost', port=27017):
 
 
 class Collection:
-    def __init__(self, collection_name, db=None, uid=None, uid_generate_method='uuid'):
+    def __init__(self, collection_name, db=None, uid_generate_method='uuid'):
         self.name = collection_name
 
-        # set_db
-        if db is None:
-            conn = connect()
-            db = pymongo.database.Database(conn, 'catstuff')
-        else:
-            assert isinstance(db, pymongo.database.Database)
-            conn = db._Database__client
-
-        self.conn = conn
         self.db = db
         self.coll = pymongo.collection.Collection(self.db, self.name)
 
-        # set uid
-        self.uid = self.generate_uid(method=uid_generate_method) if uid is None else uid
+        self._uid_generate_method = uid_generate_method
 
-    def _get_existing(self, qry, fields):
+        self.uid = self.generate_uid(method=self._uid_generate_method)
+
+    @property
+    def db(self):
+        return self._db
+
+    @db.setter
+    def db(self, value):
+        if value is None:
+            self._conn = connect()
+            self._db = pymongo.database.Database(self._conn, 'catstuff')
+        else:
+            assert isinstance(value , pymongo.database.Database)
+            self._conn = value._Database__client
+
+    @property
+    def conn(self):
+        return self._conn
+
+    @property
+    def uid(self):
+        return self._uid
+
+    @uid.setter
+    def uid(self, value):
+        if value is None:
+            self._uid = self.generate_uid(method=self._uid_generate_method)
+        else:
+            self._uid = value
+
+    def generate_uid(self, method, check_unique=True, max_time=30):
+        """
+
+        :param method:
+        :param check_unique:
+        :param max_time: Maximum time to generate uid in seconds
+        :return:
+        """
+        start_time = time.time()
+        while True:  # do-while
+            uid = generate_uid(method)
+
+            if check_unique:
+                # didn't want to use an 'AND' statement to avoid db operations
+                if self.coll.find_one({"_id": uid}) is None:
+                    break
+            elif time.time() - start_time > max_time:
+                raise RuntimeError('uuid took too long to generate')
+            else:
+                break
+        return uid
+
+    def _get_existing(self, qry, fields, append_missing=True):
+        """ Returns the value(s) of the fields given in the document """
+        """ Append_missing assigns mssing fields to the result """
         assert isinstance(fields, collections.Iterable)
         if isinstance(fields, str):
             fields = (fields,)
 
         collation = {field: 1 for field in fields}
         result = self.coll.find_one(qry, collation) or {}  # return an empty dict if none
-        return {**{field: None for field in fields}, **result}  # result a None value for nonexistent fields
-
-    def set_db(self, db):
-        if db is None:
-            conn = connect()
-            db = pymongo.database.Database(conn, 'catstuff')
+        if append_missing:
+            return {**{field: None for field in fields}, **result}  # result a None value for nonexistent fields
         else:
-            assert isinstance(db, pymongo.database.Database)
-            conn = db._Database__client
+            return result
 
-        self.conn = conn
-        self.db = db
-        self.coll = pymongo.collection.Collection(self.db, self.name)
-
-        result = (self.coll, self.db, self.conn)
-        return result
-
-    def set_uid(self, uid, uid_generate_method='uuid', check_unique=True):
-        self.uid = self.generate_uid(method=uid_generate_method, check_unique=check_unique) if uid is None else uid
-        return self.uid
-
-    def replace_uid(self, new_uid=None, uid_generate_method='uuid'):
+    def replace_uid(self, new_uid=None):
         # replaces the uid of the document in the collection
         # the _id field in the document is immutable so a copy-and-delete operation is necessary
-        doc = self.get()
-        new_uid = self.generate_uid(method=uid_generate_method, check_unique=True) if new_uid is None else new_uid
-        self.coll.insert_one({**doc, **{"_id": new_uid}})
-        self.delete()
-        self.set_uid(new_uid)
+        new_uid = self.generate_uid(method=self._uid_generate_method, check_unique=True) if new_uid is None else new_uid
+        doc = self.coll.find_one({"_id": self.uid})
+        if doc is not None:
+            self.coll.insert_one({**doc, **{"_id": new_uid}})
+            self.coll.delete_one({"_id": self.uid})
+            print("uid changed from {old} to {new}".format(old=self.uid, new=new_uid))
+            self.uid = new_uid
         return self.uid
 
-    def generate_uid(self, method, check_unique=True):
-        while True:  # do-while
-            if method == 'uuid':
-                uid = uuid.uuid4().hex
-            elif method == 'objectid':
-                uid = bson.ObjectId()
-            else:
-                raise NotImplementedError
-            if check_unique:
-                # didn't want to use an 'AND' statement to avoid db operations
-                if self.coll.find_one({"_id": uid}) is None:
-                    break
-            else:
-                return uid
-        return uid
-
+    @property
     def pre_data(self):
-        # constant data
-        # This method is preferred since fields can be generated at runtime
         return {"_id": self.uid}
 
-    def insert(self, data):
-        pre_data = self.pre_data()
-        data = {**data, **pre_data}  # append pre_data with actual data
+    def __insert(self, data):
+        data = {**data, **self.pre_data}  # append pre_data with actual data
         self.coll.update_one({"_id": self.uid}, {'$set': data}, upsert=True)
+
+    def insert(self, data):
+        self.__insert(data)
 
     def update(self, data):
         # alias for insert
-        self.insert(data)
+        self.__insert(data)
+
+    def __replace(self, data):
+        data = {**data, **self.pre_data}  # append pre_data with actual data
+        self.coll.replace_one({"_id": self.uid}, data, upsert=True)
 
     def replace(self, data):
-        pre_data = self.pre_data()
-        data = {**data, **pre_data}  # append pre_data with actual data
-        self.coll.replace_one({"_id": self.uid}, data, upsert=True)
+        self.__replace(data)
 
     def delete(self):
         self.coll.delete_one({"_id": self.uid})
@@ -111,61 +138,109 @@ class Collection:
         if fields is None:
             result = self.coll.find_one({"_id": self.uid})
         else:
-            assert isinstance(fields, collections.Iterable)
-            fields = (fields,) if isinstance(fields, str) else fields
-            collation = {field: 1 for field in fields}
-            result = self.coll.find_one({"_id": self.uid}, collation)
+            result = self._get_existing({"_id": self.uid}, fields=fields, append_missing=False)
         return result or default
 
 
 class Master(Collection):
+    """
+    A random, unique-uid is generated when this class is initialized. This uid does not exist in database. Manually
+    changing the uid to an existing id will also set the path
+    """
     index_keys = ("status", "build", "last_updated")
 
-    def __init__(self, path='', uid=None, db=None, uid_generate_method='uuid'):
+    def __init__(self, path='', db=None, uid_generate_method='uuid', group='ungrouped'):
         assert isinstance(path, (str, type(None)))
         if path is None:
             path = ''
 
-        super().__init__('master', db=db, uid=uid, uid_generate_method=uid_generate_method)
+        super().__init__('master', db=db, uid_generate_method=uid_generate_method)
 
         self.path = path
+        self.group = group
 
         self.coll.create_index("path", name="path")
 
     def __getattribute__(self, item):
-        if item == 'pre_data' and self.path == '':  # Do not insert data until path is set
+        if item == 'pre_data' and self.path in {'', None}:  # Do not insert data until path is set
             raise AttributeError("Path not set")
         else:
             return super().__getattribute__(item)
 
-    def set_path(self, path):
-        assert isinstance(path, (str, type(None)))
-        if path is None:
-            path = ''
+    @property
+    def path(self):
+        return self._path
 
-        self.path = path
+    @path.setter
+    def path(self, value):
+        self._path = value
 
-        existing_uid = self._get_existing({'path': self.path}, fields="_id")["_id"]
+        '''
+        NotImplementedError(is_valid_path not defined)
+        if not is_valid_path(value):
+            raise OSError
+        else:
+            self._path = value
+        '''
+        existing_uid = self._get_existing({'path': self.path}, fields='_id')['_id']
 
-        if self.uid != existing_uid and existing_uid is not None:
-            if existing_uid is not None:
-                print('Specified uid changed from {old} to {new}'.format(old=self.uid, new=existing_uid))
-            self.uid = existing_uid
-        return self.path
+        if existing_uid is not None:
+            if 'uid' in dir(self):
+                if self.uid != existing_uid:
+                    print('Specified uid changed from {old} to {new}'.format(old=self.uid, new=existing_uid))
+                    self.uid = existing_uid
+            else:  # if uid not init
+                self.uid = existing_uid
 
-    def set_uid(self, uid, uid_generate_method='uuid', check_unique=True):
-        super().set_uid(uid, uid_generate_method=uid_generate_method, check_unique=check_unique)
+    @path.deleter
+    def path(self):
+        self._path = ''
 
-        existing_path = self._get_existing({'_id': self.uid}, fields="path").get("path")
+    @property
+    def group(self):
+        return self._group
 
-        if self.path != existing_path and existing_path is not None:
-            if self.path not in ('', None):
-                print('Specified path changed from {old} to {new}'.format(old=self.path, new=existing_path))
-            self.path = existing_path
-        return self.uid
+    @group.setter
+    def group(self, value: str):
+        assert isinstance(value, str)
+        self._group = value
 
+    @group.deleter
+    def group(self):
+        self._group = 'ungrouped'
+
+    @property
     def pre_data(self):
-        return {"_id": self.uid, "path": self.path}
+        return {"_id": self.uid, "path": self.path, "group": self.group}
+
+    @property
+    def uid(self):
+        """
+        This overwritten property was to get PyCharm to shutup about class signature for the code
+
+            @Collection.uid.setter
+            def uid(self, value):
+                Collection.uid.fset(self, values)
+                <other code>
+
+        This way of writing will run into issues if a deleter method was created for the superclass since
+        the subclass does not inherit it
+        """
+        return self._uid
+
+    @uid.setter
+    def uid(self, value):
+        self._uid = value
+
+        existing_path = self._get_existing({'id': self.uid}, fields='path')['path']
+
+        if existing_path is not None:
+            if 'path' in dir(self):
+                if self.path != existing_path:
+                    print('Specified path changed from {old} to {new}'.format(old=self.path, new=existing_path))
+                    self.path = existing_path
+            else:  # init the path
+                self.path = existing_path
 
     def data(self, mod_name, build, mod_uid=None, collection=None, status='present'):
         '''
@@ -174,6 +249,7 @@ class Master(Collection):
         :param build: Module build number
         :param mod_uid: Module UID (defaults to master uid)
         :param collection: Module collection object (used to parse db info)
+        :param status:
         :return:
         '''
         assert isinstance(collection, (type(None),pymongo.collection.Collection))
@@ -229,7 +305,7 @@ class Master(Collection):
         if doc is None:
             return default
         mods = doc.keys() if mods is None else mods
-        mods = (mods,) if isinstance(mods, str) else mods  # convert str to tuple
+        mods = {mods} if isinstance(mods, str) else mods  # convert str to tuple
         assert isinstance(mods, collections.Iterable)
         d = {}
         for mod in mods:
