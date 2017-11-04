@@ -1,0 +1,10 @@
+[Core]
+Name = beatport
+Module = main
+Build = 1
+
+[Documentation]
+Description = I am a catstuff module!!
+Version = 
+Author = John Doe
+Website = 
