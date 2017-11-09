@@ -102,8 +102,8 @@ class Checksum(catstuff.tools.modules.CSCollection):
         return d
 
     def main(self, path, methods='md5', block_size=None, hex=True, **kwargs):
-        self.set_path(path)
-        data = self.data(path, methods=methods, block_size=block_size, hex=hex)
+        self.path = path
+        data = self.data(self.path, methods=methods, block_size=block_size, hex=hex)
 
         self.replace(data)
         return data

@@ -1,7 +1,8 @@
 from yapsy.IPlugin import IPlugin
 import configparser
 import catstuff.tools.db
-import collections
+import catstuff.tools.config
+import pymongo
 
 
 class CSModule(IPlugin):
@@ -20,10 +21,33 @@ class CSCollection(catstuff.tools.db.Collection, CSModule):
         catstuff.tools.db.Collection.__init__(self, name, db=database)
         CSModule.__init__(self, name, build)
 
-        self._inherit_uid = inherit_uid
-
         self.master = catstuff.tools.db.Master(db=master_db)
+        self.inherit_uid = inherit_uid
         self.path = path
+
+    @property
+    def uid(self):
+        return self._uid
+
+    @uid.setter
+    def uid(self, value):
+        catstuff.tools.db.Collection.uid.fset(self, value)  # this is correct -- warnings are wrong
+
+        if 'inherit_uid' and 'master' in dir(self):  # if already inited
+            if self.master.uid != value and self.inherit_uid:  # disable inheritance is uid changed
+                self.inherit_uid = False
+
+    @property
+    def inherit_uid(self):
+        return self._inherit_uid
+
+    @inherit_uid.setter
+    def inherit_uid(self, value: bool):
+        assert isinstance(value, bool)
+        self._inherit_uid = value
+
+        if self.uid != self.master.uid and value:
+            self.uid = self.master.uid
 
     @property
     def path(self):
@@ -33,52 +57,42 @@ class CSCollection(catstuff.tools.db.Collection, CSModule):
     def path(self, value):
         self._path = value
         self.master.path = value
-        if self._inherit_uid:
+        if self.inherit_uid:
             self.uid = self.master.uid
 
     @path.deleter
     def path(self):
         self._path = ''
-        del self.master.path
-
-    def set_path(self, path, inherit_uid=True):
-        self.path = path
-        self.master.set_path(path)
-        self.uid = self.master.uid if inherit_uid else self.uid
+        self.master.path = ''
 
     def link(self, status='present'):
         self.master.link(self.name, self.build, mod_uid=self.uid, status=status, collection=self.coll)
 
-    def unlink(self, unique=False):
-        self.master.unlink(self.name, mod_uid=self.uid, unique=unique)
-
-    def replace_uid(self, new_uid=None):
-        old_uid = self.uid
-        if self._inherit_uid:
-            new_uid = self.master.generate_uid(method=self.master._uid_generate_method)
-            self.master.replace_uid(new_uid)
-        else:
-            new_uid = self.generate_uid(self._uid_generate_method)
-        super().replace_uid(new_uid)
-        self.uid = new_uid
-
-        field = '.'.join((self.name, "_id"))
-        if self._inherit_uid:
-            self.master.coll.update_one({field: old_uid}, {'$set': {field: self.uid}})
-        else:
-            self.master.coll.update_many({field: old_uid}, {'$set': {field: self.uid}})
+    def unlink(self):
+        self.master.unlink(self.name, mod_uid=self.uid)
 
     def insert(self, data, link=True):
-        catstuff.tools.db.Collection.insert(self, data)
-        self.link() if link else None
+        try:
+            catstuff.tools.db.Collection.insert(self, data)
+            status = 'present'
+        except pymongo.errors.PyMongoError as e:
+            status = 'failed'
+        if link:
+            self.link(status=status)
 
     def replace(self, data, link=True):
-        catstuff.tools.db.Collection.replace(self, data)
-        self.link() if link else None
+        try:
+            catstuff.tools.db.Collection.replace(self, data)
+            status = 'present'
+        except pymongo.errors.PyMongoError as e:
+            status = 'failed'
+        if link:
+            self.link(status=status)
 
     def delete(self, unlink=True):
         catstuff.tools.db.Collection.delete(self)
-        self.unlink() if unlink else None
+        if unlink:
+            self.unlink()
 
 
 def read_config(path):
@@ -98,25 +112,20 @@ def read_config(path):
     return d
 
 
-def _get_opt(config: dict, option: str):
+def __get_opt(config: dict, option: str):
     # returns a key of a dict (first letter, case insensitive)
     return config.get(option) or config.get(option.lower()) or config.get(option.capitalize())
 
 
 def import_core(path):
-    options = ['build', 'name', 'module']
+    options = ['name', 'build', 'module']
 
     config = read_config(path)
-    config = _get_opt(config, option='Core') or {}
+    config = __get_opt(config, option='Core') or {}
 
-    Core = collections.namedtuple('Core', options)
-    return Core(
-        build=_get_opt(config, 'build'),
-        name=_get_opt(config, 'name'),
-        module=_get_opt(config, 'module')
-    )
+    return tuple([__get_opt(config, opt) for opt in options])
 
 
 def import_documentation(path):
     config = read_config(path)
-    return _get_opt(config, 'Documentation')
+    return __get_opt(config, 'Documentation')

@@ -3,9 +3,13 @@ import os
 import traceback, logging
 import catstuff.tools.modules
 import catstuff.core.modules
+import catstuff.tools.db
+import catstuff.tools.common
+import catstuff
+import yaml
 
-from catstuff import __file__ as __base__
-_base = os.path.dirname(os.path.realpath(__base__))
+logging.basicConfig()
+_base = os.path.dirname(os.path.realpath(catstuff.__file__))
 
 ## Settings
 global_settings = {
@@ -15,46 +19,48 @@ settings = {
     'filelist': {
         'path': r'C:\Users\S\PycharmProjects\catstuff\tests',
         'max_depth': -1,
-        'exclude': ['*.py']
+        'exclude': ['*.py'],
+        'include': ['*.yml'],
+        'mode': 'blacklist'
     },
     'checksum': {
-        'methods': 'crc32'
+        'methods': ['crc32', 'md5']
     }
 }  # user-defined, module settings
 
 tasks = [
-    'Success', 'Success', 'Fail', 'Success', 'Nonexistent plugin', 'filelist'
+    'Success', 'Success', 'Fail', 'Success', 'Nonexistent plugin', 'filelist', 'checksum'
 ]
 
 
 manager = PluginManager(plugin_info_ext='plugin')
 manager.setCategoriesFilter({
-    'Modules': catstuff.tools.modules.CSCollection,
+    'Modules': catstuff.tools.modules.CSModule,
+    'Collections': catstuff.tools.modules.CSCollection,
 })
 manager.setPluginPlaces([os.path.join(_base, 'modules')])
 
 manager.collectPlugins()  # Import and categorize plugins
 
-print('------------------------------------------------------------------------------------------')
-print('Manager Properties')
-print('------------------------------------------------------------------------------------------')
+catstuff.tools.common.title('Manager Properties')
 print('Categories:', manager.getCategories())
 for category in manager.getCategories():
     print('\t', category, ":",
           [plugin.name for plugin in manager.getPluginsOfCategory(category)])
 
-print('------------------------------------------------------------------------------------------')
-print('Plugin Properties')
-print('------------------------------------------------------------------------------------------')
+catstuff.tools.common.title('Plugin Properties')
 for plugin in manager.getPluginsOfCategory('Modules'):
-    for attr in dir(plugin):
-        if attr[0] == "_":
-            continue
-        print(attr, ":", getattr(plugin, attr))
-    print('---------------------------------------------')
-print('------------------------------------------------------------------------------------------')
-print("Main")
-print('------------------------------------------------------------------------------------------')
+    catstuff.tools.common.print_attr(plugin)
+    catstuff.tools.common.border(symbol='*', border_length=50)
+
+catstuff.tools.common.title('Main')
 catstuff.core.modules.main(global_settings=global_settings,
                            settings=settings,
                            tasks=tasks)
+
+catstuff.tools.common.title('Master')
+master = catstuff.tools.db.Master(path=global_settings['path'])
+catstuff.tools.common.title('raw', border_length=50, symbol='*')
+print(yaml.dump(master.get_raw()))
+catstuff.tools.common.title('linked', border_length=50, symbol='*')
+print(yaml.dump(master.get()))

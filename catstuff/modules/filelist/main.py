@@ -10,7 +10,7 @@ __version__ = catstuff.tools.modules.import_documentation(_plugin_file).get('Ver
 _mod, _build, _ = catstuff.tools.modules.import_core(_plugin_file)
 
 
-class Filelist(catstuff.tools.modules.CSCollection):
+class Filelist(catstuff.tools.modules.CSModule):
     def __init__(self):
         super().__init__(_mod, _build)
 

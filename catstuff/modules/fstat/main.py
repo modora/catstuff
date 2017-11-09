@@ -19,12 +19,6 @@ class FStat(catstuff.tools.modules.CSCollection):
             pymongo.IndexModel([(index, pymongo.ASCENDING)], name=index) for index in self.indexes
         ])
 
-    def __getattribute__(self, item):
-        if item == 'data' and self.path == '':
-            raise AttributeError('Path not set')
-        else:
-            return super().__getattribute__(item)
-
     def data(self):
         fd = os.open(self.path, os.O_RDONLY)
         result = os.fstat(fd)
@@ -38,7 +32,7 @@ class FStat(catstuff.tools.modules.CSCollection):
         }
 
     def main(self, path, **kwargs):
-        self.set_path(path)
+        self.path = path
         result = self.data()
 
         self.insert(result)

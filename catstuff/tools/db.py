@@ -30,8 +30,7 @@ class Collection:
         self.coll = pymongo.collection.Collection(self.db, self.name)
 
         self._uid_generate_method = uid_generate_method
-
-        self.uid = self.generate_uid(method=self._uid_generate_method)
+        self.uid = self.generate_uid()
 
     @property
     def db(self):
@@ -56,22 +55,40 @@ class Collection:
 
     @uid.setter
     def uid(self, value):
+        # replaces the id -- if document already exists, change the uid as well
         if value is None:
-            self._uid = self.generate_uid(method=self._uid_generate_method)
+            new_uid = self.generate_uid()
         else:
-            self._uid = value
+            new_uid = value
 
-    def generate_uid(self, method, check_unique=True, max_time=30):
+        if '_uid' not in dir(self):  # if uid has not been initialized
+            self._uid = new_uid
+            return
+        elif self._uid != value:
+            self._replace_uid(new_uid)
+            self._uid = new_uid
+
+    def _replace_uid(self, new_uid):
+        """ Replaces current document with new_uid"""
+
+        doc = self.coll.find_one({"_id": self.uid})  # current uid
+        # nothing to do if no document exists!!
+        if doc is not None:
+            # the _id field in the document is immutable so a copy-and-delete operation is necessary
+            self.coll.insert_one({**doc, **{"_id": new_uid}})
+            self.coll.delete_one({"_id": self.uid})
+            print("doc uid changed from {old} to {new}".format(old=self.uid, new=new_uid))
+
+    def generate_uid(self, check_unique=True, max_time=30):
         """
 
-        :param method:
         :param check_unique:
         :param max_time: Maximum time to generate uid in seconds
         :return:
         """
         start_time = time.time()
         while True:  # do-while
-            uid = generate_uid(method)
+            uid = generate_uid(method=self._uid_generate_method)
 
             if check_unique:
                 # didn't want to use an 'AND' statement to avoid db operations
@@ -82,32 +99,6 @@ class Collection:
             else:
                 break
         return uid
-
-    def _get_existing(self, qry, fields, append_missing=True):
-        """ Returns the value(s) of the fields given in the document """
-        """ Append_missing assigns mssing fields to the result """
-        assert isinstance(fields, collections.Iterable)
-        if isinstance(fields, str):
-            fields = (fields,)
-
-        collation = {field: 1 for field in fields}
-        result = self.coll.find_one(qry, collation) or {}  # return an empty dict if none
-        if append_missing:
-            return {**{field: None for field in fields}, **result}  # result a None value for nonexistent fields
-        else:
-            return result
-
-    def replace_uid(self, new_uid=None):
-        # replaces the uid of the document in the collection
-        # the _id field in the document is immutable so a copy-and-delete operation is necessary
-        new_uid = self.generate_uid(method=self._uid_generate_method, check_unique=True) if new_uid is None else new_uid
-        doc = self.coll.find_one({"_id": self.uid})
-        if doc is not None:
-            self.coll.insert_one({**doc, **{"_id": new_uid}})
-            self.coll.delete_one({"_id": self.uid})
-            print("uid changed from {old} to {new}".format(old=self.uid, new=new_uid))
-            self.uid = new_uid
-        return self.uid
 
     @property
     def pre_data(self):
@@ -131,8 +122,25 @@ class Collection:
     def replace(self, data):
         self.__replace(data)
 
-    def delete(self):
+    def __delete(self):
         self.coll.delete_one({"_id": self.uid})
+
+    def delete(self):
+        self.__delete()
+
+    def _get_existing(self, qry, fields, append_missing=True):
+        """ Returns the value(s) of the fields given in the document """
+        """ Append_missing assigns mssing fields to the result """
+        assert isinstance(fields, collections.Iterable)
+        if isinstance(fields, str):
+            fields = (fields,)
+
+        collation = {field: 1 for field in fields}
+        result = self.coll.find_one(qry, collation) or {}  # return an empty dict if none
+        if append_missing:
+            return {**{field: None for field in fields}, **result}  # result a None value for nonexistent fields
+        else:
+            return result
 
     def get(self, fields=None, default=None):
         if fields is None:
@@ -147,7 +155,8 @@ class Master(Collection):
     A random, unique-uid is generated when this class is initialized. This uid does not exist in database. Manually
     changing the uid to an existing id will also set the path
     """
-    index_keys = ("status", "build", "last_updated")
+    index_keys = {"status", "build", "last_updated"}
+    special_names = {'_id', 'group', 'path'}
 
     def __init__(self, path='', db=None, uid_generate_method='uuid', group='ungrouped'):
         assert isinstance(path, (str, type(None)))
@@ -161,18 +170,18 @@ class Master(Collection):
 
         self.coll.create_index("path", name="path")
 
-    def __getattribute__(self, item):
-        if item == 'pre_data' and self.path in {'', None}:  # Do not insert data until path is set
-            raise AttributeError("Path not set")
-        else:
-            return super().__getattribute__(item)
-
     @property
     def path(self):
+        if self._path in ('', None):
+            raise AttributeError("Path not set")
         return self._path
 
     @path.setter
     def path(self, value):
+        if value in (None, ''):
+            self._path = ''
+            self.uid = self.generate_uid()
+            return
         self._path = value
 
         '''
@@ -182,15 +191,16 @@ class Master(Collection):
         else:
             self._path = value
         '''
-        existing_uid = self._get_existing({'path': self.path}, fields='_id')['_id']
+        existing_uid = self._get_existing({'path': value}, fields='_id')['_id']
 
-        if existing_uid is not None:
-            if 'uid' in dir(self):
-                if self.uid != existing_uid:
-                    print('Specified uid changed from {old} to {new}'.format(old=self.uid, new=existing_uid))
-                    self.uid = existing_uid
-            else:  # if uid not init
-                self.uid = existing_uid
+        if existing_uid is None:
+            self.uid = self.generate_uid()
+            return
+        elif 'uid' not in dir(self):
+            self.uid = existing_uid
+        elif self.uid != existing_uid:
+            self.uid = existing_uid
+        # else, self.uid already equals existing_uid
 
     @path.deleter
     def path(self):
@@ -212,35 +222,6 @@ class Master(Collection):
     @property
     def pre_data(self):
         return {"_id": self.uid, "path": self.path, "group": self.group}
-
-    @property
-    def uid(self):
-        """
-        This overwritten property was to get PyCharm to shutup about class signature for the code
-
-            @Collection.uid.setter
-            def uid(self, value):
-                Collection.uid.fset(self, values)
-                <other code>
-
-        This way of writing will run into issues if a deleter method was created for the superclass since
-        the subclass does not inherit it
-        """
-        return self._uid
-
-    @uid.setter
-    def uid(self, value):
-        self._uid = value
-
-        existing_path = self._get_existing({'id': self.uid}, fields='path')['path']
-
-        if existing_path is not None:
-            if 'path' in dir(self):
-                if self.path != existing_path:
-                    print('Specified path changed from {old} to {new}'.format(old=self.path, new=existing_path))
-                    self.path = existing_path
-            else:  # init the path
-                self.path = existing_path
 
     def data(self, mod_name, build, mod_uid=None, collection=None, status='present'):
         '''
@@ -278,22 +259,27 @@ class Master(Collection):
         # links the document in the master database to a document in another collection
 
         indexes = ['.'.join((mod_name, key)) for key in self.index_keys]
-        self.coll.create_indexes([
-            pymongo.IndexModel([(index, pymongo.ASCENDING)], name=index) for index in indexes
-        ])
-        self.insert(self.data(mod_name, build, mod_uid=mod_uid, collection=collection, status=status))
+        try:
+            self.coll.create_indexes([
+                pymongo.IndexModel([(index, pymongo.ASCENDING)], name=index) for index in indexes
+            ])
+            self.insert(self.data(mod_name, build, mod_uid=mod_uid, collection=collection, status=status))
+        except pymongo.errors.PyMongoError as e:
+            print("Error creating master link: {}".format(e))
+            raise pymongo.errors.PyMongoError(e)
 
-    def unlink(self, mod_name, mod_uid=None, unique=False):
-        # unlinks any document with the uid -- if the link is known to be unique, set the unique option True
+    def unlink(self, mod_name, mod_uid=None):
+        # unlinks any document with the uid
         mod_uid = self.uid if mod_uid is None else mod_uid
-        if unique:
-            self.coll.update_one({'.'.join((mod_name, "_id")): mod_uid}, {'$unset': {mod_name: ""}})
-        else:
+        try:
             self.coll.update_many({'.'.join((mod_name, "_id")): mod_uid}, {'$unset': {mod_name: ""}})
             # It seems mongodb automatically deletes an index if there are no elements in it
             # Therefore we don't need to use the api to delete the indices ourselves
             # for index in ['.'.join((move, key)) for key in self.index_keys]:
             #     self.coll.drop_index(index)  # custom named indexes must be dropped by name
+        except pymongo.errors.PyMongoError as e:
+            print("Error unlinking master link: {}".format(e))
+            raise pymongo.errors.PyMongoError(e)
 
     def get_raw(self, default=None):
         # Returns the mongodb document
@@ -309,7 +295,7 @@ class Master(Collection):
         assert isinstance(mods, collections.Iterable)
         d = {}
         for mod in mods:
-            if mod in {'_id', 'path'}:
+            if mod in self.special_names:
                 d[mod] = doc[mod]
                 continue
             if mod not in doc:

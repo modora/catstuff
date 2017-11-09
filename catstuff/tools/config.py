@@ -1,22 +1,114 @@
+import yaml
+
+
+def load_config(path):
+    try:
+        return yaml.load(open(path, 'r'))
+    except yaml.YAMLError as e:
+        print("Error trying to load {path}: {error}".format(path=path, error=e))
+
+
+def dot_to_list(dot_str: str):
+    """ Converts from dot-notation to a list"""
+    return dot_str.split('.')
+
+
+def group_dot_to_list(dot_str: str):
+    """ Converts from group, dot-notation to a list"""
+    lst = []
+    for group in dot_str.split('.'):
+        lst.append('groups')
+        lst.append(group)
+    return lst
+
+
+def list_to_dot(dot_list: (list, tuple)):
+    """ Converts a list of strings to dot notation. All dots are replaced with underscores"""
+    assert all(isinstance(e, str) for e in dot_list), "All elements in list must be strings"
+    string = ''
+    for ele in dot_list:
+        s = ele.replace('.', '_')
+        if string == '':
+            string = s
+        else:
+            string += '.' + s
+    return string
+
+
+def group_list_to_dot(dot_list: (list, tuple)):
+    """ Converts a list of strings to dot notation. All dots are replaced with underscores"""
+    assert all(isinstance(e, str) for e in dot_list), "All elements in list must be strings"
+    string = ''
+    for i, ele in enumerate(dot_list):
+        # lists are written as ['groups', 'NAME', 'groups', 'NAME', ...]
+        # Use enumeration in case 'NAME' == 'groups'
+        # if ele == 'groups' will accidentally skip the 'NAME'
+        if i % 2 == 0:  # skip the 'groups' elements
+            continue
+        s = ele.replace('.', '_')
+        if string == '':
+            string = s
+        else:
+            string += '.' + s
+    return string
+
+
+def get_leaves(config: dict):
+    """
+    Returns all the leaves in some json-styled config
+
+    WARNING: All keys with a dot ('.') in their name are replaced with underscores ('_')
+    :param config: json config
+    :return: set in dot-notation
+    """
+    def walk(config: dict, node: (str, type(None))):
+        for key in config:
+            if isinstance(config[key], dict):
+                k = key.replace('.', '_')
+                n = '.'.join([node, k]) if node not in {'', None} else k
+                walk(config[key], node=n)
+            else:
+                k = key.replace('.', '_')
+                leaf = '.'.join([node, k]) if node not in {'', None} else k
+                leaves.add(leaf)
+    leaves = set()
+    walk(config, node=None)
+    return leaves
+
+
+def get_groups(config: dict):
+    """ Gets a list of all groups and subgroups in dot notation"""
+    def walk(config: dict, node: (str, None)):
+        for g in set(config.get('groups', {}).keys()):
+            group = g.replace('.', '_')
+            n = '.'.join([node, group]) if node not in ('', None) else group
+            groups.add(n)
+            walk(config['groups'][g], node=n)
+
+    groups = set()
+    walk(config, node=None)
+    return groups
+
+
+def get_modules(config: dict):
+    return set(config.get('modules', {}).keys())
+
+
+def eval_conf(config: dict, leaf: str, leaf_type=None):
+    keys = {
+        None: dot_to_list,
+        'group': group_dot_to_list
+    }[leaf_type](leaf)
+    conf = config.copy()
+    for key in keys:
+        conf = conf[key]
+    return conf
+
 # import os
 # import fnmatch
 # import yaml
 # from . import dicts
 # from .common import expandpath
-#
-#
-# def dot_to_list(dot_str):
-#     # Converts from dot notation str to list
-#     levels = dot_str.split('.')
-#     if levels[0] is '':
-#         levels.pop(0)
-#     if levels[-1] is '':
-#         levels.pop()
-#     return levels
-#
-#
-# def list_to_dot(dot_list):
-#     return '.'.join(dot_list)
 #
 #
 # def get_groups(config):

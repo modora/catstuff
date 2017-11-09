@@ -5,6 +5,6 @@ Build = 1
 
 [Documentation]
 Description = I am a catstuff module!!
-Version = 
+# Version =
 Author = John Doe
 Website = 

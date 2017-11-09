@@ -2,6 +2,7 @@ from yapsy.PluginManager import PluginManager
 import catstuff.tools.modules
 import logging
 import os
+import json
 
 _dir = os.path.dirname(os.path.realpath(__file__))
 
@@ -62,20 +63,18 @@ def main(global_settings={}, settings={}, tasks=[]):
             raise NameError("The name {} is a forbidden plugin name, rename it!!".format(name))
 
         try:
-            import yaml
-            from catstuff.tools.common import ExplicitDumper
-            print("Executing '{name}' with arguments:".format(name=name))
-            print("\t" + yaml.dump({
-                **global_settings,
-                **settings.get(name, {}),
-                **vars,
-            }, Dumper=ExplicitDumper, default_flow_style=False, indent=2).replace("\n", "\n\t"))
+            plugin_settings = settings.get(name, {})
 
-            vars[name] = plugin.plugin_object.main(**{
+            args = {
                 **global_settings,
-                **settings.get(name, {}),
-                **vars,
-            })
+                **plugin_settings,
+                'vars': {**vars},
+            }
+
+            print("Executing '{name}' with arguments:".format(name=name))
+            print(json.dumps(args))
+
+            vars[name] = plugin.plugin_object.main(**args)
         except Exception as e:
             print("Failed to execute {} module:".format(name), e)
             pass
