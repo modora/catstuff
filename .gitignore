@@ -94,9 +94,9 @@ ENV/
 /catstuff/logs/
 catstuff/config/sample.yml
 catstuff/logs/
-catstuff/modules/vars/__init__.py
-catstuff/modules/vars/main.py
-catstuff/modules/vars/vars.plugin
+catstuff/plugins/vars/__init__.py
+catstuff/plugins/vars/main.py
+catstuff/plugins/vars/vars.plugin
 docs/notes/img/
 tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/01 - One More Night.flac
 tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/02 - Payphone (with Wiz Khalifa).flac

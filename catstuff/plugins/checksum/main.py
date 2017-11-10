@@ -14,7 +14,7 @@ _hashlib_methods = {'sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'blake2b', '
 _zlib_methods = {'crc32', 'adler32'}
 
 
-def checksum(file, method='md5', block_size=None, hex=True):
+def checksum(file, method='md5', block_size=None, hex=True) -> str:
     '''
     Returns the checksum of a file
     :param file: path to file
@@ -48,10 +48,8 @@ def checksum(file, method='md5', block_size=None, hex=True):
         h = m(b'')
     elif method in _hashlib_methods:
         h = m()
-    elif method is None:
-        raise KeyError('Unknown checksum method')
     else:
-        raise NotImplementedError("method init not defined for {} method".format(method))
+        raise NotImplementedError("{} method not defined".format(method))
 
     if block_size is None:
         block_size = chuck_size(method)
@@ -67,7 +65,7 @@ def checksum(file, method='md5', block_size=None, hex=True):
 
     if method in _hashlib_methods:
         if method in ('shake_128', 'shake_256'):
-            return h.hexdigest(255) if hex else h.digest(255)
+            return h.hexdigest(64) if hex else h.digest(64)
         return h.hexdigest() if hex else h.digest()
     elif method in _zlib_methods:
         return format(h, 'x') if hex else h  # fix the else statement to byte object
