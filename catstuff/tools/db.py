@@ -2,7 +2,7 @@ import pymongo, bson
 import logging
 import uuid, datetime, time
 import collections
-
+import socket
 
 def generate_uid(method):
     if method == 'uuid':
@@ -22,7 +22,7 @@ def connect(host='localhost', port=27017):
         logging.error("Could not connect to MongoDB: {}".format(e))
 
 
-class Collection:
+class CSCollection:
     def __init__(self, collection_name, db=None, uid_generate_method='uuid'):
         self.name = collection_name
 
@@ -30,20 +30,20 @@ class Collection:
         self.coll = pymongo.collection.Collection(self.db, self.name)
 
         self._uid_generate_method = uid_generate_method
-        self.uid = self.generate_uid()
+        self._uid = self.generate_uid()
 
     @property
     def db(self):
         return self._db
 
     @db.setter
-    def db(self, value):
+    def db(self, value: pymongo.database.Database):
         if value is None:
-            self._conn = connect()
-            self._db = pymongo.database.Database(self._conn, 'catstuff')
+            self._db = pymongo.database.Database(connect(), 'catstuff')
         else:
             assert isinstance(value , pymongo.database.Database)
-            self._conn = value._Database__client
+            self._db = value
+        self._conn = self.db.client
 
     @property
     def conn(self):
@@ -55,29 +55,7 @@ class Collection:
 
     @uid.setter
     def uid(self, value):
-        # replaces the id -- if document already exists, change the uid as well
-        if value is None:
-            new_uid = self.generate_uid()
-        else:
-            new_uid = value
-
-        if '_uid' not in dir(self):  # if uid has not been initialized
-            self._uid = new_uid
-            return
-        elif self._uid != value:
-            self._replace_uid(new_uid)
-            self._uid = new_uid
-
-    def _replace_uid(self, new_uid):
-        """ Replaces current document with new_uid"""
-
-        doc = self.coll.find_one({"_id": self.uid})  # current uid
-        # nothing to do if no document exists!!
-        if doc is not None:
-            # the _id field in the document is immutable so a copy-and-delete operation is necessary
-            self.coll.insert_one({**doc, **{"_id": new_uid}})
-            self.coll.delete_one({"_id": self.uid})
-            print("doc uid changed from {old} to {new}".format(old=self.uid, new=new_uid))
+        self._uid = value if value is not None else self.generate_uid()
 
     def generate_uid(self, check_unique=True, max_time=30):
         """
@@ -128,29 +106,47 @@ class Collection:
     def delete(self):
         self.__delete()
 
-    def _get_existing(self, qry, fields, append_missing=True):
-        """ Returns the value(s) of the fields given in the document """
-        """ Append_missing assigns mssing fields to the result """
-        assert isinstance(fields, collections.Iterable)
-        if isinstance(fields, str):
-            fields = (fields,)
+    @staticmethod
+    def _get_coll_details(collection):
+        coll = collection.name
+        db = collection.database.name
+        host, port = collection.database.client.address
 
-        collation = {field: 1 for field in fields}
-        result = self.coll.find_one(qry, collation) or {}  # return an empty dict if none
-        if append_missing:
-            return {**{field: None for field in fields}, **result}  # result a None value for nonexistent fields
-        else:
-            return result
+        return (host, port, db, coll)
 
-    def get(self, fields=None, default=None):
-        if fields is None:
-            result = self.coll.find_one({"_id": self.uid})
-        else:
-            result = self._get_existing({"_id": self.uid}, fields=fields, append_missing=False)
-        return result or default
+    def link_data(self, uid, collection: pymongo.collection.Collection) -> dict:
+        """formats data to link a document to another document"""
+
+        attrs = ('host', 'port', 'database', 'collection')
+        data = {'_id': uid}
+        for i, (other, current) in enumerate(zip(self._get_coll_details(collection),
+                                               self._get_coll_details(self.coll))):
+            if other != current:
+                attr = attrs[i]
+                data.update({attr: other})
+        return data
+
+    def eval_link(self, link_data: dict, *args, **kwargs) -> (None, dict):
+        """evaluates the lined document -- mongodb args are allowed"""
+        # defaults
+        host, port, db, coll = self._get_coll_details(self.coll)
+
+        host = link_data.get('host') or host
+        port = link_data.get('port') or port
+        db = link_data.get('database') or db
+        coll = link_data.get('collection') or coll
+
+        conn = pymongo.MongoClient(host, port)
+        db = pymongo.database.Database(conn, name=db)
+        coll = pymongo.collection.Collection(db, name=coll)
+
+        return coll.find_one({"_id": link_data['_id']}, *args, **kwargs)
+
+    def get(self, *args, default=None, **kwargs):
+        return self.coll.find_one({"_id": self.uid}, *args, **kwargs) or default
 
 
-class Master(Collection):
+class Master(CSCollection):
     """
     A random, unique-uid is generated when this class is initialized. This uid does not exist in database. Manually
     changing the uid to an existing id will also set the path
@@ -160,8 +156,6 @@ class Master(Collection):
 
     def __init__(self, path='', db=None, uid_generate_method='uuid', group='ungrouped'):
         assert isinstance(path, (str, type(None)))
-        if path is None:
-            path = ''
 
         super().__init__('master', db=db, uid_generate_method=uid_generate_method)
 
@@ -180,7 +174,6 @@ class Master(Collection):
     def path(self, value):
         if value in (None, ''):
             self._path = ''
-            self.uid = self.generate_uid()
             return
         self._path = value
 
@@ -191,12 +184,12 @@ class Master(Collection):
         else:
             self._path = value
         '''
-        existing_uid = self._get_existing({'path': value}, fields='_id')['_id']
+        existing_uid = (self.coll.find_one({'path': value}, {"_id": 1}) or {}).get('_id')
 
         if existing_uid is None:
             self.uid = self.generate_uid()
             return
-        elif 'uid' not in dir(self):
+        elif 'uid' not in dir(self):  # if uid not inited
             self.uid = existing_uid
         elif self.uid != existing_uid:
             self.uid = existing_uid
@@ -235,22 +228,16 @@ class Master(Collection):
         '''
         assert isinstance(collection, (type(None),pymongo.collection.Collection))
         collection = self.coll if collection is None else collection
-
         mod_uid = self.uid if mod_uid is None else mod_uid
+
         last_updated = datetime.datetime.now()
-        coll_name = collection.name
-        db_name = collection.database.name
-        connection = collection.database._Database__client.address  # tuple of (hostname, port)
 
         data = {
             mod_name: {
-                "_id": mod_uid,
                 'status': status,
-                'database': db_name,
-                'connection': connection,
-                'collection': coll_name,
                 'build': build,  # used for queries
-                'last_updated': last_updated.timestamp()  # used for queries
+                'last_updated': last_updated.timestamp(),  # used for queries
+                **self.link_data(mod_uid, collection)
             }
         }
         return data
@@ -285,30 +272,17 @@ class Master(Collection):
         # Returns the mongodb document
         return super().get(default=default)
 
-    def get(self, mods=None, default=None):
+    def get(self, default=None, eval_links=True, **kwargs):
         # Returns the mongodb document and evaluates all the links
-        doc = self.get_raw(default=None)
-        if doc is None:
+        master_doc = self.get_raw()
+        if master_doc is None:
             return default
-        mods = doc.keys() if mods is None else mods
-        mods = {mods} if isinstance(mods, str) else mods  # convert str to tuple
-        assert isinstance(mods, collections.Iterable)
+        if not eval_links:
+            return master_doc or default
         d = {}
-        for mod in mods:
+        for mod in master_doc.keys():
             if mod in self.special_names:
-                d[mod] = doc[mod]
+                d[mod] = master_doc[mod]
                 continue
-            if mod not in doc:
-                d[mod] = default
-                continue
-            id = doc[mod]['_id']
-            host, port = doc[mod]['connection']
-            db_name = doc[mod]['database']
-            coll_name = doc[mod]['collection']
-
-            conn = pymongo.MongoClient(host=host, port=port)
-            db = pymongo.database.Database(conn, db_name)
-            coll = pymongo.collection.Collection(db, coll_name)
-
-            d[mod] = coll.find_one({"_id": id})
+            d[mod] = self.eval_link(master_doc[mod])
         return d

@@ -91,3 +91,40 @@ ENV/
 
 # Rope project settings
 .ropeproject
+/catstuff/logs/
+catstuff/config/sample.yml
+catstuff/logs/
+catstuff/modules/vars/__init__.py
+catstuff/modules/vars/main.py
+catstuff/modules/vars/vars.plugin
+docs/notes/img/
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/01 - One More Night.flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/02 - Payphone (with Wiz Khalifa).flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/03 - Day Light.flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/04 - Lucky Strike.flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/05 - The Man Who Never Lied.flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/06 - Love Somebody.flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/07 - Ladykiller.flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/08 - Fortune Teller.flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/09 - Sad.flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/10 - Tickets.flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/11 - Doin' Dirt.flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/12 - Beautiful Goodbye.flac
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/Maroon 5 - Overexposed.jpg
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [FLAC]/Overexposed.cue
+tests/musicbrainz/tests/files/Overexposed (2012)/Maroon 5 - Overexposed (2012) [MP3 V0]/
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/01 Harder To Breathe.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/02 This Love.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/03 Shiver.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/04 She Will Be Loved.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/05 Tangled.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/06 The Sun.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/07 Must Get Out.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/08 Sunday Morning.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/09 Secret.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/10 Through With You.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/11 Not Coming Home.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/12 Sweetest Goodbye.flac
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/Maroon 5 - Songs About Jane.jpg
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/Maroon 5 - Songs About Jane.m3u
+tests/musicbrainz/tests/files/Songs About Jane (2002)/Maroon 5 - Songs About Jane (2002) [FLAC]/Songs About Jane.cue

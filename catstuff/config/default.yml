@@ -3,7 +3,7 @@
 version: '1.0'
 
 # imports other configs (uses relative dirs)
-import: []
+# import: [] -- unsupported right now -- too many issues in the import parser
 
 # GLOBAL SETTINGS
 resources:
@@ -27,5 +27,10 @@ modules: {}
 ## Group settings
 groups:
   default: {}
-  
-# path: RESERVED VARIABLE
+
+# Used to enable developer settings
+#  - build qry now >= from >  (so you don't have to keep incrementing build number)
+dev_mode: no
+# RESERVED VARIABLES
+# path:
+# group:

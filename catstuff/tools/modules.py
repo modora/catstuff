@@ -16,9 +16,9 @@ class CSModule(IPlugin):
             name=self.name, kwargs=kwargs, cls=self.__class__.__name__))
 
 
-class CSCollection(catstuff.tools.db.Collection, CSModule):
+class CSCollection(catstuff.tools.db.CSCollection, CSModule):
     def __init__(self, name, build, path='', database=None, master_db=None, inherit_uid=True):
-        catstuff.tools.db.Collection.__init__(self, name, db=database)
+        catstuff.tools.db.CSCollection.__init__(self, name, db=database)
         CSModule.__init__(self, name, build)
 
         self.master = catstuff.tools.db.Master(db=master_db)
@@ -31,7 +31,7 @@ class CSCollection(catstuff.tools.db.Collection, CSModule):
 
     @uid.setter
     def uid(self, value):
-        catstuff.tools.db.Collection.uid.fset(self, value)  # this is correct -- warnings are wrong
+        catstuff.tools.db.CSCollection.uid.fset(self, value)  # this is correct -- warnings are wrong
 
         if 'inherit_uid' and 'master' in dir(self):  # if already inited
             if self.master.uid != value and self.inherit_uid:  # disable inheritance is uid changed
@@ -51,18 +51,16 @@ class CSCollection(catstuff.tools.db.Collection, CSModule):
 
     @property
     def path(self):
-        return self._path
+        return self.master.path
 
     @path.setter
     def path(self, value):
-        self._path = value
         self.master.path = value
         if self.inherit_uid:
             self.uid = self.master.uid
 
     @path.deleter
     def path(self):
-        self._path = ''
         self.master.path = ''
 
     def link(self, status='present'):
@@ -73,7 +71,7 @@ class CSCollection(catstuff.tools.db.Collection, CSModule):
 
     def insert(self, data, link=True):
         try:
-            catstuff.tools.db.Collection.insert(self, data)
+            super(CSCollection, self).insert(data)
             status = 'present'
         except pymongo.errors.PyMongoError as e:
             status = 'failed'
@@ -82,7 +80,7 @@ class CSCollection(catstuff.tools.db.Collection, CSModule):
 
     def replace(self, data, link=True):
         try:
-            catstuff.tools.db.Collection.replace(self, data)
+            super(CSCollection, self).replace(data)
             status = 'present'
         except pymongo.errors.PyMongoError as e:
             status = 'failed'
@@ -90,7 +88,7 @@ class CSCollection(catstuff.tools.db.Collection, CSModule):
             self.link(status=status)
 
     def delete(self, unlink=True):
-        catstuff.tools.db.Collection.delete(self)
+        super(CSCollection, self).delete()
         if unlink:
             self.unlink()
 

@@ -190,3 +190,10 @@ def title(name, symbol='-', border_length=100):
 def border(symbol='-', border_length=100):
     single_instance = symbol * border_length
     print(single_instance[:border_length])  # print up to the specified length
+
+
+def touch(path):
+    basedir = os.path.dirname(path)
+    if not os.path.exists(basedir):
+        os.makedirs(basedir)
+    open(path, 'a').close()

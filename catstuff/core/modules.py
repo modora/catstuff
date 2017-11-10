@@ -1,10 +1,27 @@
 from yapsy.PluginManager import PluginManager
 import catstuff.tools.modules
-import logging
+import catstuff.tools.common
+import logging, logging.handlers, datetime
 import os
 import json
 
+
 _dir = os.path.dirname(os.path.realpath(__file__))
+
+log_file = os.path.join(_dir, '../logs/core/modules.log')
+catstuff.tools.common.touch(log_file)
+# logging.basicConfig(filename=log_file, level=logging.DEBUG)
+
+log_handler = logging.handlers.RotatingFileHandler(log_file, mode='a', maxBytes=10*1024*1024,
+                                                   backupCount=2, encoding=None, delay=0)
+log_handler.setFormatter(logging.Formatter(
+    '%(asctime)s %(levelname)s - %(names)s - %(funcName)s(%(lineno)d): %(message)s'
+))
+log_handler.setLevel(logging.DEBUG)
+
+logger = logging.getLogger('modules')
+logger.setLevel(logging.DEBUG)
+# logger.addHandler(log_handler)  # fix this
 
 """
 global_settings = {
@@ -52,6 +69,7 @@ def main(global_settings={}, settings={}, tasks=[]):
     vars = {}
     manager.collectPlugins()
 
+
     for task in tasks:
         plugin = manager.getPluginByName(task, category="Modules")
         if plugin is None:
@@ -77,7 +95,7 @@ def main(global_settings={}, settings={}, tasks=[]):
             vars[name] = plugin.plugin_object.main(**args)
         except Exception as e:
             print("Failed to execute {} module:".format(name), e)
-            pass
+            logger.error("Failed to execute {} module:".format(name), exc_info=True)
 
 
 if __name__ == '__main__':
