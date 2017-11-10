@@ -22,8 +22,7 @@ def checksum(file, method='md5', block_size=None, hex=True) -> str:
     :param block_size: Size of each chunk (Set to 'None' to assign defaults)
     :param hex: Return the hex digest
     :return:
-
-    SHAKE methods return a 255 length string
+    :rtype: str
     '''
 
     m = {
@@ -52,7 +51,7 @@ def checksum(file, method='md5', block_size=None, hex=True) -> str:
         raise NotImplementedError("{} method not defined".format(method))
 
     if block_size is None:
-        block_size = chuck_size(method)
+        block_size = chunk_size(method)
 
     with open(file, 'rb') as file:
         for chunk in iter(lambda: file.read(block_size), b''):
@@ -73,7 +72,7 @@ def checksum(file, method='md5', block_size=None, hex=True) -> str:
         raise NotImplementedError("Return method not set for {} method".format(method))
 
 
-def chuck_size(method):
+def chunk_size(method):
     if method in _hashlib_methods:
         h = getattr(hashlib, method)()
         size = {

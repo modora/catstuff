@@ -1,11 +1,6 @@
 from nose.tools import *
 from tests.common import *
-import catstuff.plugins.checksum.main as main
 from catstuff.plugins.checksum.main import *
-import os
-
-empty_file = os.path.join(test_basedir, 'files/empty.file')
-filled_file = os.path.join(test_basedir, 'files/filled.file')
 
 
 @raises(NotImplementedError)

@@ -5,69 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0b5636e-c119-4526-81d5-e5e8adc2af9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/catstuff/plugins/vars/main.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/catstuff/plugins/vars/vars.plugin" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/core/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/core/master.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/core/test_modules.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/files/empty.file" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/files/filled.file" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/plugins/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/plugins/test_checksum.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/simple.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test_nose.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/conf.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/index.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/make.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/modules.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/notes/dynamic import.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/notes/ui.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/notes/yapsy.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/to do.md" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/acoustid/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/acoustid/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/beatport/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/beatport/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/beatport/beatport.plugin" afterPath="$PROJECT_DIR$/catstuff/plugins/beatport/beatport.plugin" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/beatport/main.py" afterPath="$PROJECT_DIR$/catstuff/plugins/beatport/main.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/checksum/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/checksum/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/checksum/checksum.plugin" afterPath="$PROJECT_DIR$/catstuff/plugins/checksum/checksum.plugin" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/checksum/main.py" afterPath="$PROJECT_DIR$/catstuff/plugins/checksum/main.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/copy/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/copy/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/copy/copy.plugin" afterPath="$PROJECT_DIR$/catstuff/plugins/copy/copy.plugin" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/copy/main.py" afterPath="$PROJECT_DIR$/catstuff/plugins/copy/main.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/discogs/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/discogs/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/fail/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/fail/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/fail/fail.plugin" afterPath="$PROJECT_DIR$/catstuff/plugins/fail/fail.plugin" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/fail/main.py" afterPath="$PROJECT_DIR$/catstuff/plugins/fail/main.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/filelist/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/filelist/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/filelist/filelist.plugin" afterPath="$PROJECT_DIR$/catstuff/plugins/filelist/filelist.plugin" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/filelist/main.py" afterPath="$PROJECT_DIR$/catstuff/plugins/filelist/main.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/fstat/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/fstat/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/fstat/fstat.plugin" afterPath="$PROJECT_DIR$/catstuff/plugins/fstat/fstat.plugin" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/fstat/main.py" afterPath="$PROJECT_DIR$/catstuff/plugins/fstat/main.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/move/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/move/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/move/main.py" afterPath="$PROJECT_DIR$/catstuff/plugins/move/main.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/move/move.plugin" afterPath="$PROJECT_DIR$/catstuff/plugins/move/move.plugin" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/musicbrainz/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/musicbrainz/default_config.yaml" afterPath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/default_config.yaml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/musicbrainz/main.py" afterPath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/main.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/musicbrainz/musicbrainz.plugin" afterPath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/musicbrainz.plugin" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/replaygain/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/replaygain/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/replaygain/main.py" afterPath="$PROJECT_DIR$/catstuff/plugins/replaygain/main.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/replaygain/replaygain.plugin" afterPath="$PROJECT_DIR$/catstuff/plugins/replaygain/replaygain.plugin" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/success/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/success/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/success/main.py" afterPath="$PROJECT_DIR$/catstuff/plugins/success/main.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/success/success.plugin" afterPath="$PROJECT_DIR$/catstuff/plugins/success/success.plugin" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/template.7z" afterPath="$PROJECT_DIR$/catstuff/plugins/template.7z" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/config/__init__.py" afterPath="$PROJECT_DIR$/catstuff/plugins/vars/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/modules/__init__.py" afterPath="$PROJECT_DIR$/tests/common.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/modules/modules.py" afterPath="$PROJECT_DIR$/notes/modules.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/catstuff.iml" afterPath="$PROJECT_DIR$/.idea/catstuff.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/markdown-navigator.xml" afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/core/master.py" afterPath="$PROJECT_DIR$/tests/core/test_master.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/config.py" afterPath="$PROJECT_DIR$/catstuff/core/config.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/plugins/checksum/main.py" afterPath="$PROJECT_DIR$/catstuff/plugins/checksum/main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/common.py" afterPath="$PROJECT_DIR$/tests/common.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/plugins/test_checksum.py" afterPath="$PROJECT_DIR$/tests/plugins/test_checksum.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -80,11 +22,11 @@
     <splitter split-orientation="vertical" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="test_checksum.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="test_checksum.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/tests/plugins/test_checksum.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="46" column="18" lean-forward="false" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+                <state relative-caret-position="205">
+                  <caret line="103" column="75" lean-forward="false" selection-start-line="103" selection-start-column="75" selection-end-line="103" selection-end-column="75" />
                   <folding>
                     <element signature="e#0#24#0" expanded="true" />
                   </folding>
@@ -92,8 +34,8 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="master.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/tests/core/master.py">
+          <file leaf-file-name="test_master.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/tests/core/test_master.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
                   <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -110,7 +52,7 @@
             <entry file="file://$PROJECT_DIR$/catstuff/plugins/checksum/main.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="272">
-                  <caret line="67" column="58" lean-forward="false" selection-start-line="67" selection-start-column="58" selection-end-line="67" selection-end-column="58" />
+                  <caret line="71" column="28" lean-forward="true" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
@@ -227,10 +169,10 @@
         <option value="$PROJECT_DIR$/tests/files/test_nose.py" />
         <option value="$PROJECT_DIR$/tests/core/test_modules.py" />
         <option value="$PROJECT_DIR$/catstuff/plugins/checksum/__init__.py" />
-        <option value="$PROJECT_DIR$/tests/common.py" />
-        <option value="$PROJECT_DIR$/catstuff/plugins/checksum/main.py" />
-        <option value="$PROJECT_DIR$/tests/plugins/test_checksum.py" />
         <option value="$PROJECT_DIR$/tests/core/master.py" />
+        <option value="$PROJECT_DIR$/tests/common.py" />
+        <option value="$PROJECT_DIR$/tests/plugins/test_checksum.py" />
+        <option value="$PROJECT_DIR$/catstuff/plugins/checksum/main.py" />
       </list>
     </option>
   </component>
@@ -533,7 +475,14 @@
       <option name="project" value="LOCAL" />
       <updated>1510278185311</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added nose-test files">
+      <created>1510298203859</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1510298203861</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -616,7 +565,8 @@
     <MESSAGE value="New mods" />
     <MESSAGE value="Reworking config" />
     <MESSAGE value="Problems with the config implementation -- on-hold" />
-    <option name="LAST_COMMIT_MESSAGE" value="Problems with the config implementation -- on-hold" />
+    <MESSAGE value="Added nose-test files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added nose-test files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -957,14 +907,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/nose/case.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
@@ -973,28 +915,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/plugins/checksum/main.py">
+    <entry file="file://$PROJECT_DIR$/tests/core/test_master.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="67" column="58" lean-forward="false" selection-start-line="67" selection-start-column="58" selection-end-line="67" selection-end-column="58" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="59" lean-forward="true" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/plugins/test_checksum.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="46" column="18" lean-forward="false" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+        <state relative-caret-position="205">
+          <caret line="103" column="75" lean-forward="false" selection-start-line="103" selection-start-column="75" selection-end-line="103" selection-end-column="75" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/core/master.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/plugins/checksum/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="272">
+          <caret line="71" column="28" lean-forward="true" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
           <folding />
         </state>
       </provider>
