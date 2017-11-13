@@ -4,6 +4,7 @@ import uuid, datetime, time
 import collections
 import socket
 
+
 def generate_uid(method):
     if method == 'uuid':
         uid = uuid.uuid4().hex
@@ -14,12 +15,14 @@ def generate_uid(method):
     return uid
 
 
-def connect(host='localhost', port=27017):
+def connect(*args, **kwargs):
     try:
-        conn = pymongo.MongoClient(host=host, port=port)
+        conn = pymongo.MongoClient(*args, **kwargs)
+        conn.server_info()
         return conn
-    except pymongo.errors.ConnectionFailure as e:
-        logging.error("Could not connect to MongoDB: {}".format(e))
+    except pymongo.errors.ServerSelectionTimeoutError as e:
+        # should do logging here
+        raise
 
 
 class CSCollection:
@@ -38,11 +41,22 @@ class CSCollection:
 
     @db.setter
     def db(self, value: pymongo.database.Database):
-        if value is None:
-            self._db = pymongo.database.Database(connect(), 'catstuff')
+        self._set_db(value)
+
+    def _set_db(self, db, *args, **kwargs):
+        """
+
+        :param db:
+        :param args: connect() arguments
+        :param kwargs: connect() keyword args
+        :return:
+        """
+        if db is None:
+            conn = connect(*args, **kwargs)
+            self._db = pymongo.database.Database(conn, 'catstuff')
         else:
-            assert isinstance(value , pymongo.database.Database)
-            self._db = value
+            assert isinstance(db, pymongo.database.Database)
+            self._db = db
         self._conn = self.db.client
 
     @property
@@ -142,7 +156,7 @@ class CSCollection:
 
         return coll.find_one({"_id": link_data['_id']}, *args, **kwargs)
 
-    def get(self, *args, default=None, **kwargs):
+    def get(self, *args, default=None, **kwargs) -> dict:
         return self.coll.find_one({"_id": self.uid}, *args, **kwargs) or default
 
 
@@ -268,11 +282,11 @@ class Master(CSCollection):
             print("Error unlinking master link: {}".format(e))
             raise pymongo.errors.PyMongoError(e)
 
-    def get_raw(self, default=None):
+    def get_raw(self, default=None) -> dict:
         # Returns the mongodb document
         return super().get(default=default)
 
-    def get(self, default=None, eval_links=True, **kwargs):
+    def get(self, default=None, eval_links=True, **kwargs) -> dict:
         # Returns the mongodb document and evaluates all the links
         master_doc = self.get_raw()
         if master_doc is None:

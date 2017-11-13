@@ -25,9 +25,8 @@ def test_empty_sha1():
     assert_equal(result, actual)
 
 
-
-class Hashlib:
-    skip_methods = {'blake2b', 'blake2s'}  #  cannot verify these right now
+class Library:
+    skip_methods = set()
 
     def __init__(self, file, actuals={}):
         self.file = file
@@ -41,9 +40,21 @@ class Hashlib:
         if method in self.skip_methods:
             return
         if actual is None:
-            ok_(False ,'Checksum could not be verified')
-        result =  checksum(self.file, method=method)
+            ok_(False, 'Checksum could not be verified')
+        result = checksum(self.file, method=method)
         assert_equal(result.lower(), actual.lower())
+
+
+class Zlib(Library):
+    def test_crc32(self):
+        self.test_method('crc32')
+
+    def test_adler32(self):
+        self.test_method('adler32')
+
+
+class Hashlib(Library):
+    skip_methods = {'blake2b', 'blake2s'}  #  cannot verify these right now
 
     def test_sha1(self):
         self.test_method('sha1')
@@ -88,7 +99,7 @@ class Hashlib:
         self.test_method('shake_256')
 
 
-class TestFilled(Hashlib):
+class TestFilled(Hashlib, Zlib):
     actuals = {
         'sha1'     : 'e904e143809b8ee161abdc55455bd5ff7773b5d7',
         'sha224'   : '0e06806c50baf975474d31dbd74eb394aee928c034c191d91dfc65dc',
@@ -105,8 +116,10 @@ class TestFilled(Hashlib):
         'sha3_512' :
             'c34069059313d61a3030479ad9bff8cfc4308322840e8376dc9c6117bb3e39e47217bec789e1cfd8ebac61f059174352722c870b24b6b2800ed635f43e1ef285',
         'shake_128': '0cf15a6a82525b3abd3cf74a99d8302fd44adb70333ff4db932080643591f4eea92ec63edcda1fb319f504bbcdf53014e5e7abfa6feb59060332b0a484775efa',
-        'shake_256': '4f35797528ece0c72d552b53eccc3e8c6a0ea3c1751008404b276978c572bd4e6fb1d2a06fd65c25291cf06855699213d4adce7d8702ed4f1b20a7c48b3fbcf1'
+        'shake_256': '4f35797528ece0c72d552b53eccc3e8c6a0ea3c1751008404b276978c572bd4e6fb1d2a06fd65c25291cf06855699213d4adce7d8702ed4f1b20a7c48b3fbcf1',
+        'crc32': 'f11b4ef9',
+        'adler32': '2bb91434'
     }
 
     def __init__(self):
-        Hashlib.__init__(self, filled_file, actuals=self.actuals)
+        Library.__init__(self, filled_file, actuals=self.actuals)

@@ -1,8 +1,8 @@
 from yapsy.PluginManager import PluginManager
 import os
 import traceback, logging
-import catstuff.tools.modules
-import catstuff.core.modules
+import catstuff.tools.plugins
+import catstuff.core.plugins
 import catstuff.tools.db
 import catstuff.tools.common
 import catstuff
@@ -35,8 +35,8 @@ tasks = [
 
 manager = PluginManager(plugin_info_ext='plugin')
 manager.setCategoriesFilter({
-    'Modules': catstuff.tools.modules.CSModule,
-    'Collections': catstuff.tools.modules.CSCollection,
+    'Modules': catstuff.tools.plugins.CSModule,
+    'Collections': catstuff.tools.plugins.CSCollection,
 })
 manager.setPluginPlaces([os.path.join(_base, 'modules')])
 
@@ -54,7 +54,7 @@ for plugin in manager.getPluginsOfCategory('Modules'):
     catstuff.tools.common.border(symbol='*', border_length=50)
 
 catstuff.tools.common.title('Main')
-catstuff.core.modules.main(global_settings=global_settings,
+catstuff.core.plugins.main(global_settings=global_settings,
                            settings=settings,
                            tasks=tasks)
 

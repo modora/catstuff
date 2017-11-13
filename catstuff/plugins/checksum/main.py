@@ -1,13 +1,13 @@
-import catstuff.tools.modules
+import catstuff.tools.plugins
 import os
 import hashlib, zlib
 import collections
 
 _dir = os.path.dirname(__file__)
 _plugin_file = os.path.join(_dir, "checksum.plugin")
-__version__ = catstuff.tools.modules.import_documentation(_plugin_file).get('Version')
+__version__ = catstuff.tools.plugins.import_documentation(_plugin_file).get('Version')
 
-_mod, _build, _ = catstuff.tools.modules.import_core(_plugin_file)
+_mod, _build, _ = catstuff.tools.plugins.import_core(_plugin_file)
 
 _hashlib_methods = {'sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'blake2b', 'blake2s', 'md5',
                     'sha3_224', 'sha3_256', 'sha3_384', 'sha3_512', 'shake_128', 'shake_256'}
@@ -73,6 +73,7 @@ def checksum(file, method='md5', block_size=None, hex=True) -> str:
 
 
 def chunk_size(method):
+    # Optimizer -- work on this later
     if method in _hashlib_methods:
         h = getattr(hashlib, method)()
         size = {
@@ -85,7 +86,7 @@ def chunk_size(method):
         raise NotImplementedError("default block size not set for {} method".format(method))
 
 
-class Checksum(catstuff.tools.modules.CSCollection):
+class Checksum(catstuff.tools.plugins.CSCollection):
     def __init__(self):
         super().__init__(_mod, _build)
 

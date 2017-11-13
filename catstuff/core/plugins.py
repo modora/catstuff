@@ -1,5 +1,5 @@
 from yapsy.PluginManager import PluginManager
-import catstuff.tools.modules
+import catstuff.tools.plugins
 import catstuff.tools.common
 import logging, logging.handlers, datetime
 import os
@@ -8,7 +8,7 @@ import json
 
 _dir = os.path.dirname(os.path.realpath(__file__))
 
-log_file = os.path.join(_dir, '../logs/core/modules.log')
+log_file = os.path.join(_dir, '../logs/core/plugins.log')
 catstuff.tools.common.touch(log_file)
 # logging.basicConfig(filename=log_file, level=logging.DEBUG)
 
@@ -60,7 +60,7 @@ manager.setPluginPlaces([
     os.path.join(_dir, "../modules")
 ])
 manager.setCategoriesFilter({
-    "Modules": catstuff.tools.modules.CSModule
+    "Modules": catstuff.tools.plugins.CSModule
 })
 manager.setPluginInfoExtension('plugin')
 

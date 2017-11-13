@@ -1,16 +1,16 @@
-import catstuff.tools.modules
+import catstuff.tools.plugins
 import catstuff.tools.common
 import os
 import shutil
 
 _dir = os.path.dirname(__file__)
 _plugin_file = os.path.join(_dir, "copy.plugin")
-__version__ = catstuff.tools.modules.import_documentation(_plugin_file).get('Version')
+__version__ = catstuff.tools.plugins.import_documentation(_plugin_file).get('Version')
 
-_mod, _build, _ = catstuff.tools.modules.import_core(_plugin_file)
+_mod, _build, _ = catstuff.tools.plugins.import_core(_plugin_file)
 
 
-class Move(catstuff.tools.modules.CSModule):
+class Move(catstuff.tools.plugins.CSModule):
     def __init__(self):
         super().__init__(_mod, _build)
 

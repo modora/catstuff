@@ -1,16 +1,16 @@
-import catstuff.tools.modules
+import catstuff.tools.plugins
 import os
 import logging
 import pymongo
 
 _dir = os.path.dirname(__file__)
 _plugin_file = os.path.join(_dir, "fstat.plugin")
-__version__ = catstuff.tools.modules.import_documentation(_plugin_file).get('Version')
+__version__ = catstuff.tools.plugins.import_documentation(_plugin_file).get('Version')
 
-_mod, _build, _ = catstuff.tools.modules.import_core(_plugin_file)
+_mod, _build, _ = catstuff.tools.plugins.import_core(_plugin_file)
 
 
-class FStat(catstuff.tools.modules.CSCollection):
+class FStat(catstuff.tools.plugins.CSCollection):
     indexes = ("device", "inode", "size", "mod_time")
 
     def __init__(self):
