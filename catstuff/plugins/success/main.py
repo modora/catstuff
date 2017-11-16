@@ -9,7 +9,7 @@ __version__ = catstuff.tools.plugins.import_documentation(_plugin_file).get('Ver
 _mod, _build, _ = catstuff.tools.plugins.import_core(_plugin_file)
 
 
-class Success(catstuff.tools.plugins.CSModule):
+class Success(catstuff.tools.plugins.CSTask):
     def __init__(self):
         super().__init__(_mod, _build)
 

@@ -1,3 +1,5 @@
+raise NotImplementedError("BROKEN")
+
 import catstuff.tools.plugins
 import os
 import musicbrainzngs

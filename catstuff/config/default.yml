@@ -1,32 +1,18 @@
-## Global settings -- these settings override default config settings
+## Global settings -- these settings persist for all groups
 # version specifies the config version -- if not specified, assumed to be the most recent
 version: '1.0'
 
 # imports other configs (uses relative dirs)
 # import: [] -- unsupported right now -- too many issues in the import parser
 
-# GLOBAL SETTINGS
 resources:
   max_memory: -1
   max_threads: -1
 
-db:
+db:  # master db location
   host: 'localhost'
   port: 27017
   name: 'catstuff'
-  
-# default tasks to perform
-tasks: []
-
-# module settings
-modules: {}
-#  module_name:
-#    setting_1: value
-#    setting_2: value
-  
-## Group settings
-groups:
-  default: {}
 
 # Used to enable developer settings
 #  - build qry now >= from >  (so you don't have to keep incrementing build number)
@@ -34,3 +20,17 @@ dev_mode: no
 # RESERVED VARIABLES
 # path:
 # group:
+
+# LOCAL SETTINGS (These settings get overwritten by groups/subgroups)
+# default tasks to perform
+tasks: []
+
+# plugin settings
+plugins: {}
+#  plugin_name:
+#    setting_1: value
+#    setting_2: value
+  
+## Group settings
+groups:
+  default: {}

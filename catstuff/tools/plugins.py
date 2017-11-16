@@ -5,24 +5,47 @@ import catstuff.tools.config
 import pymongo
 
 
-class CSModule(IPlugin):
-    def __init__(self, name, build):
+class CSPluginTemplate(IPlugin):
+    def __init__(self, name):
         super().__init__()
         self.name = name
+
+    def main(self):
+        print("Executed main method of '{name}' plugin of class '{cls}'".format(
+            name=self.name, cls=self.__class__.__name__))
+
+
+class CSAction(CSPluginTemplate):  # Action category
+    def __init__(self, name):
+        super().__init__(name)
+
+    def main(self, *args):
+        super().main()
+
+
+class CSTask(CSPluginTemplate):
+    def __init__(self, name, build):
+        super().__init__(name)
         self.build = build
 
-    def main(self, **kwargs):
-        print("Executed main method of '{name}' module of class '{cls}' with arguments: {kwargs}".format(
-            name=self.name, kwargs=kwargs, cls=self.__class__.__name__))
+        self._config = {}
+        self._output = {}
+
+    @property
+    def config(self):
+        return self._config
+
+    @property
+    def output(self):
+        return self._output
 
 
-class CSCollection(catstuff.tools.db.CSCollection, CSModule):
-    def __init__(self, name, build, path='', database=None, master_db=None, inherit_uid=True):
+class CSCollection(catstuff.tools.db.CSCollection, CSTask):
+    def __init__(self, name, build, path='', database=None, master_db=None):
         catstuff.tools.db.CSCollection.__init__(self, name, db=database)
-        CSModule.__init__(self, name, build)
+        CSTask.__init__(self, name, build)
 
-        self.master = catstuff.tools.db.Master(db=master_db)
-        self.inherit_uid = inherit_uid
+        self.master = catstuff.tools.db.Master(db=(master_db or self._default_db))
         self.path = path
 
     @property
@@ -39,7 +62,12 @@ class CSCollection(catstuff.tools.db.CSCollection, CSModule):
 
     @property
     def inherit_uid(self):
-        return self._inherit_uid
+        try:
+            return self._inherit_uid
+        except AttributeError:
+            default = True
+            self.inherit_uid = default
+            return default
 
     @inherit_uid.setter
     def inherit_uid(self, value: bool):
@@ -63,34 +91,35 @@ class CSCollection(catstuff.tools.db.CSCollection, CSModule):
     def path(self):
         self.master.path = ''
 
-    def link(self, status='present'):
-        self.master.link(self.name, self.build, mod_uid=self.uid, status=status, collection=self.coll)
+    def insert_link(self):
+        self.master.insert_link(self.name, self.link_data(self.uid, self.coll))
 
-    def unlink(self):
-        self.master.unlink(self.name, mod_uid=self.uid)
+    def update_link(self):
+        self.master.update_link(self.name, self.link_data(self.uid, self.coll))
+
+    def delete_link(self):
+        key = ".".join((self.name, "_id"))
+        self.master.coll.delete_many({key: self.uid})
 
     def insert(self, data, link=True):
-        try:
-            super(CSCollection, self).insert(data)
-            status = 'present'
-        except pymongo.errors.PyMongoError as e:
-            status = 'failed'
+        super(CSCollection, self).insert(data)
         if link:
-            self.link(status=status)
+            self.insert_link()
+
+    def update(self, data, link=True):
+        super(CSCollection, self).update(data)
+        if link:
+            self.update_link()
 
     def replace(self, data, link=True):
-        try:
-            super(CSCollection, self).replace(data)
-            status = 'present'
-        except pymongo.errors.PyMongoError as e:
-            status = 'failed'
+        super(CSCollection, self).replace(data)
         if link:
-            self.link(status=status)
+            self.update_link()
 
     def delete(self, unlink=True):
         super(CSCollection, self).delete()
         if unlink:
-            self.unlink()
+            self.delete_link()
 
 
 def read_config(path):
@@ -121,7 +150,7 @@ def import_core(path):
     config = read_config(path)
     config = __get_opt(config, option='Core') or {}
 
-    return tuple([__get_opt(config, opt) for opt in options])
+    return tuple([__get_opt(config, opt) or None for opt in options])
 
 
 def import_documentation(path):

@@ -87,8 +87,8 @@ def chunk_size(method):
 
 
 class Checksum(catstuff.tools.plugins.CSCollection):
-    def __init__(self):
-        super().__init__(_mod, _build)
+    def __init__(self, **kwargs):
+        super().__init__(_mod, _build, **kwargs)
 
     @staticmethod
     def data(path, methods, block_size=None, hex=True):

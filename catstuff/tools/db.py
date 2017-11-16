@@ -1,9 +1,7 @@
 import pymongo, bson
 import logging
 import uuid, datetime, time
-import collections
-import socket
-
+from catstuff.tools.misc import is_path_exists_or_creatable
 
 def generate_uid(method):
     if method == 'uuid':
@@ -15,72 +13,168 @@ def generate_uid(method):
     return uid
 
 
-def connect(*args, **kwargs):
+def test_connection(connection=None):
+    connection = pymongo.MongoClient() if connection is None else connection
+    assert isinstance(connection, pymongo.MongoClient)
     try:
-        conn = pymongo.MongoClient(*args, **kwargs)
-        conn.server_info()
-        return conn
+        connection.server_info()
     except pymongo.errors.ServerSelectionTimeoutError as e:
         # should do logging here
         raise
 
 
+def unpack_mongo_collection(collection: pymongo.collection.Collection):
+    """ Returns the details necessary for establishing a connection to a collection"""
+    coll = collection.name
+    db = collection.database.name
+    host, port = collection.database.client.address
+
+    return (host, port, db, coll)
+
+
+def unpack_mongo_database(database: pymongo.database.Database):
+    """ Returns the details necessary for establishing a connection to a database"""
+    db = database.name
+    host, port = database.client.address
+
+    return (host, port, db)
+
+
+def unpack_mongo_connection(client: pymongo.MongoClient):
+    """ Returns the details necessary for establishing a connection to a mongodb server"""
+    return client.address
+
+
+def unpack_mongo_details(pymongo_object):
+    """ Convenience wrapper for unpacking mongodb objects"""
+    return {
+        pymongo.MongoClient: unpack_mongo_collection,
+        pymongo.database.Database: unpack_mongo_database,
+        pymongo.collection.Collection: unpack_mongo_collection,
+    }[type(pymongo_object)](pymongo_object)
+
+
+def link_data(uid, collection: pymongo.collection.Collection, src_coll=None) -> dict:
+    """
+    Formats all the necessary data to link a mongo document to another mongo document
+    :param uid: "_id" of the target document
+    :param collection: the mongodb collection that the target document resides in
+    :type: pymongo.collection.Collection
+    :param: src_coll: the mongodb collection that the source document resides in
+    :type: (pymongo.collection.Collection, None)
+    :return: minimum connection settings needed to connect to the target collection
+    :rtype: dict
+
+    :Note: The return data is the **minimum** required connection settings. This shows the differences in the
+    connection settings between the current collection and the target collection. If the target document is in the
+    same collection, then the link_data will be an empty dictionary
+    """
+
+    if src_coll is None:
+        # some random database that should never be created -- this should get overridden anyways
+        src_coll = pymongo.MongoClient()['catstuff']['__catstuff_db_error']
+    assert isinstance(src_coll, pymongo.collection.Collection)
+
+    attrs = ('host', 'port', 'database', 'collection')
+    data = {'_id': uid}
+    for i, (other, current) in enumerate(zip(unpack_mongo_details(collection),
+                                             unpack_mongo_details(src_coll))):
+        if other != current:
+            attr = attrs[i]
+            data.update({attr: other})
+    return data
+
+
+def eval_link(src_data: pymongo.collection.Collection, link_data: dict, *args, **kwargs) -> (None, dict):
+    """evaluates the lined document -- mongodb args are allowed"""
+    host, port, db, coll = unpack_mongo_details(src_data)  # defaults
+
+    host = link_data.get('host') or host
+    port = link_data.get('port') or port
+    db = link_data.get('database') or db
+    coll = link_data.get('collection') or coll
+
+    coll = pymongo.MongoClient(host, port)[db][coll]
+
+    return coll.find_one({"_id": link_data['_id']}, *args, **kwargs)
+
+
+def property_getter(obj, name, default=None):
+    try:
+        return getattr(obj, name)
+    except AttributeError:
+        setattr(obj, name, default)
+        return default
+
+
 class CSCollection:
-    def __init__(self, collection_name, db=None, uid_generate_method='uuid'):
+    ## DEFAULTS
+    # Overriding a list of messy list of default, class attributes is safer than overriding a dictionary of defaults
+
+    @property
+    def _default_conn(self):
+        return property_getter(self, '__default_conn', default=pymongo.MongoClient())
+
+    @_default_conn.setter
+    def _default_conn(self, value: pymongo.MongoClient):
+        assert isinstance(value, pymongo.MongoClient)
+        self.__default_conn = value
+
+    @property
+    def _default_db(self):
+        return property_getter(self, '__default_db', default=pymongo.database.Database(self._default_conn, 'catstuff'))
+
+    @_default_db.setter
+    def _default_db(self, value: pymongo.database.Database):
+        assert isinstance(value, pymongo.database.Database)
+        self.__default_db = value
+
+    ## ACTUAL CODE
+    def __init__(self, collection_name, db=None, uid_generate_method='uuid', **kwargs):
         self.name = collection_name
 
-        self.db = db
-        self.coll = pymongo.collection.Collection(self.db, self.name)
+        self._db = db
+        self.coll = pymongo.collection.Collection(self.db, self.name, **kwargs)
 
-        self._uid_generate_method = uid_generate_method
-        self._uid = self.generate_uid()
+        test_connection(self._conn)
+
+        self.__uid_generate_method = uid_generate_method
 
     @property
     def db(self):
-        return self._db
+        try:
+            return self._db
+        except AttributeError:
+            self.db = self._default_db
 
     @db.setter
     def db(self, value: pymongo.database.Database):
-        self._set_db(value)
-
-    def _set_db(self, db, *args, **kwargs):
-        """
-
-        :param db:
-        :param args: connect() arguments
-        :param kwargs: connect() keyword args
-        :return:
-        """
-        if db is None:
-            conn = connect(*args, **kwargs)
-            self._db = pymongo.database.Database(conn, 'catstuff')
-        else:
-            assert isinstance(db, pymongo.database.Database)
-            self._db = db
-        self._conn = self.db.client
+        assert isinstance(value, pymongo.database.Database)
+        self._db = value
+        self._conn = value.client
 
     @property
     def conn(self):
-        return self._conn
+        return property_getter(self, '_conn', default=self._default_conn)
 
     @property
     def uid(self):
-        return self._uid
+        return property_getter(self, '_uid', default=self.generate_uid())
 
     @uid.setter
     def uid(self, value):
-        self._uid = value if value is not None else self.generate_uid()
+        self._uid = value
 
     def generate_uid(self, check_unique=True, max_time=30):
         """
-
-        :param check_unique:
+        Generates a uid
+        :param check_unique: Checks if the generated uid exists in db
         :param max_time: Maximum time to generate uid in seconds
         :return:
         """
         start_time = time.time()
         while True:  # do-while
-            uid = generate_uid(method=self._uid_generate_method)
+            uid = generate_uid(method=self.__uid_generate_method)
 
             if check_unique:
                 # didn't want to use an 'AND' statement to avoid db operations
@@ -120,44 +214,36 @@ class CSCollection:
     def delete(self):
         self.__delete()
 
-    @staticmethod
-    def _get_coll_details(collection):
-        coll = collection.name
-        db = collection.database.name
-        host, port = collection.database.client.address
-
-        return (host, port, db, coll)
-
     def link_data(self, uid, collection: pymongo.collection.Collection) -> dict:
-        """formats data to link a document to another document"""
+        """
+        Formats all the necessary data to link a mongo document to another mongo document
+        :param uid: "_id" of the target document
+        :param collection: the mongodb collection tht the target document resides in
+        :type: pymongo.collection.Collection
+        :return: minimum connection settings needed to connect to the target collection
+        :rtype: dict
 
-        attrs = ('host', 'port', 'database', 'collection')
-        data = {'_id': uid}
-        for i, (other, current) in enumerate(zip(self._get_coll_details(collection),
-                                               self._get_coll_details(self.coll))):
-            if other != current:
-                attr = attrs[i]
-                data.update({attr: other})
-        return data
+        :Note: The return data is the **minimum** required connection settings. This shows the differences in the
+        connection settings between the current collection and the target collection. If the target document is in the
+        same collection, then the link_data will be an empty dictionary
+        """
+
+        return link_data(uid, collection, src_coll=self.coll)
 
     def eval_link(self, link_data: dict, *args, **kwargs) -> (None, dict):
         """evaluates the lined document -- mongodb args are allowed"""
-        # defaults
-        host, port, db, coll = self._get_coll_details(self.coll)
-
-        host = link_data.get('host') or host
-        port = link_data.get('port') or port
-        db = link_data.get('database') or db
-        coll = link_data.get('collection') or coll
-
-        conn = pymongo.MongoClient(host, port)
-        db = pymongo.database.Database(conn, name=db)
-        coll = pymongo.collection.Collection(db, name=coll)
-
-        return coll.find_one({"_id": link_data['_id']}, *args, **kwargs)
+        return eval_link(self.coll, link_data, *args, **kwargs)
 
     def get(self, *args, default=None, **kwargs) -> dict:
         return self.coll.find_one({"_id": self.uid}, *args, **kwargs) or default
+
+    def _print_defaults(self):
+        """ CONVENIENCE FUNCTION FOR DEVS: Prints all class attributes that whose name starts with '_default_'"""
+        string = '_default_'
+        N = len(string)
+        for attr in dir(self):
+            if attr[:N] == string:
+                print(attr, ":", getattr(self, attr))
 
 
 class Master(CSCollection):
@@ -168,15 +254,18 @@ class Master(CSCollection):
     index_keys = {"status", "build", "last_updated"}
     special_names = {'_id', 'group', 'path'}
 
-    def __init__(self, path='', db=None, uid_generate_method='uuid', group='ungrouped'):
+    def __init__(self, path='', db=None, uid_generate_method='uuid'):
         assert isinstance(path, (str, type(None)))
 
         super().__init__('master', db=db, uid_generate_method=uid_generate_method)
 
         self.path = path
-        self.group = group
 
-        self.coll.create_index("path", name="path")
+        self.coll.create_indexes([
+            pymongo.IndexModel([(index, pymongo.ASCENDING)], name=index)
+            for index in self.special_names
+            if index != '_id'
+        ])
 
     @property
     def path(self):
@@ -189,98 +278,47 @@ class Master(CSCollection):
         if value in (None, ''):
             self._path = ''
             return
-        self._path = value
 
-        '''
-        NotImplementedError(is_valid_path not defined)
-        if not is_valid_path(value):
+        if not is_path_exists_or_creatable(value):
             raise OSError
         else:
             self._path = value
-        '''
+
         existing_uid = (self.coll.find_one({'path': value}, {"_id": 1}) or {}).get('_id')
 
-        if existing_uid is None:
-            self.uid = self.generate_uid()
-            return
-        elif 'uid' not in dir(self):  # if uid not inited
+        if existing_uid is not None:
             self.uid = existing_uid
-        elif self.uid != existing_uid:
-            self.uid = existing_uid
-        # else, self.uid already equals existing_uid
 
     @path.deleter
     def path(self):
         self._path = ''
 
     @property
-    def group(self):
-        return self._group
-
-    @group.setter
-    def group(self, value: str):
-        assert isinstance(value, str)
-        self._group = value
-
-    @group.deleter
-    def group(self):
-        self._group = 'ungrouped'
-
-    @property
     def pre_data(self):
-        return {"_id": self.uid, "path": self.path, "group": self.group}
+        return {"_id": self.uid, "path": self.path}
 
-    def data(self, mod_name, build, mod_uid=None, collection=None, status='present'):
+    @staticmethod
+    def data(mod_name, data_: dict):
         '''
-        Returns the data in this collection
-        :param mod_name: Module name
-        :param build: Module build number
-        :param mod_uid: Module UID (defaults to master uid)
-        :param collection: Module collection object (used to parse db info)
-        :param status:
-        :return:
+        Returns the formatted data in this collection
         '''
-        assert isinstance(collection, (type(None),pymongo.collection.Collection))
-        collection = self.coll if collection is None else collection
-        mod_uid = self.uid if mod_uid is None else mod_uid
 
-        last_updated = datetime.datetime.now()
+        return {mod_name: data_}
 
-        data = {
-            mod_name: {
-                'status': status,
-                'build': build,  # used for queries
-                'last_updated': last_updated.timestamp(),  # used for queries
-                **self.link_data(mod_uid, collection)
-            }
-        }
-        return data
+    def insert_link(self, mod_name, mod_data: dict):
+        self.insert(self.data(mod_name, mod_data))
 
-    def link(self, mod_name, build, status='present', mod_uid=None, collection=None):
-        # links the document in the master database to a document in another collection
+        # indexes = ['.'.join((mod_name, key)) for key in self.index_keys]
+        # self.coll.create_indexes([
+        #     pymongo.IndexModel([(index, pymongo.ASCENDING)], name=index) for index in indexes
+        # ])
 
-        indexes = ['.'.join((mod_name, key)) for key in self.index_keys]
-        try:
-            self.coll.create_indexes([
-                pymongo.IndexModel([(index, pymongo.ASCENDING)], name=index) for index in indexes
-            ])
-            self.insert(self.data(mod_name, build, mod_uid=mod_uid, collection=collection, status=status))
-        except pymongo.errors.PyMongoError as e:
-            print("Error creating master link: {}".format(e))
-            raise pymongo.errors.PyMongoError(e)
+    def update_link(self, mod_name, mod_data: dict):
+        """ An alias for insert_link"""
+        self.update(self.data(mod_name, mod_data))
 
-    def unlink(self, mod_name, mod_uid=None):
-        # unlinks any document with the uid
-        mod_uid = self.uid if mod_uid is None else mod_uid
-        try:
-            self.coll.update_many({'.'.join((mod_name, "_id")): mod_uid}, {'$unset': {mod_name: ""}})
-            # It seems mongodb automatically deletes an index if there are no elements in it
-            # Therefore we don't need to use the api to delete the indices ourselves
-            # for index in ['.'.join((move, key)) for key in self.index_keys]:
-            #     self.coll.drop_index(index)  # custom named indexes must be dropped by name
-        except pymongo.errors.PyMongoError as e:
-            print("Error unlinking master link: {}".format(e))
-            raise pymongo.errors.PyMongoError(e)
+    def delete_link(self, mod_name):
+        self.coll.update_one({"_id": self.uid}, {'$unset': {mod_name: ""}})
 
     def get_raw(self, default=None) -> dict:
         # Returns the mongodb document

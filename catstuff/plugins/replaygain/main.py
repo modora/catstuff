@@ -8,7 +8,7 @@ __version__ = catstuff.tools.plugins.import_documentation(__plugin_file__).get('
 __mod__, __build__, _ = catstuff.tools.plugins.import_core(__plugin_file__)
 
 
-class ReplayGain(catstuff.tools.plugins.CSModule):  # Rename the class
+class ReplayGain(catstuff.tools.plugins.CSTask):  # Rename the class
     def __init__(self):
         super().__init__(__mod__, __build__)
 
