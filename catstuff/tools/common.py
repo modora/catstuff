@@ -197,3 +197,11 @@ def touch(path):
     if not os.path.exists(basedir):
         os.makedirs(basedir)
     open(path, 'a').close()
+
+
+def property_getter(obj, name, default=None):
+    try:
+        return getattr(obj, name)
+    except AttributeError:
+        setattr(obj, name, default)
+        return default

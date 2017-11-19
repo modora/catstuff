@@ -1,8 +1,5 @@
 from yapsy.IPlugin import IPlugin
-import configparser
 import catstuff.tools.db
-import catstuff.tools.config
-import pymongo
 
 
 class CSPluginTemplate(IPlugin):
@@ -121,38 +118,3 @@ class CSCollection(catstuff.tools.db.CSCollection, CSTask):
         if unlink:
             self.delete_link()
 
-
-def read_config(path):
-    """
-    Reads an ini config file and returns it as a dict
-    :param path:
-    :return:
-    """
-    config = configparser.ConfigParser()
-    config.read(path)
-
-    d = {}
-    for section in config.sections():
-        d[section] = {}
-        for option in config.options(section):
-            d[section][option] = config.get(section, option)
-    return d
-
-
-def __get_opt(config: dict, option: str):
-    # returns a key of a dict (first letter, case insensitive)
-    return config.get(option) or config.get(option.lower()) or config.get(option.capitalize())
-
-
-def import_core(path):
-    options = ['name', 'build', 'module']
-
-    config = read_config(path)
-    config = __get_opt(config, option='Core') or {}
-
-    return tuple([__get_opt(config, opt) or None for opt in options])
-
-
-def import_documentation(path):
-    config = read_config(path)
-    return __get_opt(config, 'Documentation')

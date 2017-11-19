@@ -32,7 +32,10 @@ db:
   port: 27017
   name: 'catstuff'
 
-tasks: []
+tasks:
+  - checksum
+  - checksum:
+      methods: [md5, crc32]
 
 # Used to enable developer settings
 #  - build qry now >= from >  (so you don't have to keep incrementing build number)

@@ -2,6 +2,7 @@ import pymongo, bson
 import logging
 import uuid, datetime, time
 from catstuff.tools.misc import is_path_exists_or_creatable
+from catstuff.tools.common import property_getter
 
 def generate_uid(method):
     if method == 'uuid':
@@ -97,14 +98,6 @@ def eval_link(src_data: pymongo.collection.Collection, link_data: dict, *args, *
     coll = pymongo.MongoClient(host, port)[db][coll]
 
     return coll.find_one({"_id": link_data['_id']}, *args, **kwargs)
-
-
-def property_getter(obj, name, default=None):
-    try:
-        return getattr(obj, name)
-    except AttributeError:
-        setattr(obj, name, default)
-        return default
 
 
 class CSCollection:

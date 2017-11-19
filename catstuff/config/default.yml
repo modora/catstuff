@@ -9,10 +9,19 @@ resources:
   max_memory: -1
   max_threads: -1
 
-db:  # master db location
-  host: 'localhost'
-  port: 27017
-  name: 'catstuff'
+master:
+  client:  # connection settings
+    host: 'localhost'
+    port: 27017
+  db:  # db settings
+    name: 'catstuff'
+
+importer:
+  max_depth: 0
+  followlinks: False
+  include: []
+  exclude: []
+  mode: 'whitelist'
 
 # Used to enable developer settings
 #  - build qry now >= from >  (so you don't have to keep incrementing build number)
@@ -22,11 +31,8 @@ dev_mode: no
 # group:
 
 # LOCAL SETTINGS (These settings get overwritten by groups/subgroups)
-# default tasks to perform
-tasks: []
-
-# plugin settings
-plugins: {}
+tasks: []  # default tasks to perform
+plugins: {}  # plugin settings
 #  plugin_name:
 #    setting_1: value
 #    setting_2: value

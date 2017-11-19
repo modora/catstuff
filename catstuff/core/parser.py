@@ -1,5 +1,5 @@
 import argparse, sys
-from catstuff.tools.parser import CSArgParser
+from catstuff.tools.argparser import CSArgParser
 from catstuff.core.manager import manager
 from catstuff import __version__ as version
 
@@ -13,7 +13,7 @@ parser = CSArgParser(description=description)
 parser.add_argument('action')
 
 # these get passed to the action plugins
-parser.add_argument('args', nargs=argparse.REMAINDER, default=[])
+parser.add_argument('args', nargs=argparse.REMAINDER)
 parser.add_argument('--version', action='version', version=version)
 
 if __name__ == '__main__':

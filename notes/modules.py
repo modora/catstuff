@@ -1,12 +1,14 @@
-from yapsy.PluginManager import PluginManager
+import logging
 import os
-import traceback, logging
-import catstuff.tools.plugins
-import catstuff.core.import_
-import catstuff.tools.db
-import catstuff.tools.common
-import catstuff
+
 import yaml
+from yapsy.PluginManager import PluginManager
+
+import catstuff
+import catstuff.core.actions.import_.main
+import catstuff.tools.common
+import catstuff.tools.db
+import catstuff.tools.plugins
 
 logging.basicConfig()
 _base = os.path.dirname(os.path.realpath(catstuff.__file__))
@@ -54,9 +56,9 @@ for plugin in manager.getPluginsOfCategory('Modules'):
     catstuff.tools.common.border(symbol='*', border_length=50)
 
 catstuff.tools.common.title('Main')
-catstuff.core.import_.main(global_settings=global_settings,
-                           settings=settings,
-                           tasks=tasks)
+catstuff.core.actions.import_.main.main(global_settings=global_settings,
+                                        settings=settings,
+                                        tasks=tasks)
 
 catstuff.tools.common.title('Master')
 master = catstuff.tools.db.Master(path=global_settings['path'])
