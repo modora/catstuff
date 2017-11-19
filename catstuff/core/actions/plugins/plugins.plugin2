@@ -1,0 +1,7 @@
+[Core]
+Name = plugins
+Module = main
+
+[Documentation]
+Description = Manages CatStuff plugins
+Version = 1.0.0

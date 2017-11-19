@@ -1,7 +1,6 @@
 import catstuff.tools.plugins
-from catstuff.core.actions.commands import mod_name
-from catstuff.core.actions.commands.parser import Parser
-
+from catstuff.core.actions.plugins.parser import parser
+from catstuff.core.actions.plugins import mod_name
 
 class Commands(catstuff.tools.plugins.CSAction):
     def __init__(self):
@@ -9,7 +8,7 @@ class Commands(catstuff.tools.plugins.CSAction):
 
     @staticmethod
     def main(*args):
-        args = Parser().parse_args(*args)  # leaving args unused as a placeholder for the future
+        args = parser.parse_args(*args)
         args.func(args)
 
 
