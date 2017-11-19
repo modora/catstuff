@@ -1,7 +1,7 @@
 import catstuff.tools.plugins
-from catstuff.core.actions.commands import mod_name
-from catstuff.core.actions.commands.parser import parser
-from catstuff.core.actions.commands.formatter import print_info
+from catstuff.core.actions.plugins import mod_name
+from catstuff.core.actions.plugins.parser import parser
+from catstuff.core.actions.plugins.formatter import print_info
 
 
 class Commands(catstuff.tools.plugins.CSAction):
