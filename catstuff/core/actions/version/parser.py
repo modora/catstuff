@@ -1,9 +1,13 @@
 from catstuff.tools.argparser import CSArgParser
-from catstuff.core.actions.commands import __version__
+from catstuff.core.actions.version import __version__
+
 
 class Parser(CSArgParser):
     def __init__(self):
         super().__init__()
         self.add_argument('--version', action='version', version=__version__)
+        self.set_defaults(func=print_version)
 
-parser = Parser()
+
+def print_version(args):  # nothing is done with the arguments atm
+    print(__version__)

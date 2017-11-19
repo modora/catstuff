@@ -1,24 +1,26 @@
 import argparse, sys
 from catstuff.tools.argparser import CSArgParser
-from catstuff.core.manager import manager
+from catstuff.core.manager import Manager
 from catstuff import __version__ as version
 
-description = 'Core parser for catstuff'
 
-parser = CSArgParser(description=description)
+class CoreParser(CSArgParser):
+    description = 'Core parser for catstuff'
 
-### GLOBAL SWITCHES
-# None right now
+    def __init__(self):
+        super().__init__(description=self.description)
+        # Core parser settings
+        self.add_argument('--version', action='version', version=version)
 
-parser.add_argument('action')
+        # action settings
+        self.add_argument('action')
+        self.add_argument('args', nargs=argparse.REMAINDER)
 
-# these get passed to the action plugins
-parser.add_argument('args', nargs=argparse.REMAINDER)
-parser.add_argument('--version', action='version', version=version)
 
 if __name__ == '__main__':
+    parser = CoreParser()
     args = parser.parse_args()
-    action = manager.getPluginByName(name=args.action, category='Actions')
+    action = Manager().getPluginByName(name=args.action, category='Actions')
     if action is None:
         parser.error('unrecognized action {}'.format(args.action))
     else:
