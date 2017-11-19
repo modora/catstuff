@@ -1,6 +1,3 @@
-import catstuff.core.actions.plugins
-import catstuff.core.actions.plugins.parser
-
 __version__ = '1.0'
 
 

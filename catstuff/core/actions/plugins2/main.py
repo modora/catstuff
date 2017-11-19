@@ -1,7 +1,9 @@
 import catstuff.tools.plugins
-from catstuff.core.actions.plugins import mod_name
-from catstuff.core.actions.plugins.parser import parser
+import catstuff.core.actions.plugins2.parser
+parser = catstuff.core.actions.plugins2.parser.parser
+import catstuff.core.actions.plugins2
 
+mod_name = catstuff.core.actions.plugins2.mod_name
 
 class Commands(catstuff.tools.plugins.CSAction):
     def __init__(self):

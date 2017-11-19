@@ -1,7 +1,7 @@
 from catstuff.tools.argparser import CSArgParser
-import catstuff.core.actions.plugins.version
+import catstuff.core.actions.plugins2.version
 
-import catstuff.core.actions.plugins.list_
+import catstuff.core.actions.plugins2.list
 
 # class Parser(CSArgParser):
 #     __version__ = '1.0'  # parser version
@@ -32,7 +32,7 @@ subparsers = parser.add_subparsers(help='commands')
 list_parser = subparsers.add_parser('list', help='List plugin info')
 list_parser.add_argument('-t', help='tab size', default=4, type=int)
 list_parser.add_argument('args', nargs='*', default=['Name', 'Version', 'Description'])
-list_parser.set_defaults(func=catstuff.core.actions.plugins.list_.print_wrapper)
+list_parser.set_defaults(func=catstuff.core.actions.plugins2.list.print_wrapper)
 
 version_parser = subparsers.add_parser('version', help='List this package version info')
-version_parser.set_defaults(func=catstuff.core.actions.plugins.version.print_versions)
+version_parser.set_defaults(func=catstuff.core.actions.plugins2.version.print_versions)
