@@ -38,7 +38,7 @@ tasks = [
 manager = PluginManager(plugin_info_ext='plugin')
 manager.setCategoriesFilter({
     'Modules': catstuff.tools.plugins.CSTask,
-    'Collections': catstuff.tools.plugins.CSCollection,
+    'Collections': catstuff.tools.plugins.Collection,
 })
 manager.setPluginPlaces([os.path.join(_base, 'modules')])
 

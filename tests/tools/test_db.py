@@ -16,7 +16,7 @@ class TestCSCollection(CSDB):
         super().setup()
         # using object attributes is a safe way of passing classes between the
         # test function
-        self.obj = CSCollection(self.coll_name, db=self.db)
+        self.obj = Collection(self.coll_name, db=self.db)
 
     def test_empty(self):
         assert_equal(self.obj.db.collection_names(), [], "Test database is not empty")
@@ -131,8 +131,8 @@ class TestMaster(CSDB):
     def test_get(self):
         obj = self.obj
 
-        mod1 = CSCollection('mod1', db=self.db)
-        mod2 = CSCollection('mod2', db=self.db)
+        mod1 = Collection('mod1', db=self.db)
+        mod2 = Collection('mod2', db=self.db)
 
         mod1.insert({"a": 'b'})
         mod2.insert({"1": '2'})

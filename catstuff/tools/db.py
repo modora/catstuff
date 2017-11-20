@@ -100,7 +100,7 @@ def eval_link(src_data: pymongo.collection.Collection, link_data: dict, *args, *
     return coll.find_one({"_id": link_data['_id']}, *args, **kwargs)
 
 
-class CSCollection:
+class Collection:
     ## DEFAULTS
     # Overriding a list of messy list of default, class attributes is safer than overriding a dictionary of defaults
 
@@ -142,6 +142,8 @@ class CSCollection:
 
     @db.setter
     def db(self, value: pymongo.database.Database):
+        if value is None:
+            value = self._default_db
         assert isinstance(value, pymongo.database.Database)
         self._db = value
         self._conn = value.client
@@ -239,7 +241,7 @@ class CSCollection:
                 print(attr, ":", getattr(self, attr))
 
 
-class Master(CSCollection):
+class Master(Collection):
     """
     A random, unique-uid is generated when this class is initialized. This uid does not exist in database. Manually
     changing the uid to an existing id will also set the path

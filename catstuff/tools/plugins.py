@@ -1,5 +1,5 @@
 from yapsy.IPlugin import IPlugin
-import catstuff.tools.db
+from catstuff.tools.db import property_getter, Collection, Master
 
 
 class CSPluginTemplate(IPlugin):
@@ -25,33 +25,30 @@ class CSTask(CSPluginTemplate):
         super().__init__(name)
         self.build = build
 
-        self._config = {}
-        self._output = {}
-
     @property
     def config(self):
-        return self._config
+        return property_getter(self, "_config", default={})
 
     @property
     def output(self):
-        return self._output
+        return property_getter(self, "_output", default={})
 
 
-class CSCollection(catstuff.tools.db.CSCollection, CSTask):
+class CSCollection(Collection, CSTask):
     def __init__(self, name, build, path='', database=None, master_db=None):
-        catstuff.tools.db.CSCollection.__init__(self, name, db=database)
+        Collection.__init__(self, name, db=database)
         CSTask.__init__(self, name, build)
 
-        self.master = catstuff.tools.db.Master(db=(master_db or self._default_db))
+        self.master = Master(db=(master_db or self._default_db))
         self.path = path
 
     @property
     def uid(self):
-        return self._uid
+        return property_getter(self, '_uid', default=self.generate_uid())
 
     @uid.setter
     def uid(self, value):
-        catstuff.tools.db.CSCollection.uid.fset(self, value)  # this is correct -- warnings are wrong
+        Collection.uid.fset(self, value)  # this is correct -- warnings are wrong
 
         if 'inherit_uid' and 'master' in dir(self):  # if already inited
             if self.master.uid != value and self.inherit_uid:  # disable inheritance is uid changed

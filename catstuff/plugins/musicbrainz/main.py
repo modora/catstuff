@@ -15,7 +15,7 @@ username = 'dersal'
 password = '$G0M4KrvG60sFsO7'
 
 
-class Musicbrainz(catstuff.tools.plugins.CSCollection):
+class Musicbrainz(catstuff.tools.plugins.Collection):
     def __init__(self, **kwargs):
         super().__init__(__mod__, __build__)
         self.version = __version__

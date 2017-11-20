@@ -35,7 +35,7 @@ class TestClass:
         print("Runnign TestClass setup")
         global obj
         db = pymongo.database.Database(connection, self.db_name)
-        obj = CSCollection('test', db=db)
+        obj = Collection('test', db=db)
 
     def teardown(self):
         print('')
@@ -50,7 +50,7 @@ class TestClass:
     def test2(self):
         print('')
         print("This is test2")
-        ok_(isinstance(obj, CSCollection))
+        ok_(isinstance(obj, Collection))
 
     def test_insert(self):
         obj.insert({'1': 1})
