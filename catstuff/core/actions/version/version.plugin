@@ -1,0 +1,7 @@
+[Core]
+Name = version
+Module = main
+
+[Documentation]
+Version = 1.0.0
+Description = Displays the current version of CatStuff
