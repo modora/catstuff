@@ -33,7 +33,7 @@ def print_info(attrs: list, tab_width=4):
 
     # TODO: Handle long format strings (text wrapping)
 
-    print("\t".join(["{attr:{str_len}}".format(attr=format[0], str_len=format[1])
+    print("\t".join(["{attr:{str_len}}".format(attr=format[0].capitalize(), str_len=format[1])
                      for format in format_list]).replace("\t", " "*tab_width))  # expandtabs not formatting correctly...
     print("\t".join(["{attr:{str_len}}".format(attr='-'*format[1], str_len=format[1])
                      for format in format_list]).replace("\t", " "*tab_width))  # border

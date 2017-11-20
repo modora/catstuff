@@ -1,5 +1,5 @@
 import catstuff.tools.plugins
-from . import mod_name, build
+from catstuff.core.tasks.checksum import mod_name, build
 import hashlib, zlib
 import collections
 

@@ -41,7 +41,7 @@ class ListParser:
         parser = _default_parser(**parser)
 
         parser.add_argument('-t', help='tab size', default=4, type=int)
-        parser.add_argument('args', nargs='*', default=['Name', 'Version', 'Description'])
+        parser.add_argument('args', nargs='*', default=['Name', 'Category' ,'Version', 'Description'])
         parser.set_defaults(func=list_print_wrapper)
         return parser
 
