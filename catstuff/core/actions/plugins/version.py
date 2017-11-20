@@ -1,19 +1,16 @@
+from catstuff.core.actions.plugins import __version__ as manager_version
+from catstuff.core.actions.plugins.list import __version__ as list_version
+import catstuff.core.actions.plugins.parser  # avoid using from...import to avoid cyclic import
+
 __version__ = '1.0'
 
 
 def print_versions():
-    # version_list = [
-    #     ('Plugin CSPluginManager', catstuff.core.actions.plugins.__version__),
-    #     ('Parser', catstuff.core.actions.plugins.parser.Parser.__version__),
-    #     ('List', catstuff.core.actions.plugins.parser.ListParser.__version__),
-    #     ('Version', catstuff.core.actions.plugins.parser.VersionParser.__version__)
-    # ]
-
     version_list = [
-        ('Plugin CSPluginManager', '1.0'),
-        ('Parser', '1.0'),
-        ('List', '1.0'),
-        ('Version', '1.0')
+        ('PluginManager', manager_version),
+        ('Parser', catstuff.core.actions.plugins.parser.__version__),
+        ('List', list_version),
+        ('Version', __version__)
     ]
 
     max_lengths = {

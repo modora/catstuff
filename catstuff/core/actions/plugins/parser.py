@@ -1,8 +1,7 @@
-from argparse import ArgumentParser
 from catstuff.tools.argparser import CSArgParser
 from catstuff.core.actions.plugins.list import print_wrapper as list_print_wrapper
-from catstuff.core.actions.plugins.version import print_wrapper as version_print_wrapper
 
+import catstuff.core.actions.plugins.version as plugins_version  # avoid using from...import to avoid cyclic import
 
 def _default_parser(**parser):
     try:
@@ -14,7 +13,7 @@ def _default_parser(**parser):
 
 class Parser:  # Errors occur in adding the subparser when using class inheritance
     # Main parser
-    __version__ = '1.0'
+    __version__ = '1.0.1'
 
     @staticmethod
     def make(**parser):  # constructs the parser
@@ -52,7 +51,7 @@ class VersionParser:
     @staticmethod
     def make(**parser):
         parser = _default_parser(**parser)
-        parser.set_defaults(func=version_print_wrapper)
+        parser.set_defaults(func=plugins_version.print_wrapper)
 
         return parser
 
@@ -60,3 +59,5 @@ class VersionParser:
 def parser():
     return Parser.make(parser=CSArgParser())
 
+
+__version__ = Parser.__version__
