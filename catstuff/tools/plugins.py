@@ -7,7 +7,7 @@ class CSPluginTemplate(IPlugin):
         super().__init__()
         self.name = name
 
-    def main(self):
+    def main(self, *args, **kwargs):
         print("Executed main method of '{name}' plugin of class '{cls}'".format(
             name=self.name, cls=self.__class__.__name__))
 

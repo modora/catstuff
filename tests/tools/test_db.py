@@ -59,7 +59,7 @@ class TestCSCollection(CSDB):
         ok_(self.obj.get() is None, "Failed to delete document")
 
     def test_update(self):
-        """ This should be the same as test_insert"""
+        """ Same as test_insert"""
         data = {'update': 'method'}
         self.obj.update(data)
         assert_equal({**data, **self.obj.pre_data}, self.obj.coll.find_one({"_id": self.obj.uid}))
@@ -95,9 +95,9 @@ class TestMaster(CSDB):
     def test_insert(self):
         obj = self.obj
         obj.path = '/fake_path'
-        data1 = obj.data(mod_name='mod1', build=1)
+        data1 = obj.data(mod_name='mod1', data_={'foo': 'bar'})
         obj.insert(data1)
-        data2 = obj.data(mod_name='mod2', build=2)
+        data2 = obj.data(mod_name='mod2', data_={'hello': 'world'})
         obj.insert(data2)
 
         doc = obj.coll.find_one()
@@ -115,9 +115,9 @@ class TestMaster(CSDB):
                      "Nothing should be in the db right now")
 
         obj.path = '/fake_path'
-        data1 = obj.data(mod_name='mod1', build=1)
+        data1 = obj.data(mod_name='mod1', data_={'foo': 'bar'})
         obj.insert(data1)
-        data2 = obj.data(mod_name='mod2', build=2)
+        data2 = obj.data(mod_name='mod2', data_={'hello': 'world'})
         obj.insert(data2)
 
         doc = obj.get_raw()
@@ -140,9 +140,9 @@ class TestMaster(CSDB):
         data1 = mod1.get()
         data2 = mod2.get()
 
-        obj.path = '/path/to/file'
-        obj.insert(obj.data('mod1', 1, mod_uid=data1["_id"], collection=mod1.coll))
-        obj.insert(obj.data('mod2', 2, mod_uid=data2["_id"], collection=mod2.coll))
+        obj.path = '/file_path'
+        obj.insert(obj.data('mod1', obj.link_data(uid=data1["_id"], collection=mod1.coll)))
+        obj.insert(obj.data('mod2', obj.link_data(uid=data2["_id"], collection=mod2.coll)))
 
         data = {
             'mod1': data1,

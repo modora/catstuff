@@ -5,7 +5,7 @@ import os
 _dir = os.path.dirname(os.path.realpath(__file__))
 
 
-class Manager(PluginManager):
+class CSPluginManager(PluginManager):
     categories = {
         'Tasks': catstuff.tools.plugins.CSTask,
         'Actions': catstuff.tools.plugins.CSAction

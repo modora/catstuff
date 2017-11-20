@@ -1,36 +1,62 @@
+from argparse import ArgumentParser
 from catstuff.tools.argparser import CSArgParser
-import catstuff.core.actions.plugins2.list
-
-# class Parser(CSArgParser):
-#     __version__ = '1.0'  # parser version
+from catstuff.core.actions.plugins.list import print_wrapper as list_print_wrapper
+from catstuff.core.actions.plugins.version import print_wrapper as version_print_wrapper
 
 
-# class ListParser(CSArgParser):
-#     __version__ = catstuff.core.actions.plugins.list.__version__  # list version
-#
-#     def __init__(self):
-#         super().__init__()
-#         self.add_argument('-t', help='tab size', default=4, type=int)
-#         self.add_argument('args', nargs='*', default=['Name', 'Version', 'Description'])
-#         self.set_defaults(func=catstuff.core.actions.plugins.list.print_wrapper)
-#
-#
-# class VersionParser(CSArgParser):
-#     __version__ = catstuff.core.actions.plugins.version.__version__  # version parser version
-#
-#     def __init__(self):
-#         super().__init__()
-#         self.set_defaults(func=catstuff.core.actions.plugins.version.print_versions)
+def _default_parser(**parser):
+    try:
+        parser = parser['parser']
+    except KeyError:
+        parser = CSArgParser()
+    return parser
 
-parser = CSArgParser()
-parser.add_argument('--version', action='version', version='1.0')
 
-subparsers = parser.add_subparsers(help='commands')
+class Parser:  # Errors occur in adding the subparser when using class inheritance
+    # Main parser
+    __version__ = '1.0'
 
-list_parser = subparsers.add_parser('list', help='List plugin info')
-list_parser.add_argument('-t', help='tab size', default=4, type=int)
-list_parser.add_argument('args', nargs='*', default=['Name', 'Version', 'Description'])
-list_parser.set_defaults(func=catstuff.core.actions.plugins.list.print_wrapper)
+    @staticmethod
+    def make(**parser):  # constructs the parser
+        parser = _default_parser(**parser)
 
-version_parser = subparsers.add_parser('version', help='List this package version info')
-version_parser.set_defaults(func=catstuff.core.actions.plugins.version.print_versions)
+        parser.add_argument('--version', action='version', version='1.0')
+
+        subparsers = parser.add_subparsers(help='commands')
+
+        list_parser = subparsers.add_parser('list', help='List plugin info')
+        list_parser = ListParser.make(parser=list_parser)
+
+        version_parser = subparsers.add_parser('version', help='List this package version info')
+        version_parser = VersionParser.make(parser=version_parser)
+
+        return parser
+
+
+class ListParser:
+    __version__ = '1.0'
+
+    @staticmethod
+    def make(**parser):
+        parser = _default_parser(**parser)
+
+        parser.add_argument('-t', help='tab size', default=4, type=int)
+        parser.add_argument('args', nargs='*', default=['Name', 'Version', 'Description'])
+        parser.set_defaults(func=list_print_wrapper)
+        return parser
+
+
+class VersionParser:
+    __version__ = '1.0'
+
+    @staticmethod
+    def make(**parser):
+        parser = _default_parser(**parser)
+        parser.set_defaults(func=version_print_wrapper)
+
+        return parser
+
+
+def parser():
+    return Parser.make(parser=CSArgParser())
+

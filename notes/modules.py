@@ -44,7 +44,7 @@ manager.setPluginPlaces([os.path.join(_base, 'modules')])
 
 manager.collectPlugins()  # Import and categorize plugins
 
-catstuff.tools.common.title('Manager Properties')
+catstuff.tools.common.title('CSPluginManager Properties')
 print('Categories:', manager.getCategories())
 for category in manager.getCategories():
     print('\t', category, ":",

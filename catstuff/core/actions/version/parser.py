@@ -9,5 +9,6 @@ class Parser(CSArgParser):
         self.set_defaults(func=print_version)
 
 
-def print_version(args):  # nothing is done with the arguments atm
+def print_version(args):
+    # All arguments are ignored right now
     print(__version__)

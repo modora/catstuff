@@ -14,8 +14,8 @@ def generate_uid(method):
     return uid
 
 
-def test_connection(connection=None):
-    connection = pymongo.MongoClient() if connection is None else connection
+def test_connection(connection=None, *args, **kwargs):
+    connection = pymongo.MongoClient(*args, **kwargs) if connection is None else connection
     assert isinstance(connection, pymongo.MongoClient)
     try:
         connection.server_info()
@@ -126,10 +126,10 @@ class CSCollection:
     def __init__(self, collection_name, db=None, uid_generate_method='uuid', **kwargs):
         self.name = collection_name
 
-        self._db = db
+        self.db = db
         self.coll = pymongo.collection.Collection(self.db, self.name, **kwargs)
 
-        test_connection(self._conn)
+        test_connection(self.conn)
 
         self.__uid_generate_method = uid_generate_method
 
@@ -273,7 +273,7 @@ class Master(CSCollection):
             return
 
         if not is_path_exists_or_creatable(value):
-            raise OSError
+            raise OSError("Invalid path")
         else:
             self._path = value
 

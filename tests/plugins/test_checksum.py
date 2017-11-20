@@ -1,6 +1,7 @@
 from nose.tools import *
+
+from catstuff.core.tasks.checksum.main import *
 from tests.common import *
-from catstuff.plugins.checksum.main import *
 
 
 @raises(NotImplementedError)
@@ -127,5 +128,4 @@ class TestFilled(Hashlib, Zlib):
 
 class TestPlugin(CSDB):
     def setup(self):
-        super().setup()
         self.obj = Checksum(database=self.db)

@@ -1,7 +1,7 @@
 __version__ = '1.0'
 
 
-def print_versions(args):
+def print_versions():
     # version_list = [
     #     ('Plugin CSPluginManager', catstuff.core.actions.plugins.__version__),
     #     ('Parser', catstuff.core.actions.plugins.parser.Parser.__version__),
@@ -29,3 +29,8 @@ def print_versions(args):
             ":",
             "{version:{ver_len}}".format(version=version, ver_len=max_lengths['version'])
         )
+
+
+def print_wrapper(args):
+    # No args atm
+    print_versions()

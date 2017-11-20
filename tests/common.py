@@ -10,10 +10,16 @@ test_basedir = dirname(__file__)
 empty_file = os.path.join(test_basedir, 'files/empty.file')
 filled_file = os.path.join(test_basedir, 'files/filled.file')
 
+
 class Mongo:
     system = platform.system()
+    conn_settings = {'serverSelectionTimeoutMS': 1000}
 
-    def start(self, quiet=True, timeout=10):
+    @property
+    def conn(self):
+        return pymongo.MongoClient(**self.conn_settings)
+
+    def start(self, quiet=True):
         """ Opens up mongod"""
         std_out = open(os.devnull, 'w') if quiet else None
 
@@ -25,9 +31,8 @@ class Mongo:
         else:
             raise NotImplementedError('{} not supported (yet??)'.format(self.system))
         self.process = subprocess.Popen(path, stdout=std_out)
-        conn = connect(serverSelectionTimeoutMS=1000*timeout)  # wait until daemon is ready to listen
+        conn = self.conn  # wait until daemon is ready to listen
         conn.close()
-
 
     def stop(self):
         # this is an unsafe shutdown but this is a test so i don't really care
@@ -37,10 +42,13 @@ class Mongo:
         self.process.kill()
 
 
-class CSDB:
+class CSDB():
     mongo = Mongo()
-    db_name = 'catstuff_test'
-    connection = pymongo.MongoClient(serverSelectionTimeoutMS=1000)
+    db_settings = {'name': 'catstuff_test'}
+
+    @property
+    def db(self):
+        return pymongo.database.Database(self.mongo.conn, **self.db_settings)
 
     @classmethod
     def setup_class(cls):
@@ -48,11 +56,11 @@ class CSDB:
 
     @classmethod
     def teardown_class(cls):
-        cls.connection.close()
+        cls.mongo.conn.close()
         cls.mongo.stop()
 
     def setup(self):
-        self.db = self.connection[self.db_name]
+        pass
 
     def teardown(self):
-        self.connection.drop_database(self.db_name)
+        self.mongo.conn.drop_database(self.db_settings['name'])

@@ -1,10 +1,10 @@
-from catstuff.core.manager import Manager
+from catstuff.core.manager import CSPluginManager
 from catstuff.tools.config import PluginConfig
 # from shutil import get_terminal_size)
 
 
 def print_info(attrs: list, tab_width=4):
-    actions = Manager().getPluginsOfCategory('Actions')
+    actions = CSPluginManager().getPluginsOfCategory('Actions')
     format_list = []  # list of tuples in the form (attr_name, str_length)
     for attr in attrs:
         max_len = len(attr)

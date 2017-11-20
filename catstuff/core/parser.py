@@ -1,6 +1,6 @@
 import argparse, sys
 from catstuff.tools.argparser import CSArgParser
-from catstuff.core.manager import Manager
+from catstuff.core.manager import CSPluginManager
 from catstuff import __version__ as version
 
 
@@ -20,7 +20,7 @@ class CoreParser(CSArgParser):
 if __name__ == '__main__':
     parser = CoreParser()
     args = parser.parse_args()
-    action = Manager().getPluginByName(name=args.action, category='Actions')
+    action = CSPluginManager().getPluginByName(name=args.action, category='Actions')
     if action is None:
         parser.error('unrecognized action {}'.format(args.action))
     else:
