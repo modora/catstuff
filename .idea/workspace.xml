@@ -5,6 +5,126 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0b5636e-c119-4526-81d5-e5e8adc2af9f" name="Default" comment="Cleanup">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/MANIFEST.in" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/default.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/master.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/sample.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/sample2.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/tasks.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/commands/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/commands/commands.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/commands/formatter.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/commands/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/commands/parser.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/import_/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/import_/core_logger.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/import_/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/import_/plugin_manager.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/list.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/parser.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/plugins.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/version.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/version/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/version/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/version/parser.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/version/version.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/logger.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/manager.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/parser.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_formatter.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/display/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/display/display.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/display/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/random/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/random/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/random/random.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/checksum/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/checksum/checksum.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/checksum/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/copy/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/copy/copy.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/copy/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fail/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fail/fail.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fail/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/filelist/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/filelist/filelist.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/filelist/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fstat/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fstat/fstat.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fstat/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/move/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/move/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/move/move.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/success/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/success/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/success/success.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/vars/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/vars/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/vars/vars.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/vars.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/helpers.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/acoustid/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/beatport/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/beatport/beatport.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/beatport/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/discogs/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/default_config.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/musicbrainz.plugin2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/replaygain/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/replaygain/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/replaygain/replaygain.plugin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/template.7z" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/argparser.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/common.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/config.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/db.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/debug.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/misc.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/path.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/plugins.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/conf.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/index.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/make.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notes/modules.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notes/nose.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notes/pooling api results.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/setup.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/actions/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/classes.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/common.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/core/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/files/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/files/empty.file" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/files/filled.file" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/plugins/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/plugins/test_checksum.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/scratch.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/simple.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/test_nose.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/tools/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/tools/test_db.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/tools/test_master.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -696,7 +816,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511768712411</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Cleanup">
+      <created>1511768821697</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1511768821697</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1116,7 +1243,7 @@
         <state relative-caret-position="-714">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#0#49#0" expanded="false" />
           </folding>
         </state>
       </provider>
