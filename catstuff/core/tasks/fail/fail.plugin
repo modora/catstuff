@@ -1,0 +1,10 @@
+[Core]
+Name = Fail
+Module = main
+
+[Documentation]
+Version = 1.0
+Description = A plugin that deliberately fails -- used for debugging
+
+[CatStuff]
+Build = 1

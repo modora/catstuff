@@ -1,0 +1,46 @@
+# module settings
+plugins:
+  checksum:
+    methods: [crc32, md5]
+#  plugin_name:
+#    setting_1: value
+#    setting_2: value
+
+groups:
+  # Each group may be specified with a subconfig
+
+  # default is a special group name if none of the the groups are a good match
+  # default: {}
+  music: {}
+  movies: {}
+  books: {}
+  anime:
+    groups:
+      tv: {}
+      movies: {}
+
+## DELETE EVERYTHING BELOW HERE ONCE `IMPORT` IS SUPPORTED
+version: '1.0'
+
+# GLOBAL SETTINGS
+resources:
+  max_memory: -1
+  max_threads: -1
+
+db:
+  host: 'localhost'
+  port: 27017
+  name: 'catstuff'
+
+tasks:
+  - checksum
+  - checksum:
+      methods: [md5, crc32]
+
+# Used to enable developer settings
+#  - build qry now >= from >  (so you don't have to keep incrementing build number)
+dev_mode: no
+
+# RESERVED VARIABLES
+# path:
+# group:

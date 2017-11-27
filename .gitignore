@@ -91,3 +91,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+/tests/scratch.py
+docs/_static/
+docs/_templates/
+/notes/

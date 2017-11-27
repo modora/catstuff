@@ -1,0 +1,10 @@
+[Core]
+Name = Success
+Module = main
+
+[Documentation]
+Version = 1.0
+Description = Test plugin that always succeeds
+
+[CatStuff]
+Build = 1
