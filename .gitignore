@@ -84,7 +84,7 @@ venv/
 ENV/
 
 # PyCharm project settings
-.idea/
+/.idea/
 
 # Spyder project settings
 .spyderproject
