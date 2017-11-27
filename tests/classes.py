@@ -45,7 +45,7 @@ class Mongo:
         self.process.kill()
 
 
-class CSDB():
+class CSDB:
     mongo = Mongo()
     db_settings = {'name': 'catstuff_test'}
 
