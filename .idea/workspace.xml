@@ -4,29 +4,10 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0b5636e-c119-4526-81d5-e5e8adc2af9f" name="Default" comment="New mods">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/catstuff/config/base.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/musicbrainz/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/musicbrainz/tests/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/musicbrainz/tests/search.py" afterPath="$PROJECT_DIR$/tests/musicbrainz/tests/search.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/modules/musicbrainz/tests/tags.py" afterPath="$PROJECT_DIR$/tests/musicbrainz/tests/tags.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/modules/template.7z" afterPath="$PROJECT_DIR$/catstuff/modules/template.7z" />
+    <list default="true" id="c0b5636e-c119-4526-81d5-e5e8adc2af9f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/config/config.py" afterPath="$PROJECT_DIR$/catstuff/config/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/config/default.yml" afterPath="$PROJECT_DIR$/catstuff/config/default.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/modules.py" afterPath="$PROJECT_DIR$/catstuff/core/modules.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/modules/beatport/beatport.plugin" afterPath="$PROJECT_DIR$/catstuff/modules/beatport/beatport.plugin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/modules/checksum/main.py" afterPath="$PROJECT_DIR$/catstuff/modules/checksum/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/modules/fail/main.py" afterPath="$PROJECT_DIR$/catstuff/modules/fail/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/modules/filelist/main.py" afterPath="$PROJECT_DIR$/catstuff/modules/filelist/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/modules/fstat/main.py" afterPath="$PROJECT_DIR$/catstuff/modules/fstat/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/modules/replaygain/replaygain.plugin" afterPath="$PROJECT_DIR$/catstuff/modules/replaygain/replaygain.plugin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/common.py" afterPath="$PROJECT_DIR$/catstuff/tools/common.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/config.py" afterPath="$PROJECT_DIR$/catstuff/tools/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/db.py" afterPath="$PROJECT_DIR$/catstuff/tools/db.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/dicts.py" afterPath="$PROJECT_DIR$/catstuff/tools/dicts.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/modules.py" afterPath="$PROJECT_DIR$/catstuff/tools/modules.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/modules/modules.py" afterPath="$PROJECT_DIR$/tests/modules/modules.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/classes.py" afterPath="$PROJECT_DIR$/tests/classes.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/plugins/test_checksum.py" afterPath="$PROJECT_DIR$/tests/plugins/test_checksum.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,44 +18,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/catstuff/config/base.py">
+      <file leaf-file-name="common.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/common.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
-              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="25" lean-forward="true" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sample.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/catstuff/config/sample.yml">
+      <file leaf-file-name="test_db.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/tools/test_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/catstuff/config/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="81" column="50" lean-forward="true" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
+            <state relative-caret-position="1955">
+              <caret line="148" column="18" lean-forward="false" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="18" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#0#22#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/catstuff/tools/config.py">
+      <file leaf-file-name="classes.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/classes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1377">
-              <caret line="81" column="47" lean-forward="false" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
-              <folding />
+            <state relative-caret-position="-539">
+              <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,20 +64,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>__find_and</find>
-      <find>__find_and_modify</find>
-      <find>uid</find>
-      <find>logging</find>
-      <find>123</find>
-      <find>test</find>
-      <find>pymongo.da</find>
-      <find>db=</find>
-      <find>master.get</find>
-      <find>__get</find>
-      <find>existing</find>
-      <find>filename</find>
-      <find>self.file</find>
-      <find>pop</find>
       <find>base</find>
       <find>dot</find>
       <find>build</find>
@@ -121,6 +80,20 @@
       <find>_get_ex</find>
       <find>uid c</find>
       <find>changed</find>
+      <find>pre_dat</find>
+      <find>_get_exist</find>
+      <find>CatStuff</find>
+      <find>connect</find>
+      <find>connect(</find>
+      <find>Mongoc</find>
+      <find>check</find>
+      <find>obj</find>
+      <find>version</find>
+      <find>link_data</find>
+      <find>common</find>
+      <find>catstuff.tools.common</find>
+      <find>`</find>
+      <find>os.</find>
     </findStrings>
     <replaceStrings>
       <replace>test2</replace>
@@ -128,72 +101,78 @@
       <replace>path</replace>
       <replace>self.path</replace>
       <replace>catstuff.tools.db</replace>
+      <replace>self.obj</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/catstuff/modules/fstat/fstat.plugin" />
-        <option value="$PROJECT_DIR$/catstuff/modules/checksum/checksum.plugin" />
-        <option value="$PROJECT_DIR$/catstuff/modules/filelist/filelist.plugin" />
-        <option value="$PROJECT_DIR$/catstuff/toolbox/db.py" />
-        <option value="$PROJECT_DIR$/catstuff/toolbox/common.py" />
-        <option value="$PROJECT_DIR$/docs/modules.md" />
-        <option value="$PROJECT_DIR$/catstuff/modules/__init__.py" />
-        <option value="$PROJECT_DIR$/catstuff/toolbox/modules.py" />
-        <option value="$PROJECT_DIR$/catstuff/toolbox/config.py" />
-        <option value="$PROJECT_DIR$/catstuff/toolbox/__init__.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_2.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/tests/modules/plugins.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/musicbrainz/default_config.yaml" />
-        <option value="$PROJECT_DIR$/catstuff/modules/musicbrainz/musicbrainz.plugin" />
-        <option value="$PROJECT_DIR$/catstuff/modules/fingerprint/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/mod_name/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/move/move.plugin" />
-        <option value="$PROJECT_DIR$/catstuff/modules/musicbrainz/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/copy/copy.plugin" />
-        <option value="$PROJECT_DIR$/catstuff/modules/musicbrainz/tests/search.py" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/catstuff/modules/musicbrainz/tests/tags.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/beatport/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/replaygain/main.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/copy/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/move/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/success/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/fail/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/beatport/beatport.plugin" />
-        <option value="$PROJECT_DIR$/catstuff/modules/replaygain/replaygain.plugin" />
-        <option value="$PROJECT_DIR$/catstuff/modules/filelist/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/fstat/main.py" />
-        <option value="$USER_HOME$/AppData/Local/Temp/7zO8F1F7DAB/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/template/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/template/template.plugin" />
-        <option value="$PROJECT_DIR$/catstuff/tools/common.py" />
-        <option value="$PROJECT_DIR$/catstuff/tools/db.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/checksum/main.py" />
-        <option value="$PROJECT_DIR$/tests/modules/modules.py" />
-        <option value="$PROJECT_DIR$/catstuff/tools/dicts.py" />
-        <option value="$PROJECT_DIR$/catstuff/core/modules.py" />
-        <option value="$PROJECT_DIR$/catstuff/modules/vars/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/config/global.py" />
-        <option value="$PROJECT_DIR$/catstuff/tools/modules.py" />
-        <option value="$PROJECT_DIR$/catstuff/config/groups.py" />
-        <option value="$PROJECT_DIR$/catstuff/config/sample.yml" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/fstat/__init__.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/fstat/main.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/success/__init__.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/success/main.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/fail/__init__.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/checksum/main.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/actions/plugins/list.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/fail/main.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/copy/__init__.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/copy/main.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/fail/fail.plugin" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/success/success.plugin" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/move/move.plugin" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/move/__init__.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/move/main.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/filelist/__init__.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/filelist/main.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/vars/__init__.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/vars.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/tasks/vars/main.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/actions/plugins/__init__.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/actions/plugins/parser.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/actions/plugins/version.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/method/random/random.plugin" />
+        <option value="$PROJECT_DIR$/catstuff/core/manager.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/actions/commands/formatter.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/parser.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/method/random/main.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/str_methods/display/display.plugin" />
+        <option value="$PROJECT_DIR$/catstuff/core/str_methods/display/main.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/str_methods/random/main.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/plugins.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/re.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/string.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch2.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/str_formatter.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/path.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/debug.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/misc.py" />
         <option value="$PROJECT_DIR$/catstuff/tools/config.py" />
-        <option value="$PROJECT_DIR$/catstuff/config/base.py" />
-        <option value="$PROJECT_DIR$/catstuff/config/config.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/common.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/tests/common.py" />
+        <option value="$PROJECT_DIR$/tests/tools/test_db.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/db.py" />
+        <option value="$PROJECT_DIR$/tests/files/__init__.py" />
+        <option value="$PROJECT_DIR$/tests/__init__.py" />
+        <option value="$PROJECT_DIR$/tests/plugins/test_checksum.py" />
+        <option value="$PROJECT_DIR$/tests/classes.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="960" />
     <option name="width" value="960" />
-    <option name="height" value="520" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -229,6 +208,57 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Changed Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="catstuff" type="cbb8eebc:String" user="catstuff" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="catstuff" type="cbb8eebc:String" user="catstuff" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <subPane subId="Default">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="catstuff" type="cbb8eebc:String" user="catstuff" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="catstuff" type="cbb8eebc:String" user="catstuff" />
+              <item name="catstuff" type="cbb8eebc:String" user="catstuff" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="catstuff" type="cbb8eebc:String" user="catstuff" />
+              <item name="catstuff" type="cbb8eebc:String" user="catstuff" />
+              <item name="core" type="cbb8eebc:String" user="core" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Scratches" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -245,58 +275,52 @@
               <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
               <item name="catstuff" type="462c0819:PsiDirectoryNode" />
               <item name="catstuff" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
-              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
-              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
               <item name="catstuff" type="462c0819:PsiDirectoryNode" />
               <item name="catstuff" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
-              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
-              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="Python" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="SearchEverywhereHistoryKey" value="__dir__&#9;null&#9;null&#10;expli&#9;null&#9;null&#10;explicit&#9;null&#9;null" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/musicbrainz" />
+    <property name="SearchEverywhereHistoryKey" value="connect&#9;null&#9;null&#10;__dir__&#9;null&#9;null&#10;expli&#9;null&#9;null&#10;explicit&#9;null&#9;null" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../shared_vars" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/catstuff/config/sample.yml&#10;C:/Users/S/PycharmProjects/catstuff/catstuff/logs/core/modules.log" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="catstuff" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="catstuff" />
+      </console-settings>
+    </option>
+    <option name="myShowDebugConsoleByDefault" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\core\actions\plugins" />
+      <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\core\actions" />
+      <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\config" />
       <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\modules" />
       <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\modules\musicbrainz\tests" />
-      <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\modules\mod_name" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\S\PycharmProjects\catstuff\tests\musicbrainz" />
-      <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\modules\musicbrainz\tests\songs" />
-      <recent name="C:\Users\S\PycharmProjects\catstuff\tests\modules" />
-      <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff" />
-      <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\db" />
+      <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\core\tasks" />
+      <recent name="C:\Users\S\PycharmProjects\catstuff\tests\tools" />
+      <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\core\actions" />
+      <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\core\import_" />
+      <recent name="C:\Users\S\PycharmProjects\catstuff\tests" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -311,87 +335,204 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.base">
-    <configuration name="base" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python tests.Nosetests in tests">
+    <configuration name="Nosetest scratch" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="C:\Program Files (x86)\Python36-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catstuff" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;-s&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/scratch.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="Nosetests in tests" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="C:\Program Files (x86)\Python36-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catstuff" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="C:\Program Files (x86)\Python36-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catstuff" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="-m" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files (x86)\Python36-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catstuff" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="parser --debug fail" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/catstuff/config" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/catstuff/core" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="catstuff" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/catstuff/config/base.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/catstuff/core/parser.py" />
+      <option name="PARAMETERS" value="--debug fail" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="db" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="parser commands" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/catstuff/tools" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/catstuff/core" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="catstuff" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/catstuff/tools/db.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/catstuff/core/parser.py" />
+      <option name="PARAMETERS" value="commands" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="parser plugins list" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/catstuff/modules/checksum" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/catstuff/core" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="catstuff" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/catstuff/modules/checksum/main.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/catstuff/core/parser.py" />
+      <option name="PARAMETERS" value="plugins list" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="modules" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="parser plugins version" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/modules" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/catstuff/core" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="catstuff" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/modules/modules.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/catstuff/core/parser.py" />
+      <option name="PARAMETERS" value="plugins version" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="parser version" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/catstuff/core" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catstuff" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/catstuff/core/parser.py" />
+      <option name="PARAMETERS" value="version" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="scratch_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files (x86)\Python36-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catstuff" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Python.modules" />
-      <item index="1" class="java.lang.String" itemvalue="Python.db" />
-      <item index="2" class="java.lang.String" itemvalue="Python.main" />
-      <item index="3" class="java.lang.String" itemvalue="Python.base" />
+    <configuration name="str_formatter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/catstuff/core" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catstuff" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/catstuff/core/str_formatter.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <list size="9">
+      <item index="0" class="java.lang.String" itemvalue="Python.parser version" />
+      <item index="1" class="java.lang.String" itemvalue="Python.parser --debug fail" />
+      <item index="2" class="java.lang.String" itemvalue="Python.parser commands" />
+      <item index="3" class="java.lang.String" itemvalue="Python.parser plugins list" />
+      <item index="4" class="java.lang.String" itemvalue="Python.parser plugins version" />
+      <item index="5" class="java.lang.String" itemvalue="Python tests.Nosetest scratch" />
+      <item index="6" class="java.lang.String" itemvalue="Python.scratch_1" />
+      <item index="7" class="java.lang.String" itemvalue="Python.str_formatter" />
+      <item index="8" class="java.lang.String" itemvalue="Python tests.Nosetests in tests" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.base" />
-        <item index="1" class="java.lang.String" itemvalue="Python.modules" />
-        <item index="2" class="java.lang.String" itemvalue="Python.main" />
-        <item index="3" class="java.lang.String" itemvalue="Python.db" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests in tests" />
+        <item index="1" class="java.lang.String" itemvalue="Python.str_formatter" />
+        <item index="2" class="java.lang.String" itemvalue="Python.scratch_1" />
       </list>
     </recent_temporary>
   </component>
@@ -444,23 +585,202 @@
       <option name="project" value="LOCAL" />
       <updated>1509775954908</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Reworking config">
+      <created>1510204426328</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1510204426328</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Problems with the config implementation -- on-hold">
+      <created>1510278185311</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1510278185311</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added nose-test files">
+      <created>1510298203859</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1510298203861</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added nose-test files">
+      <created>1510299568940</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1510299568940</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added test files">
+      <created>1510535839026</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1510535839026</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Simplified api and added cmdline parser">
+      <created>1510815531473</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1510815531473</updated>
+    </task>
+    <task id="LOCAL-00012" summary="modified tools, broke plugins, list commands action working!">
+      <created>1511065138146</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1511065138146</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fixed version action, started action: plugin manager">
+      <created>1511067570090</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1511067570090</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Worded on plugin manager action, broken atm">
+      <created>1511076364152</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1511076364152</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Reworking action: plugin manager">
+      <created>1511115917948</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1511115917948</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Encapsulated the plugin manager into a class">
+      <created>1511121296173</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1511121296173</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Fixed some actions due to the PluginManager changing">
+      <created>1511122649580</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1511122649580</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fixed tests">
+      <created>1511140468457</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1511140468457</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Bug fixes in Collection tools">
+      <created>1511143402456</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1511143402456</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Bug fixes in Collection tools">
+      <created>1511143535961</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1511143535961</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Fixeed plugins">
+      <created>1511145889977</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1511145889977</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Fixeed plugins">
+      <created>1511145910499</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1511145910499</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Fixeed plugins manager version action">
+      <created>1511151899606</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1511151899606</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Moved plugin">
+      <created>1511761788187</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1511761788187</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Fixed tests">
+      <created>1511766576122</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1511766576122</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Fixed tests">
+      <created>1511766591554</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1511766591554</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Nosetests_in_test_db_py - 2017.11.26 at 21h 55m 45s.xml">
+      <configuration name="Nosetests in test_db.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_db_py - 2017.11.26 at 22h 03m 23s.xml">
+      <configuration name="Nosetests in test_db.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_db_py - 2017.11.26 at 22h 03m 51s.xml">
+      <configuration name="Nosetests in test_db.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_db_py - 2017.11.26 at 22h 06m 42s.xml">
+      <configuration name="Nosetests in test_db.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_db_py - 2017.11.26 at 22h 10m 26s.xml">
+      <configuration name="Nosetests in test_db.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_db_py - 2017.11.26 at 22h 11m 10s.xml">
+      <configuration name="Nosetests in test_db.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2017.11.26 at 22h 14m 10s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2017.11.26 at 22h 59m 47s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2017.11.26 at 23h 02m 30s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2017.11.26 at 23h 05m 27s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="960" y="0" width="960" height="520" extended-state="0" />
-    <editor active="true" />
+    <frame x="960" y="0" width="960" height="1040" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30932203" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30932203" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33081895" sideWeight="0.5058698" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286638" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.33081895" sideWeight="0.4941302" order="2" side_tool="true" content_ui="tabs" x="968" y="550" width="944" height="482" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41487068" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.33081895" sideWeight="0.4941302" order="2" side_tool="true" content_ui="tabs" x="968" y="30" width="944" height="1002" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32415253" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.38793105" sideWeight="0.4957627" order="3" side_tool="false" content_ui="tabs" x="968" y="550" width="944" height="482" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.38793105" sideWeight="0.4957627" order="3" side_tool="false" content_ui="tabs" x="968" y="30" width="944" height="1002" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -470,7 +790,6 @@
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout>
@@ -493,350 +812,518 @@
     <MESSAGE value="Added more modules" />
     <MESSAGE value="Cleanup" />
     <MESSAGE value="New mods" />
-    <option name="LAST_COMMIT_MESSAGE" value="New mods" />
+    <MESSAGE value="Reworking config" />
+    <MESSAGE value="Problems with the config implementation -- on-hold" />
+    <MESSAGE value="Added nose-test files" />
+    <MESSAGE value="Added test files" />
+    <MESSAGE value="Simplified api and added cmdline parser" />
+    <MESSAGE value="modified tools, broke plugins, list commands action working!" />
+    <MESSAGE value="Fixed version action, started action: plugin manager" />
+    <MESSAGE value="Worded on plugin manager action, broken atm" />
+    <MESSAGE value="Reworking action: plugin manager" />
+    <MESSAGE value="Encapsulated the plugin manager into a class" />
+    <MESSAGE value="Fixed some actions due to the PluginManager changing" />
+    <MESSAGE value="Bug fixes in Collection tools" />
+    <MESSAGE value="Fixeed plugins" />
+    <MESSAGE value="Fixeed plugins manager version action" />
+    <MESSAGE value="Moved plugin" />
+    <MESSAGE value="Fixed tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch2.py</url>
+          <line>108</line>
+          <option name="timeStamp" value="219" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="222" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="129" />
+      <option name="time" value="235" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/ntpath.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/checksum/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/musicbrainz/musicbrainz.plugin">
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/fail/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/fingerprint/main.py" />
-    <entry file="file://U:/config/scripts/yaml-json-ini.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="31" column="30" lean-forward="true" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/shutil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-475">
-          <caret line="499" column="32" lean-forward="false" selection-start-line="499" selection-start-column="19" selection-end-line="499" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/colorama/ansitowin32.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/mutagen/_file.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/mutagen/_util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="422" column="0" lean-forward="false" selection-start-line="422" selection-start-column="0" selection-end-line="422" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/beatport/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="50" lean-forward="false" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/replaygain/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/babel/support.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="193" column="8" lean-forward="false" selection-start-line="193" selection-start-column="8" selection-end-line="193" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/pyparsing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="234" column="8" lean-forward="false" selection-start-line="234" selection-start-column="8" selection-end-line="234" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/musicbrainz/tests/tags.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/musicbrainz/tests/search.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/move/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/move/move.plugin">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/copy/copy.plugin">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/collections/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="876" column="0" lean-forward="false" selection-start-line="876" selection-start-column="0" selection-end-line="876" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/configparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="785" column="0" lean-forward="false" selection-start-line="785" selection-start-column="0" selection-end-line="785" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/yapsy/PluginInfo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/yapsy/PluginManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="502" column="30" lean-forward="false" selection-start-line="502" selection-start-column="30" selection-end-line="502" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/yapsy/PluginFileLocator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="467" column="0" lean-forward="false" selection-start-line="467" selection-start-column="0" selection-end-line="467" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/fail/fail.plugin">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="31" lean-forward="true" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/fail/main.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/copy/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="42" lean-forward="false" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/beatport/beatport.plugin">
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/copy/copy.plugin">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+        <state relative-caret-position="102">
+          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/replaygain/replaygain.plugin">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="2" lean-forward="false" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/success/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/copy/main.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/fail/fail.plugin">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/musicbrainz/main.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/success/success.plugin">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state relative-caret-position="153">
+          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/filelist/main.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/copy/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/7zO8F1F7DAB/main.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/move/move.plugin">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="66" lean-forward="true" selection-start-line="7" selection-start-column="66" selection-end-line="7" selection-end-column="66" />
+        <state relative-caret-position="170">
+          <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/7zO8F1C077B/main.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/move/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#29#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/move/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/filelist/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/vars/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/filelist/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/parser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/template/template.plugin" />
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/template/main.py" />
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/checksum/main.py">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/import.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="104" column="24" lean-forward="false" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/modules/modules.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/core/vars.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        <state relative-caret-position="51">
+          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/tools/dicts.py">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/vars.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="75" lean-forward="false" selection-start-line="14" selection-start-column="75" selection-end-line="14" selection-end-column="75" />
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/actions/version/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#29#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/actions/plugins/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/vars/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#29#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/actions/plugins/version.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#72#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/str_methods/random/random.plugin">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.2/system/python_stubs/1402888915/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4085">
+          <caret line="4704" column="11" lean-forward="true" selection-start-line="4704" selection-start-column="11" selection-end-line="4704" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/actions/plugins/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="42" column="8" lean-forward="false" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/actions/plugins/list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="30" column="52" lean-forward="false" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/actions/commands/formatter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="60" lean-forward="true" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/str_methods/display/display.plugin">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/str_methods/display/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/str_methods/random/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#29#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="10" lean-forward="true" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#2063#3025#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/debug.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/catstuff/tools/common.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2328">
-          <caret line="169" column="0" lean-forward="true" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+        <state relative-caret-position="51">
+          <caret line="3" column="33" lean-forward="false" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/config/struct.yml" />
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/vars/main.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/plugins.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="44" lean-forward="false" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/tools/modules.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/modules.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="65" column="27" lean-forward="true" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/config/groups.py" />
-    <entry file="file://$PROJECT_DIR$/catstuff/config/sample.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        <state relative-caret-position="272">
+          <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/config/base.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/misc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="291">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/modules/fstat/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/tools/db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="137" column="35" lean-forward="true" selection-start-line="137" selection-start-column="35" selection-end-line="137" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/catstuff/tools/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="81" column="47" lean-forward="false" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/config/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="81" column="50" lean-forward="true" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
+        <state relative-caret-position="294">
+          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/str_formatter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#99#1280#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/path.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/nose/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="470" column="0" lean-forward="false" selection-start-line="470" selection-start-column="0" selection-end-line="470" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="96" column="7" lean-forward="false" selection-start-line="96" selection-start-column="7" selection-end-line="96" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="25" lean-forward="true" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/tools/test_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1955">
+          <caret line="148" column="18" lean-forward="false" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="27" lean-forward="true" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/files/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="47" lean-forward="true" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="81" column="42" lean-forward="false" selection-start-line="81" selection-start-column="42" selection-end-line="81" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/plugins/test_checksum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="119" column="54" lean-forward="true" selection-start-line="119" selection-start-column="54" selection-end-line="119" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/classes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-539">
+          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="MarkdownNavigator.LinkMap.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

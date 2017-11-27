@@ -1,8 +1,0 @@
-[Core]
-Name = Fail
-Module = main
-Build = 1
-
-[Documentation]
-Version = 1.0
-Description = A module that will deliberately fails -- used for debugging

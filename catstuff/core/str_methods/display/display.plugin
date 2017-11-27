@@ -1,0 +1,6 @@
+[Core]
+Name = Display
+Module = main
+
+[Documentation]
+Description = Display methods for string

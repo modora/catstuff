@@ -1,9 +1,0 @@
-[Core]
-Name = Move
-Module = main
-Build = 1
-
-[Documentation]
-Description = Moves a file or directory
-Version = 1.0
-Author = Stanley Wu

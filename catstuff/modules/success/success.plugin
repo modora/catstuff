@@ -1,8 +1,0 @@
-[Core]
-Name = Success
-Module = main
-Build = 1
-
-[Documentation]
-Version = 1.0
-Description = Test modules that always succeeds

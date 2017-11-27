@@ -1,0 +1,7 @@
+[Core]
+Name = commands
+Module = main
+
+[Documentation]
+Description = Lists all the available CatStuff commands
+Version = 1.0.0
