@@ -1,5 +1,5 @@
 from yapsy.PluginManager import PluginManager
-import catstuff.tools.plugins
+from catstuff.tools import plugins
 import os
 
 _dir = os.path.dirname(os.path.realpath(__file__))
@@ -7,9 +7,9 @@ _dir = os.path.dirname(os.path.realpath(__file__))
 
 class CSPluginManager(PluginManager):
     categories = {
-        'Task': catstuff.tools.plugins.CSTask,
-        'Action': catstuff.tools.plugins.CSAction,
-        'StrMethod': catstuff.tools.plugins.StrMethod
+        'Task': plugins.CSTask,
+        'Action': plugins.CSAction,
+        'StrMethod': plugins.StrMethod
     }
 
     extensions = 'plugin'

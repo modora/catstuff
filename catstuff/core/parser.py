@@ -18,7 +18,7 @@ class CoreParser(CSArgParser):
         self.add_argument('args', nargs=argparse.REMAINDER)
 
 
-if __name__ == '__main__':
+def main():
     parser = CoreParser()
     args = parser.parse_args()
     action = CSPluginManager().getPluginByName(name=args.action, category='Action')
@@ -31,5 +31,8 @@ if __name__ == '__main__':
             # probably a smarter way to wait but w/e
 
             cols = shutil.get_terminal_size()[0]
-            print("-"*cols)
+            print("-" * cols)
         parser.error('unrecognized action {}'.format(args.action))
+
+if __name__ == '__main__':
+    main()
