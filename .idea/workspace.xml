@@ -5,127 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0b5636e-c119-4526-81d5-e5e8adc2af9f" name="Default" comment="Cleanup">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MANIFEST.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/default.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/master.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/sample.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/sample2.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/config/tasks.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/commands/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/commands/commands.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/commands/formatter.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/commands/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/commands/parser.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/import_/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/import_/core_logger.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/import_/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/import_/plugin_manager.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/list.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/parser.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/plugins.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/plugins/version.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/version/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/version/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/version/parser.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/actions/version/version.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/logger.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/manager.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/parser.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_formatter.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/display/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/display/display.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/display/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/random/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/random/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/str_methods/random/random.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/checksum/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/checksum/checksum.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/checksum/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/copy/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/copy/copy.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/copy/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fail/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fail/fail.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fail/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/filelist/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/filelist/filelist.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/filelist/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fstat/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fstat/fstat.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/fstat/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/move/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/move/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/move/move.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/success/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/success/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/success/success.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/vars/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/vars/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/tasks/vars/vars.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/core/vars.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/helpers.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/acoustid/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/beatport/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/beatport/beatport.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/beatport/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/discogs/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/default_config.yaml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/musicbrainz/musicbrainz.plugin2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/replaygain/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/replaygain/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/replaygain/replaygain.plugin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/template.7z" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/argparser.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/common.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/config.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/db.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/debug.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/misc.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/path.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/tools/plugins.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/conf.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/index.rst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/make.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notes/modules.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notes/nose.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notes/pooling api results.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/setup.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/actions/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/classes.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/common.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/core/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/files/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/files/empty.file" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/files/filled.file" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/plugins/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/plugins/test_checksum.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/scratch.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/simple.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/test_nose.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/tools/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/tools/test_db.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/tools/test_master.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/actions/test_commands.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/core/vars.py" afterPath="$PROJECT_DIR$/catstuff/tools/vars.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/__init__.py" afterPath="$PROJECT_DIR$/catstuff/core/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/manager.py" afterPath="$PROJECT_DIR$/catstuff/core/manager.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/parser.py" afterPath="$PROJECT_DIR$/catstuff/core/parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/__init__.py" afterPath="$PROJECT_DIR$/catstuff/tools/__init__.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -135,7 +22,68 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <splitter split-orientation="vertical" split-proportion="0.5075075">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="test_commands.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/tests/actions/test_commands.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="2" column="14" lean-forward="false" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="formatter.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/catstuff/core/actions/commands/formatter.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="187">
+                  <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/catstuff/core/actions/commands/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="vars.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/catstuff/tools/vars.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="136">
+                  <caret line="18" column="9" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="manager.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/catstuff/core/manager.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="127">
+                  <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+                  <folding>
+                    <element signature="e#0#45#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -198,15 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/catstuff/core/tasks/fstat/__init__.py" />
-        <option value="$PROJECT_DIR$/catstuff/core/tasks/fstat/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/core/tasks/success/__init__.py" />
-        <option value="$PROJECT_DIR$/catstuff/core/tasks/success/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/core/tasks/fail/__init__.py" />
-        <option value="$PROJECT_DIR$/catstuff/core/tasks/checksum/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/core/actions/plugins/list.py" />
-        <option value="$PROJECT_DIR$/catstuff/core/tasks/fail/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/core/tasks/copy/__init__.py" />
         <option value="$PROJECT_DIR$/catstuff/core/tasks/copy/main.py" />
         <option value="$PROJECT_DIR$/catstuff/core/tasks/fail/fail.plugin" />
         <option value="$PROJECT_DIR$/catstuff/core/tasks/success/success.plugin" />
@@ -216,25 +155,20 @@
         <option value="$PROJECT_DIR$/catstuff/core/tasks/filelist/__init__.py" />
         <option value="$PROJECT_DIR$/catstuff/core/tasks/filelist/main.py" />
         <option value="$PROJECT_DIR$/catstuff/core/tasks/vars/__init__.py" />
-        <option value="$PROJECT_DIR$/catstuff/core/vars.py" />
         <option value="$PROJECT_DIR$/catstuff/core/tasks/vars/main.py" />
         <option value="$PROJECT_DIR$/catstuff/core/actions/plugins/__init__.py" />
         <option value="$PROJECT_DIR$/catstuff/core/actions/plugins/parser.py" />
         <option value="$PROJECT_DIR$/catstuff/core/actions/plugins/version.py" />
         <option value="$PROJECT_DIR$/catstuff/core/method/random/random.plugin" />
-        <option value="$PROJECT_DIR$/catstuff/core/manager.py" />
         <option value="$PROJECT_DIR$/catstuff/core/actions/commands/formatter.py" />
-        <option value="$PROJECT_DIR$/catstuff/core/parser.py" />
         <option value="$PROJECT_DIR$/catstuff/core/method/random/main.py" />
         <option value="$PROJECT_DIR$/catstuff/core/str_methods/display/display.plugin" />
         <option value="$PROJECT_DIR$/catstuff/core/str_methods/display/main.py" />
         <option value="$PROJECT_DIR$/catstuff/core/str_methods/random/main.py" />
         <option value="$PROJECT_DIR$/catstuff/tools/plugins.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/re.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/string.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch2.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
         <option value="$PROJECT_DIR$/catstuff/core/str_formatter.py" />
         <option value="$PROJECT_DIR$/catstuff/tools/path.py" />
         <option value="$PROJECT_DIR$/catstuff/tools/debug.py" />
@@ -249,6 +183,20 @@
         <option value="$PROJECT_DIR$/tests/plugins/test_checksum.py" />
         <option value="$PROJECT_DIR$/tests/classes.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/tests/actions/commands.py" />
+        <option value="$PROJECT_DIR$/tests/actions/test_commands.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/y.yml" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_2.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_4.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/__init__.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/__init__.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/parser.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/vars.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/__init__.py" />
+        <option value="$PROJECT_DIR$/catstuff/core/manager.py" />
       </list>
     </option>
   </component>
@@ -354,6 +302,56 @@
               <item name="catstuff" type="462c0819:PsiDirectoryNode" />
               <item name="catstuff" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
+              <item name="commands" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catstuff" type="b2602c69:ProjectViewProjectNode" />
+              <item name="catstuff" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -386,11 +384,11 @@
       <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\modules\musicbrainz\tests" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\tools" />
       <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\core\tasks" />
       <recent name="C:\Users\S\PycharmProjects\catstuff\tests\tools" />
       <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\core\actions" />
       <recent name="C:\Users\S\PycharmProjects\catstuff\catstuff\core\import_" />
-      <recent name="C:\Users\S\PycharmProjects\catstuff\tests" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -405,7 +403,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Nosetests in tests">
+  <component name="RunManager" selected="Python.scratch_1">
     <configuration name="Nosetest scratch" type="tests" factoryName="Nosetests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -452,7 +450,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="-m" />
+      <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
@@ -553,8 +551,25 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="scratch_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files (x86)\Python36-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catstuff" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="scratch_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="-m" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
@@ -570,39 +585,60 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="str_formatter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="scratch_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/catstuff/core" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="C:\Program Files (x86)\Python36-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="catstuff" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/catstuff/core/str_formatter.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <list size="9">
+    <configuration name="scratch_3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files (x86)\Python36-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catstuff" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <list size="11">
       <item index="0" class="java.lang.String" itemvalue="Python.parser version" />
       <item index="1" class="java.lang.String" itemvalue="Python.parser --debug fail" />
       <item index="2" class="java.lang.String" itemvalue="Python.parser commands" />
       <item index="3" class="java.lang.String" itemvalue="Python.parser plugins list" />
       <item index="4" class="java.lang.String" itemvalue="Python.parser plugins version" />
       <item index="5" class="java.lang.String" itemvalue="Python tests.Nosetest scratch" />
-      <item index="6" class="java.lang.String" itemvalue="Python.scratch_1" />
-      <item index="7" class="java.lang.String" itemvalue="Python.str_formatter" />
-      <item index="8" class="java.lang.String" itemvalue="Python tests.Nosetests in tests" />
+      <item index="6" class="java.lang.String" itemvalue="Python.scratch" />
+      <item index="7" class="java.lang.String" itemvalue="Python.scratch_3" />
+      <item index="8" class="java.lang.String" itemvalue="Python.scratch_2" />
+      <item index="9" class="java.lang.String" itemvalue="Python.scratch_1" />
+      <item index="10" class="java.lang.String" itemvalue="Python tests.Nosetests in tests" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests in tests" />
-        <item index="1" class="java.lang.String" itemvalue="Python.str_formatter" />
-        <item index="2" class="java.lang.String" itemvalue="Python.scratch_1" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.scratch_1" />
+        <item index="1" class="java.lang.String" itemvalue="Python.scratch_2" />
+        <item index="2" class="java.lang.String" itemvalue="Python.scratch_3" />
+        <item index="3" class="java.lang.String" itemvalue="Python.scratch" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests in tests" />
       </list>
     </recent_temporary>
   </component>
@@ -860,14 +896,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="960" y="0" width="960" height="1040" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30932203" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30932203" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41487068" sideWeight="0.50741524" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41487068" sideWeight="0.49258474" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.33081895" sideWeight="0.4941302" order="2" side_tool="true" content_ui="tabs" x="968" y="30" width="944" height="1002" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2823276" sideWeight="0.49258474" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.33081895" sideWeight="0.4941302" order="2" side_tool="true" content_ui="tabs" x="8" y="30" width="944" height="1002" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32415253" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -923,18 +960,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch2.py</url>
-          <line>108</line>
-          <option name="timeStamp" value="219" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py</url>
-          <line>2</line>
-          <option name="timeStamp" value="222" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -943,86 +968,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/checksum/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/fail/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/copy/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/copy/copy.plugin">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/fail/fail.plugin">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/success/success.plugin">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/copy/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/move/move.plugin">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/move/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#29#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catstuff/core/tasks/move/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1075,14 +1020,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/vars.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1165,34 +1102,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="30" column="52" lean-forward="false" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/actions/commands/formatter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="60" lean-forward="true" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#49#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core/manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catstuff/core/str_methods/display/display.plugin">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1219,32 +1128,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="10" lean-forward="true" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#2063#3025#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-714">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#49#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1337,14 +1225,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/tools/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1371,14 +1251,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/plugins/test_checksum.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="119" column="54" lean-forward="true" selection-start-line="119" selection-start-column="54" selection-end-line="119" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/classes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-539">
@@ -1391,9 +1263,153 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="91" column="12" lean-forward="false" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="12" />
+        <state relative-caret-position="144">
+          <caret line="86" column="9" lean-forward="false" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/plugins/test_checksum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/actions/commands/formatter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/actions/test_commands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="14" lean-forward="false" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/y.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/actions/commands/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="53" column="23" lean-forward="true" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="7" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_4.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="34" lean-forward="true" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="9" lean-forward="false" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#21#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/vars.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="18" column="9" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="38" lean-forward="false" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/core/manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
