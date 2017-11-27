@@ -19,7 +19,7 @@ def test_connection(connection=None, *args, **kwargs):
     assert isinstance(connection, pymongo.MongoClient)
     try:
         connection.server_info()
-    except pymongo.errors.ServerSelectionTimeoutError as e:
+    except pymongo.errors.ServerSelectionTimeoutError:
         # should do logging here
         raise
 

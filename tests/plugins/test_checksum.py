@@ -1,28 +1,28 @@
 from nose.tools import *
 
 from catstuff.core.tasks.checksum.main import *
-from tests.common import *
-
+import tests.files as files
+import tests.common
 
 @raises(NotImplementedError)
 def test_unknown_method_123():
-    checksum(empty_file, method=123)
+    checksum(files.empty_file, method=123)
 
 
 @raises(NotImplementedError)
 def test_unknown_method_None():
-    checksum(empty_file, method=None)
+    checksum(files.empty_file, method=None)
 
 
 def test_filled_sha1():
     actual = 'e904e143809b8ee161abdc55455bd5ff7773b5d7'.lower()
-    result = checksum(filled_file, method='sha1').lower()
+    result = checksum(files.filled_file, method='sha1').lower()
     assert_equal(result, actual)
 
 
 def test_empty_sha1():
     actual = 'da39a3ee5e6b4b0d3255bfef95601890afd80709'.lower()
-    result = checksum(empty_file, method='sha1').lower()
+    result = checksum(files.empty_file, method='sha1').lower()
     assert_equal(result, actual)
 
 
@@ -123,9 +123,9 @@ class TestFilled(Hashlib, Zlib):
     }
 
     def __init__(self):
-        Library.__init__(self, filled_file, actuals=self.actuals)
+        Library.__init__(self, files.filled_file, actuals=self.actuals)
 
 
-class TestPlugin(CSDB):
+class TestPlugin(tests.common.CSDB):
     def setup(self):
         self.obj = Checksum(database=self.db)

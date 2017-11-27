@@ -1,12 +1,12 @@
 from ..common import *
-from catstuff.tools.db import *
+import catstuff.tools.db as db
 from nose.tools import *
 import pymongo
 
 
 @raises(NotImplementedError)
 def test_unknown_uid_gene_method():
-    generate_uid('unknown method')
+    db.generate_uid('unknown method')
 
 
 class TestCSCollection(CSDB):
@@ -16,7 +16,7 @@ class TestCSCollection(CSDB):
         super().setup()
         # using object attributes is a safe way of passing classes between the
         # test function
-        self.obj = Collection(self.coll_name, db=self.db)
+        self.obj = db.Collection(self.coll_name, db=self.db)
 
     def test_empty(self):
         assert_equal(self.obj.db.collection_names(), [], "Test database is not empty")
@@ -86,7 +86,7 @@ class TestCSCollection(CSDB):
 class TestMaster(CSDB):
     def setup(self):
         super().setup()
-        self.obj = Master(db=self.db)
+        self.obj = db.Master(db=self.db)
 
     @raises(AttributeError)
     def test_unset_path(self):
@@ -131,8 +131,8 @@ class TestMaster(CSDB):
     def test_get(self):
         obj = self.obj
 
-        mod1 = Collection('mod1', db=self.db)
-        mod2 = Collection('mod2', db=self.db)
+        mod1 = db.Collection('mod1', db=self.db)
+        mod2 = db.Collection('mod2', db=self.db)
 
         mod1.insert({"a": 'b'})
         mod2.insert({"1": '2'})

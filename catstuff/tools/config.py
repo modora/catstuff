@@ -121,3 +121,11 @@ def try_get(config: dict, keys: (list, str), **default):
                 raise e
     return conf
 
+
+class ExplicitDumper(yaml.SafeDumper):
+    """
+    A dumper that will never emit aliases. -- Found from pyyaml ticket #91
+    Usage: yaml.dump(..., Dumper=ExplicitDumper)
+    """
+    def ignore_aliases(self, data):
+        return True

@@ -4,7 +4,7 @@ from catstuff.tools.config import PluginConfig
 
 
 def print_info(attrs: list, tab_width=4):
-    actions = CSPluginManager().getPluginsOfCategory('Actions')
+    actions = CSPluginManager().getPluginsOfCategory('Action')
     format_list = []  # list of tuples in the form (attr_name, str_length)
     for attr in attrs:
         max_len = len(attr)

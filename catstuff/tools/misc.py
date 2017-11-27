@@ -1,6 +1,36 @@
 import errno, os, sys
 
 
+def title(name, symbol='-', border_length=100):
+    border(symbol=symbol, border_length=border_length)
+    print(name)
+    border(symbol=symbol, border_length=border_length)
+
+
+def border(symbol='-', border_length=100):
+    single_instance = symbol * border_length
+    print(single_instance[:border_length])  # print up to the specified length
+
+
+def property_getter(obj, name, default=None, setter=True):
+    """
+    Returns the value an object attribute and sets it if it doesn't exist
+    :param obj: object to get attribute
+    :param name: name of object attribute
+    :param default: value to return if doesn't exist
+    :param setter: should I set the attribute??
+    :type: bool
+    :return:
+    """
+    try:
+        return getattr(obj, name)
+    except AttributeError:
+        if setter:
+            setattr(obj, name, default)
+        return default
+
+
+
 """
 ################################################################################################
 is_path_valid

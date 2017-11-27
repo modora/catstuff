@@ -2,7 +2,19 @@ from yapsy.IPlugin import IPlugin
 from catstuff.tools.db import property_getter, Collection, Master
 
 
-class CSPluginTemplate(IPlugin):
+class StrMethod(str):
+    """ Base method to add to the CSStr class"""
+    '''
+    To avoid collisions with other plugins, use the python name mangling '__attr' 
+    with double underscores for private variables. Additionally, name your subclass
+    the name of your plugin (underscore separated)
+    '''
+
+    pass
+
+
+class _CSPluginTemplate:
+    """ Template for most catstuff plugin classes"""
     def __init__(self, name):
         super().__init__()
         self.name = name
@@ -12,7 +24,8 @@ class CSPluginTemplate(IPlugin):
             name=self.name, cls=self.__class__.__name__))
 
 
-class CSAction(CSPluginTemplate):  # Action category
+class CSAction(_CSPluginTemplate):
+    """ Create a catstuff action"""
     def __init__(self, name):
         super().__init__(name)
 
@@ -20,7 +33,8 @@ class CSAction(CSPluginTemplate):  # Action category
         super().main()
 
 
-class CSTask(CSPluginTemplate):
+class CSTask(_CSPluginTemplate):
+    """ Create a catstuff task"""
     def __init__(self, name, build):
         super().__init__(name)
         self.build = build
@@ -35,6 +49,7 @@ class CSTask(CSPluginTemplate):
 
 
 class CSCollection(Collection, CSTask):
+    """ Create a catstuff task with built-in mongodb api"""
     def __init__(self, name, build, path='', database=None, master_db=None):
         Collection.__init__(self, name, db=database)
         CSTask.__init__(self, name, build)
