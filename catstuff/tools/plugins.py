@@ -1,4 +1,3 @@
-from yapsy.IPlugin import IPlugin
 from catstuff.tools.db import property_getter, Collection, Master
 
 
@@ -50,12 +49,12 @@ class CSTask(_CSPluginTemplate):
 
 class CSCollection(Collection, CSTask):
     """ Create a catstuff task with built-in mongodb api"""
-    def __init__(self, name, build, path='', database=None, master_db=None):
+    def __init__(self, name, build, database=None, master_db=None):
         Collection.__init__(self, name, db=database)
         CSTask.__init__(self, name, build)
 
         self.master = Master(db=(master_db or self._default_db))
-        self.path = path
+        self.path = None
 
     @property
     def uid(self):
@@ -130,3 +129,4 @@ class CSCollection(Collection, CSTask):
         if unlink:
             self.delete_link()
 
+__all__ = [CSCollection, CSAction, CSTask, StrMethod]

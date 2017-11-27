@@ -1,3 +1,12 @@
+from catstuff.tools import argparser, config
+from . import __version__
+
+class Parser(argparser.CSArgParser):
+    def __init__(self):
+        super().__init__()
+        self.add_argument('--version', action='version', version=__version__)
+        self.add_argument('--config', help='path to config file', default='~/.conf./catstuff.yml')
+
 # import datetime
 # import os
 #
@@ -16,14 +25,14 @@
 #
 # _restricted_plugin_names = {'path'}
 #
-#
-# class Parser(CSArgParser):
-#     def __init__(self):
-#         super().__init__()
-#         self.add_argument('--version', action=version, version=)
-#
-#
-#
+
+def main(*args):
+    parser = Parser()
+    args = parser.parse_args(*args)
+    conf = config.config.load_yaml(args.config)
+
+
+
 # def main(*args):
 #     parser = Parser()
 #     args = parser.parse_args(*args)

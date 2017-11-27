@@ -80,7 +80,7 @@ def chunk_size(method):
         raise NotImplementedError("default block size not set for {} method".format(method))
 
 
-class Checksum(catstuff.tools.plugins.Collection):
+class Checksum(catstuff.tools.plugins.CSCollection):
     def __init__(self, **kwargs):
         super().__init__(mod_name, build, **kwargs)
 
