@@ -1,6 +1,8 @@
 from catstuff import tools
-from . import __version__
-import os
+from catstuff.tools.config import PluginConfig
+from catstuff.core.actions.import_ import __version__, mod_name
+from catstuff.core.manager import CSPluginManager
+from datetime import datetime
 
 
 class Parser(tools.argparser.CSArgParser):
@@ -10,95 +12,77 @@ class Parser(tools.argparser.CSArgParser):
         self.add_argument('--config', help='path to config file',
                           default=tools.path.expandpath('~/.conf/catstuff.yml'))
 
-# import datetime
-# import os
-#
-# from catstuff.tools.common import import_file_list
-# from catstuff.tools.config import try_get
-# import catstuff.config.master
-# import catstuff.tools.db
-# from catstuff.core.manager import PluginManager
-# from catstuff.tools.argparser import CSArgParser
-#
-# _dir = os.path.dirname(os.path.realpath(__file__))
-# __version__ = os.
-#
-# # logging.basicConfig(level=logging.DEBUG)
-#
-#
-# _restricted_plugin_names = {'path'}
-#
 
-def main(*args):
-    parser = Parser()
-    args = parser.parse_args(*args)
+class Import(tools.plugins.CSAction):
+    def __init__(self):
+        super().__init__(mod_name)
 
-    try:
-        config = tools.config.load_yaml(args.config)
-    except FileNotFoundError:
-        tools.path.touch(parser.get_default('--config'))
-        config = {}
+    def main(*args):
+        parser = Parser()
+        args = parser.parse_args(*args)
 
-    config_group = tools.config.ConfigGroup()
-    config_group.set_config('config', config)
-    config_group.set_config('default', tools.config.load_yaml(os.path.join(tools.path.expandpath(__file__),
-                                                                           'default.yml')))
+        try:
+            config = tools.config.load_yaml(args.config)
+        except FileNotFoundError:
+            tools.path.touch(parser.get_default('--config'))
+            config = {}
 
-    # TODO: classify groups
+        # TODO: classify groups
 
-    var_group = tools.vars.GroupVarPools(tools.vars.Vars, tools.vars.CSImportVars, app='catstuff_importter')
-    var_group.set('config', config)
-    var_group.set('master_db')
+        group_list = [tools.vars.Vars, tools.vars.CSImportVars]
 
-# def main(*args):
-#
-#     output = {}  # output of plugin main
-#     tasks = config.get('tasks', {})
-#
-#     master_db = catstuff.config.master.parser(config)
-#
-#     filelist = import_file_list(path)
-#
-#     master = catstuff.tools.db.Master(db=master_db)
-#
-#     for file in filelist:
-#         for task in tasks:
-#             plugin = manager.getPluginByName(task, category="Plugins")
-#             if plugin is None:
-#                 print("No plugin with name {} was found, skipping".format(task))
-#                 continue
-#             name = plugin.name
-#             build = plugin.details.sections.Core.build
-#             if name in _restricted_plugin_names:
-#                 raise NameError("Plugin name {} is forbidden, rename it!!".format(name))
-#
-#             task_settings = try_get(config, )
-#             try:
-#                 task_settings = config['plugins'][task]
-#                 task_settings = {} if task_settings is None else task_settings
-#             except KeyError:
-#                 # logger.debug('No settings found in config for task {}, assuming defaults'.format(task))
-#                 task_settings = {}
-#
-#             try:
-#                 # insert attribute in plugin
-#                 plugin._config = config
-#                 plugin._output = output
-#                 plugin._file = file
-#
-#                 output[name] = plugin.plugin_object.main(**task_settings)
-#                 status = 'present'
-#             except Exception as e:
-#                 # logger.error("Failed to execute {}:".format(name), exc_info=True)
-#                 status = 'failed'
-#
-#             data = {
-#                 'status': status,
-#                 'last_updated': datetime.datetime.now().timestamp(),
-#                 'build': build
-#             }
-#             master.update({(name+key): data[key] for key in data})  # add data to
-#
-#
-# if __name__ == '__main__':
-#     main()
+        tools.vars.GroupVarPools(*group_list, app='catstuff').set('manager', CSPluginManager())
+        manager = group_list[0]().get('manager', 'catstuff')
+
+        var_group = tools.vars.GroupVarPools(*group_list, app='cs_import')
+        var_group.set('config', config)
+        master_db = tools.config_parser.GlobalParser.master(config)
+        var_group.set('master_db', master_db)
+
+        filelist = tools.path.import_file_list(**tools.config_parser.GlobalParser.importer(config))
+        var_group.set('filelist', filelist)
+
+        var_group.set('output', {})
+
+        master_coll = tools.db.Master(master_db)
+
+        for file in filelist:
+            tasks = tools.config_parser.LocalParser.tasks(config)
+
+            # TODO: when group classification is working, we can do group level, local tasks
+            master_coll.path = file
+            # TODO: design a auto task scheduler
+            for task in tasks:
+                plugin = manager.getPluginByName(task, category="Plugins")
+                if plugin is None:
+                    print("No plugin with name {} was found, skipping".format(task))
+                    continue
+                plugin_config = PluginConfig.from_yapsy(plugin)
+
+                name = plugin.name
+                build = plugin_config.get('build')
+                plugin_settings = tools.config_parser.LocalParser.plugins(config, name)
+
+                try:
+                    output = plugin.plugin_object.main(**plugin_settings)
+                    status = 'up-to-date'
+                    # group_list[0]().get(...) just gets the previous output results
+                    var_group.set('output', group_list[0]().get('output', app=var_group.app, default={}).
+                                  update({name: output}))
+                except Exception as e:
+                    # TODO: do some logging
+                    from traceback import print_exc  # delete this when logging is done
+                    print_exc()
+                    status = 'failed'
+
+                data = {
+                    'status'      : status,
+                    'last_updated': datetime.now().timestamp(),
+                    'build'       : build
+                }
+
+                master_coll.update({'.'.join([name, key]): value for key, value in data})
+
+
+if __name__ == '__main__':
+    Import().main()

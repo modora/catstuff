@@ -4,7 +4,7 @@
 Variables are contained in a private variable of the class Vars. The dictionary
 has a structure in this form
 
-Vars: {
+vars = {
     'var_name1': {
         app1: value,
         app2: value,
@@ -57,6 +57,12 @@ You can support multiple variable pools easily by forming a group-pool
     my_group = GroupVarPools(Vars, MyVarPool_1, MyVarPool_2)
 We can now act on all three pool simultaneously using the same commands
 
+Other methods included are:
+    get_app_vars
+    get_apps
+    get_all_apps
+    get_var_priority
+Use the __doc__ attribute to see a description for each
 '''
 
 
@@ -110,6 +116,27 @@ class Vars:
                 pass
         return d
 
+    def get_apps(self, var):
+        """ Returns the set of apps in the var pool for a given variable"""
+        return set(self.__dict.get(var, {}).keys())
+
+    def get_all_apps(self):
+        """ Returns the set of apps in the var pool for all variables"""
+        return {var.keys() for var in self.__dict}
+
+    def get_var_priority(self, var, app_list, default=...):
+        """ Gets the value of a variable given a priority list of apps"""
+        # Lower index values of app_list are given greater priority
+        for app in app_list:
+            try:
+                return self.get(var, app=app)
+            except KeyError:
+                pass
+        if default is ...:
+            raise KeyError('{} is undefined in app_list'.format(var))
+        else:
+            return default
+
 
 class CSImportVars(Vars):
     pass
@@ -117,18 +144,18 @@ class CSImportVars(Vars):
 
 class GroupVarPools:
     def __init__(self, *pools, app=None):
-        if not all([isinstance(pool, Vars) for pool in pools]):
+        if not all([isinstance(pool(), Vars) for pool in pools]):
             raise TypeError('Invalid var pool specified')
         self.pools = {pool(app) for pool in pools}
         self._app = app
 
     def add_pool(self, *pools):
-        if not all([isinstance(pool, Vars) for pool in pools]):
+        if not all([isinstance(pool(), Vars) for pool in pools]):
             raise TypeError('Invalid var pool specified')
         self.pools.update(pools)
 
     def remove_pool(self, *pools):
-        if not all([isinstance(pool, Vars) for pool in pools]):
+        if not all([isinstance(pool(), Vars) for pool in pools]):
             raise TypeError('Invalid var pool specified')
         self.pools.difference_update(pools)
 
@@ -146,13 +173,11 @@ class GroupVarPools:
     def get(self, var, app=None, default=..., skip_missing=False):
         if skip_missing:
             d = {}
-            try:
-                d.update({pool.__class__.__name__:
-                              pool.get(var, app=app, default=default)
-                          for pool in self.pools
-                          })
-            except KeyError:
-                pass
+            for pool in self.pools:
+                try:
+                    d.update({pool.__class__.__name__: pool.get(var, app=app, default=default)})
+                except KeyError:
+                    pass
             return d
         else:
             return {pool.__class__.__name__: pool.get(var, app=app, default=default)
@@ -169,3 +194,24 @@ class GroupVarPools:
     def get_app_vars(self, app: str):
         """ Returns a dictionary of all variables set by some app"""
         return {pool.__class__.__name__: pool.get_app_vars(app) for pool in self.pools}
+
+    def get_apps(self, var):
+        """ Returns the set of apps in the var pool for a given variable"""
+        return {pool.__class__.__name__: pool.get_apps(var) for pool in self.pools}
+
+    def get_all_apps(self):
+        """ Returns the set of apps in the var pool for all variables"""
+        return {pool.__class__.__name__: pool.get_all_apps() for pool in self.pools}
+
+    def get_var_priority(self, var, app_list, default=..., skip_missing=False):
+        """ Gets the value of a variable given a priority list of apps"""
+        if skip_missing:
+            d = {}
+            for pool in self.pools:
+                try:
+                    d.update({pool.__class__.__name__: pool.get_var_priority(var, app_list, default=default)})
+                except KeyError:
+                    pass
+            return d
+        else:
+            return {pool.__class__.__name__: pool.get_var_priority(var, app_list, default=default) for pool in self.pools}

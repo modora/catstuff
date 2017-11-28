@@ -17,7 +17,6 @@ class CoreParser(CSArgParser):
         self.add_argument('action')
         self.add_argument('args', nargs=argparse.REMAINDER)
 
-
 def main():
     parser = CoreParser()
     args = parser.parse_args()
@@ -33,6 +32,7 @@ def main():
             cols = shutil.get_terminal_size()[0]
             print("-" * cols)
         parser.error('unrecognized action {}'.format(args.action))
+
 
 if __name__ == '__main__':
     main()
