@@ -119,7 +119,7 @@ class GroupVarPools:
     def __init__(self, *pools, app=None):
         if not all([isinstance(pool, Vars) for pool in pools]):
             raise TypeError('Invalid var pool specified')
-        self.pools = set(pools)
+        self.pools = {pool(app) for pool in pools}
         self._app = app
 
     def add_pool(self, *pools):
@@ -141,21 +141,21 @@ class GroupVarPools:
 
     def set(self, var, value):
         for pool in self.pools:
-            pool(app=self.app).set(var, value)
+            pool.set(var, value)
 
     def get(self, var, app=None, default=..., skip_missing=False):
         if skip_missing:
             d = {}
             try:
                 d.update({pool.__class__.__name__:
-                              pool().get(var, app=app, default=default)
+                              pool.get(var, app=app, default=default)
                           for pool in self.pools
                           })
             except KeyError:
                 pass
             return d
         else:
-            return {pool.__class__.__name__: pool().get(var, app=app, default=default)
+            return {pool.__class__.__name__: pool.get(var, app=app, default=default)
                     for pool in self.pools}
 
     def delete(self, var):

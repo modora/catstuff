@@ -1,5 +1,6 @@
 import yaml
 import configparser
+import collections
 
 
 class ConfigError(Exception):
@@ -120,6 +121,31 @@ def try_get(config: dict, keys: (list, str), **default):
             except KeyError:
                 raise e
     return conf
+
+
+class ConfigGroup:
+    def __init__(self):
+        self.group = collections.OrderedDict()
+
+    def set_config(self, name: str, config: dict):
+        self.group.update({name: config})
+
+    def delete_config(self, name: str):
+        try:
+            del self.group[name]
+        except KeyError:
+            pass
+
+    def get_config(self, name, **kwargs):
+        return try_get(self.group, name, **kwargs)
+
+    def get(self, keys, **default):
+        for config in self.group:  # prioritizes the oldest configs
+            try:
+                return try_get(config, keys)
+            except KeyError:
+                pass
+        return default['default']
 
 
 class ExplicitDumper(yaml.SafeDumper):
