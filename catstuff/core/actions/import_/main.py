@@ -1,11 +1,14 @@
-from catstuff.tools import argparser, config
+from catstuff import tools
 from . import __version__
+import os
 
-class Parser(argparser.CSArgParser):
+
+class Parser(tools.argparser.CSArgParser):
     def __init__(self):
         super().__init__()
         self.add_argument('--version', action='version', version=__version__)
-        self.add_argument('--config', help='path to config file', default='~/.conf./catstuff.yml')
+        self.add_argument('--config', help='path to config file',
+                          default=tools.path.expandpath('~/.conf/catstuff.yml'))
 
 # import datetime
 # import os
@@ -29,20 +32,25 @@ class Parser(argparser.CSArgParser):
 def main(*args):
     parser = Parser()
     args = parser.parse_args(*args)
-    conf = config.config.load_yaml(args.config)
 
+    try:
+        config = tools.config.load_yaml(args.config)
+    except FileNotFoundError:
+        tools.path.touch(parser.get_default('--config'))
+        config = {}
 
+    config_group = tools.config.ConfigGroup()
+    config_group.set_config('config', config)
+    config_group.set_config('default', tools.config.load_yaml(os.path.join(tools.path.expandpath(__file__),
+                                                                           'default.yml')))
+
+    # TODO: classify groups
+
+    var_group = tools.vars.GroupVarPools(tools.vars.Vars, tools.vars.CSImportVars, app='catstuff_importter')
+    var_group.set('config', config)
+    var_group.set('master_db')
 
 # def main(*args):
-#     parser = Parser()
-#     args = parser.parse_args(*args)
-#
-#     config = args.config
-#
-#
-#     if config is None:
-#         config = {}
-#     assert isinstance(config, dict)
 #
 #     output = {}  # output of plugin main
 #     tasks = config.get('tasks', {})
