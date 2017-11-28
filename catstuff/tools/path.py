@@ -31,7 +31,7 @@ def path_filter(path, include=None, exclude=None, mode='whitelist'):
     :param mode:
     :return:
     """
-    if mode is 'whitelist':
+    if mode == 'whitelist':
         # Include if in include and not in exclude, return True
         assert isinstance(include, (collections.Iterable, type(None)))
         assert isinstance(exclude, (collections.Iterable, type(None)))
@@ -53,7 +53,7 @@ def path_filter(path, include=None, exclude=None, mode='whitelist'):
                     if fnmatch.fnmatchcase(os.path.basename(path), inc):
                         return False
         return True
-    elif mode is 'blacklist':
+    elif mode == 'blacklist':
         # Include if in include and not in exclude, return True
         assert isinstance(include, (collections.Iterable, type(None)))
         assert isinstance(exclude, (collections.Iterable, type(None)))
@@ -76,7 +76,7 @@ def path_filter(path, include=None, exclude=None, mode='whitelist'):
                         return True
         return False
     else:
-        raise NotImplementedError("Unknown mode: {}".format(mode))
+        raise NotImplementedError("Unknown mode {}".format(mode))
 
 
 def import_file_list(top, max_depth=0, followlinks=False,
@@ -99,6 +99,7 @@ def import_file_list(top, max_depth=0, followlinks=False,
     default_max_depth = 8
 
     filelist = []
+    top = expandpath(top)
     if os.path.isfile(top):
         filelist.append(top) if path_filter(top, include=include, exclude=exclude, mode=mode) else None
         return filelist

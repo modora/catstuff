@@ -91,9 +91,10 @@ def import_ini(path):
 
 def load_yaml(path):
     try:
-        return yaml.load(open(path, 'r'))
+        d = yaml.load(open(path, 'r'))
+        return d if d else {}
     except yaml.YAMLError as e:
-        print("Error trying to load {path}: {error}".format(path=path, error=e))
+        raise
 
 
 def try_get(config: dict, keys: (list, str), **default):

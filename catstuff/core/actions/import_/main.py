@@ -11,12 +11,15 @@ class Parser(tools.argparser.CSArgParser):
         self.add_argument('--version', action='version', version=__version__)
         self.add_argument('--config', help='path to config file',
                           default=tools.path.expandpath('~/.conf/catstuff.yml'))
+        self.add_argument('-n', '--dry-run', action='store_true', default=False)
+        self.add_argument('path')
 
 
 class Import(tools.plugins.CSAction):
     def __init__(self):
         super().__init__(mod_name)
 
+    @staticmethod
     def main(*args):
         parser = Parser()
         args = parser.parse_args(*args)
@@ -24,7 +27,7 @@ class Import(tools.plugins.CSAction):
         try:
             config = tools.config.load_yaml(args.config)
         except FileNotFoundError:
-            tools.path.touch(parser.get_default('--config'))
+            tools.path.touch(parser.get_default('config'))
             config = {}
 
         # TODO: classify groups
@@ -39,10 +42,15 @@ class Import(tools.plugins.CSAction):
         master_db = tools.config_parser.GlobalParser.master(config)
         var_group.set('master_db', master_db)
 
-        filelist = tools.path.import_file_list(**tools.config_parser.GlobalParser.importer(config))
+        filelist = tools.path.import_file_list(args.path, **tools.config_parser.GlobalParser.importer(config))
         var_group.set('filelist', filelist)
 
         var_group.set('output', {})
+
+        if args.dry_run:
+            for file in filelist:
+                print(file)
+            return
 
         master_coll = tools.db.Master(master_db)
 
