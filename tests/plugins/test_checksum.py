@@ -1,5 +1,6 @@
 from nose.tools import *
 
+from catstuff.core_plugins.tasks.checksum.main import *
 import tests.common
 import tests.files as files
 

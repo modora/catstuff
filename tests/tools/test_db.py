@@ -1,5 +1,5 @@
-from ..common import *
-import catstuff.tools.db as db
+from tests.common import *
+from catstuff.tools import db
 from nose.tools import *
 import pymongo
 
@@ -81,73 +81,3 @@ class TestCSCollection(CSDB):
         linked_doc = self.obj.eval_link(doc['link'])
 
         assert_equal(linked_doc, {"_id": 123, 'foo': 'bar', 'linked': 'data'})
-
-
-class TestMaster(CSDB):
-    def setup(self):
-        super().setup()
-        self.obj = db.Master(db=self.db)
-
-    @raises(AttributeError)
-    def test_unset_path(self):
-        print(self.obj.path)
-
-    def test_insert(self):
-        obj = self.obj
-        obj.path = '/fake_path'
-        data1 = obj.data(mod_name='mod1', data_={'foo': 'bar'})
-        obj.insert(data1)
-        data2 = obj.data(mod_name='mod2', data_={'hello': 'world'})
-        obj.insert(data2)
-
-        doc = obj.coll.find_one()
-        data = {
-            **obj.pre_data,
-            **data1,
-            **data2
-        }
-        assert_equal(doc, data)
-
-    def test_get_raw(self):
-        obj = self.obj
-
-        assert_equal(obj.get_raw('123'), '123',
-                     "Nothing should be in the db right now")
-
-        obj.path = '/fake_path'
-        data1 = obj.data(mod_name='mod1', data_={'foo': 'bar'})
-        obj.insert(data1)
-        data2 = obj.data(mod_name='mod2', data_={'hello': 'world'})
-        obj.insert(data2)
-
-        doc = obj.get_raw()
-        data = {
-            **obj.pre_data,
-            **data1,
-            **data2
-        }
-        assert_equal(doc, data)
-
-    def test_get(self):
-        obj = self.obj
-
-        mod1 = db.Collection('mod1', db=self.db)
-        mod2 = db.Collection('mod2', db=self.db)
-
-        mod1.insert({"a": 'b'})
-        mod2.insert({"1": '2'})
-
-        data1 = mod1.get()
-        data2 = mod2.get()
-
-        obj.path = '/file_path'
-        obj.insert(obj.data('mod1', obj.link_data(uid=data1["_id"], collection=mod1.coll)))
-        obj.insert(obj.data('mod2', obj.link_data(uid=data2["_id"], collection=mod2.coll)))
-
-        data = {
-            'mod1': data1,
-            'mod2': data2,
-            **obj.pre_data
-        }
-        doc = obj.get()
-        assert_equal(data, doc, "Master getter failed")
