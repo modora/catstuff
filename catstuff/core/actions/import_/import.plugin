@@ -1,9 +1,0 @@
-[Core]
-Name = import
-Module = main
-Build = 1
-
-[Documentation]
-Version = 1.0
-Description = Imports files found in the specified path
-Category = Action
