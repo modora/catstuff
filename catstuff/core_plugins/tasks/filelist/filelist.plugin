@@ -1,0 +1,8 @@
+[Core]
+Name = filelist
+Module = main
+Build = 1
+
+[Documentation]
+Version = 1.0
+Description = Gets the list of files that matches a given criteria
