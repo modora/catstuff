@@ -10,10 +10,17 @@ resources:
   max_threads: -1
 
 master:
-  client:  # connection settings
+  client:
     host: 'localhost'
     port: 27017
   db:  # db settings
+    name: 'catstuff'
+
+mongodb:
+  client:  # connection settings
+    host: 'localhost'
+    port: 27017
+  db:
     name: 'catstuff'
 
 importer:

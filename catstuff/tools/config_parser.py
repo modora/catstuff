@@ -2,6 +2,9 @@ import catstuff
 from catstuff import tools
 from catstuff.tools.config import try_get
 import os
+import inspect
+
+# PARSER IMPORTS
 import pymongo
 
 default_config_path = os.path.join(os.path.dirname(tools.path.expandpath(catstuff.__file__)), 'config/default.yml')
@@ -9,14 +12,36 @@ default_config = tools.config.load_yaml(default_config_path)
 version = '1.0'  # config version
 
 
+class _Config(dict):
+    """ Allows monkey patching!! """
+    pass
+
+
 class GlobalParser:
     @staticmethod
-    def master(config):
-        """ Returns the master db settings"""
-        client_settings = try_get(config, ['master', 'client'], default=default_config['master']['client'])
-        db_settings = try_get(config, ['master', 'db'], default=default_config['master']['db'])
+    def parse(config=None):
+        """ This is a convenience method to parse the config using all of the functions stored in this class"""
+        out = _Config()
 
+        out._config = config or {}
+        for attr, func in inspect.getmembers(GlobalParser, predicate=inspect.isfunction):
+            if attr is "parse":
+                continue
+            setattr(out, attr, func(config))  # all functions are assumed to contain a single argument
+        return out
+
+    @staticmethod
+    def mongo_client(config):
+        client_settings = try_get(config, ['mongodb', 'client'], default=default_config['mongodb']['client'])
         client = pymongo.MongoClient(**client_settings)
+        return client
+
+    @staticmethod
+    def mongo_db(config):
+        """ Returns the main database catstuff operates in"""
+        client = GlobalParser.mongo_client(config)
+
+        db_settings = try_get(config, ['mongodb', 'db'], default=default_config['mongodb']['db'])
         db = pymongo.database.Database(client, **db_settings)
         return db
 

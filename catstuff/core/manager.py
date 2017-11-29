@@ -1,19 +1,20 @@
 from yapsy.PluginManager import PluginManager
-from catstuff.tools import plugins
+from catstuff.core.categories import CSTask, CSAction, StrMethod
 import os
 
 _dir = os.path.dirname(os.path.realpath(__file__))
 
+__version__ = '1.2'
 
 class CSPluginManager(PluginManager):
     categories = {
-        'Task': plugins.CSTask,
-        'Action': plugins.CSAction,
-        'StrMethod': plugins.StrMethod
+        'Task': CSTask,
+        'Action': CSAction,
+        'StrMethod': StrMethod
     }
 
     extensions = 'plugin'
-    plugin_places = [os.path.join(_dir, path) for path in {'.', '../plugins'}]
+    plugin_places = [os.path.join(_dir, path) for path in {'../core_plugins', '../plugins'}]
 
     def __init__(self):
         super().__init__(

@@ -1,8 +1,8 @@
 from nose.tools import *
 
-from catstuff.core.tasks.checksum.main import *
-import tests.files as files
 import tests.common
+import tests.files as files
+
 
 @raises(NotImplementedError)
 def test_unknown_method_123():
