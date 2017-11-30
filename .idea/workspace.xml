@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0b5636e-c119-4526-81d5-e5e8adc2af9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/catstuff/plugins/template/config.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catstuff/plugins/template.7z" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/catstuff/tools/core.py" afterPath="$PROJECT_DIR$/catstuff/tools/_core.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/categories.py" afterPath="$PROJECT_DIR$/catstuff/core/categories.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/parser.py" afterPath="$PROJECT_DIR$/catstuff/core/parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/__init__.py" afterPath="$PROJECT_DIR$/catstuff/tools/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/common.py" afterPath="$PROJECT_DIR$/catstuff/tools/common.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/config_parser.py" afterPath="$PROJECT_DIR$/catstuff/tools/config_parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/db.py" afterPath="$PROJECT_DIR$/catstuff/tools/db.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/misc.py" afterPath="$PROJECT_DIR$/catstuff/tools/misc.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/plugins.py" afterPath="$PROJECT_DIR$/catstuff/tools/plugins.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/vars.py" afterPath="$PROJECT_DIR$/catstuff/tools/vars.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,7 +52,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>path not</find>
       <find>_get_ex</find>
       <find>uid c</find>
       <find>changed</find>
@@ -78,6 +81,7 @@
       <find>CSPluginManager()</find>
       <find>test_conne</find>
       <find>tools</find>
+      <find>tools.pat</find>
     </findStrings>
     <replaceStrings>
       <replace>test2</replace>
@@ -99,9 +103,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/catstuff/core_plugins/actions/version/main.py" />
-        <option value="$PROJECT_DIR$/catstuff/core_plugins/actions/version/parser.py" />
-        <option value="$PROJECT_DIR$/catstuff/core_plugins/tasks/checksum/config.py" />
         <option value="$PROJECT_DIR$/catstuff/core_plugins/tasks/checksum/__init__.py" />
         <option value="$PROJECT_DIR$/catstuff/core_plugins/tasks/copy/config.py" />
         <option value="$PROJECT_DIR$/catstuff/core_plugins/tasks/copy/__init__.py" />
@@ -133,23 +134,26 @@
         <option value="$PROJECT_DIR$/tests/common.py" />
         <option value="$PROJECT_DIR$/tests/core/test_master.py" />
         <option value="$PROJECT_DIR$/catstuff/core/manager.py" />
-        <option value="$PROJECT_DIR$/catstuff/tools/common.py" />
         <option value="$PROJECT_DIR$/catstuff/__init__.py" />
         <option value="$PROJECT_DIR$/tests/tools/test_db.py" />
-        <option value="$PROJECT_DIR$/catstuff/tools/__init__.py" />
-        <option value="$PROJECT_DIR$/catstuff/tools/plugins.py" />
         <option value="$PROJECT_DIR$/tests/classes.py" />
         <option value="$PROJECT_DIR$/catstuff/tools/core.py" />
         <option value="$PROJECT_DIR$/catstuff/core/tools.py" />
-        <option value="$PROJECT_DIR$/catstuff/tools/misc.py" />
         <option value="$PROJECT_DIR$/catstuff/core/master_db.py" />
-        <option value="$PROJECT_DIR$/catstuff/tools/db.py" />
         <option value="$PROJECT_DIR$/catstuff/plugins/template/__init__.py" />
         <option value="$PROJECT_DIR$/catstuff/core/parser.py" />
         <option value="$PROJECT_DIR$/catstuff/plugins/template/config.py" />
         <option value="$PROJECT_DIR$/catstuff/plugins/template/main.py" />
         <option value="$PROJECT_DIR$/catstuff/plugins/template/template.plugin" />
         <option value="$PROJECT_DIR$/catstuff/core/categories.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/misc.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/__init__.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/common.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/config_parser.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/db.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/plugins.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/vars.py" />
+        <option value="$PROJECT_DIR$/catstuff/tools/_core.py" />
       </list>
     </option>
   </component>
@@ -788,7 +792,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512000700873</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="updated plugin template">
+      <created>1512002269669</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1512002269669</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -901,7 +912,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="New mods" />
     <MESSAGE value="Reworking config" />
     <MESSAGE value="Problems with the config implementation -- on-hold" />
     <MESSAGE value="Added nose-test files" />
@@ -926,7 +936,8 @@
     <MESSAGE value="Debugged importer" />
     <MESSAGE value="Reorganized code and cleaned up dependencies" />
     <MESSAGE value="Removed all dependencies in core from tools" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed all dependencies in core from tools" />
+    <MESSAGE value="updated plugin template" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated plugin template" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -938,41 +949,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/tasks/fail/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/tasks/filelist/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/tasks/filelist/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/tasks/fstat/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/tasks/fstat/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="69" lean-forward="false" selection-start-line="0" selection-start-column="69" selection-end-line="0" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/tasks/move/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1125,14 +1101,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/tools/common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_import_hook.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
@@ -1148,14 +1116,6 @@
           <folding>
             <element signature="e#0#26#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/tools/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1185,36 +1145,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/tools/misc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="15" lean-forward="true" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/tools/core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="64" lean-forward="true" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catstuff/core/vars.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/tools/db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1293,16 +1227,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/tools/plugins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catstuff/plugins/template/template.plugin">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1342,6 +1266,102 @@
         <state relative-caret-position="0">
           <caret line="0" column="69" lean-forward="false" selection-start-line="0" selection-start-column="69" selection-end-line="0" selection-end-column="69" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/misc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/config_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/debug.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/path.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/plugins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/vars.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="69" column="12" lean-forward="false" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catstuff/tools/_core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="73" lean-forward="false" selection-start-line="0" selection-start-column="73" selection-end-line="0" selection-end-column="73" />
+          <folding>
+            <element signature="e#78#111#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

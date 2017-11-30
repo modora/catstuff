@@ -67,7 +67,7 @@ Use the __doc__ attribute to see a description for each
 '''
 
 import inspect
-from catstuff.core.vars import VarPool
+from ._core import VarPool
 
 
 class GroupVarPools:

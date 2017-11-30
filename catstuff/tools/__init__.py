@@ -6,7 +6,9 @@ def import_all_files(recursive=False):
     else:
         here = join(dirname(__file__), "*.py")
     modules = glob.glob(here, recursive=recursive)
-    __all__ = [basename(f)[:-3] for f in modules if isfile(f) and not f.endswith('__init__.py')]
+    restricted_files = {'__init__', '_core'}
+    __all__ = [basename(f)[:-3] for f in modules if
+               isfile(f) and not any(f.endswith(name + '.py') for name in restricted_files)]
     return __all__
 
 __all__ = import_all_files()
@@ -26,4 +28,3 @@ from . import misc
 from . import path
 from . import plugins
 from . import vars
-from . import core

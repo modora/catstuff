@@ -1,15 +1,15 @@
-from .core import CSTask, CSAction, StrMethod
-from . import core
+from ._core import CSTask, CSAction, StrMethod
+from . import _core
 from .db import property_getter
 
 
-class CSCollection(core.Collection, CSTask):
+class CSCollection(_core.Collection, CSTask):
     """ Create a catstuff task with built-in mongodb api"""
     def __init__(self, name, build, database=None, master_db=None):
-        core.Collection.__init__(self, name, db=database)
+        _core.Collection.__init__(self, name, db=database)
         CSTask.__init__(self, name, build)
 
-        self.master = core.CSMaster(db=(master_db or self._default_db))
+        self.master = _core.CSMaster(db=(master_db or self._default_db))
         self.path = None
 
     @property
@@ -18,7 +18,7 @@ class CSCollection(core.Collection, CSTask):
 
     @uid.setter
     def uid(self, value):
-        core.Collection.uid.fset(self, value)  # this is correct -- warnings are wrong
+        _core.Collection.uid.fset(self, value)  # this is correct -- warnings are wrong
 
         if 'inherit_uid' and 'master' in dir(self):  # if already inited
             if self.master.uid != value and self.inherit_uid:  # disable inheritance is uid changed
