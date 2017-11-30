@@ -6,6 +6,7 @@ _dir = os.path.dirname(os.path.realpath(__file__))
 
 __version__ = '1.2'
 
+
 class CSPluginManager(PluginManager):
     categories = {
         'Task': CSTask,

@@ -1,6 +1,4 @@
-from catstuff.tools.db import property_getter, Collection
-import catstuff.core
-
+from .tools import property_getter
 
 class StrMethod(str):
     """ Base method to add to the CSStr class"""

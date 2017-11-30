@@ -1,7 +1,7 @@
 import os
 import subprocess, platform
 from glob import glob
-from catstuff.tools.db import *
+from catstuff.tools.core import test_connection
 import pymongo
 
 

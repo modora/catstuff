@@ -26,4 +26,4 @@ from . import misc
 from . import path
 from . import plugins
 from . import vars
-
+from . import core

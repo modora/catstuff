@@ -1,6 +1,6 @@
 import argparse, traceback, shutil, time, sys
-from catstuff.core.manager import CSPluginManager
-from catstuff.core.vars import VarPool
+from .manager import CSPluginManager
+from .vars import VarPool
 import catstuff
 
 __version__ = '1.0.2'
