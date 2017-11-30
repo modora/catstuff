@@ -1,8 +1,8 @@
-import catstuff.tools.plugins
+from catstuff.tools import plugins
 import random
 
 
-class Random(catstuff.tools.plugins.StrMethod):
+class Random(plugins.StrMethod):
     def shuffle(self):
         l = list(self)
         random.shuffle(l)
