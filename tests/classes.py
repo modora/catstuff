@@ -1,8 +1,47 @@
 import os
 import subprocess, platform
 from glob import glob
-from catstuff.tools.core import test_connection
+from catstuff.tools.db import test_connection
+from catstuff.tools.vars import VarPool
+from catstuff.core.parser import setup as parser_setup
 import pymongo
+
+
+class StrFormatter:
+    vars_ = {
+        'foo': 'bar',
+        'hello': 'word',
+        'lorem': 'ipsum',
+        '1': 1,
+        '2': 2,
+        '3': 3,
+        '4': 4,
+        'a': 'alpha',
+        'b': 'beta',
+        'c': 'gamma',
+        'd': 'delta',
+        'dollar': '$',
+        'quote': '\'',
+        'quotes': '\'\'',
+        'par': '(',
+        'pars': '()',
+        'dollar+': '$foo',
+        'quote+': '\'foo',
+        'quotes+': '\'foo\'',
+        'par+': '(foo',
+        'pars+': '(foo)',
+    }
+
+    @classmethod
+    def setup_class(cls):
+        parser_setup()
+        return cls()
+
+    def setup(self):
+        var_pool = VarPool(app='test')
+        for var, value in self.vars_.items():
+            var_pool.set(var, value)
+
 
 
 class Mongo:

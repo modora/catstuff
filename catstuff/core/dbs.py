@@ -9,7 +9,7 @@ def unpack_mongo_collection(collection: pymongo.collection.Collection):
     db = collection.database.name
     host, port = collection.database.client.address
 
-    return (host, port, db, coll)
+    return host, port, db, coll
 
 
 def unpack_mongo_database(database: pymongo.database.Database):
@@ -17,7 +17,7 @@ def unpack_mongo_database(database: pymongo.database.Database):
     db = database.name
     host, port = database.client.address
 
-    return (host, port, db)
+    return host, port, db
 
 
 def unpack_mongo_connection(client: pymongo.MongoClient):
@@ -39,9 +39,9 @@ def link_data(uid, collection: pymongo.collection.Collection, src_coll=None) -> 
     Formats all the necessary data to link a mongo document to another mongo document
     :param uid: "_id" of the target document
     :param collection: the mongodb collection that the target document resides in
-    :type: pymongo.collection.Collection
+    :type: pymongo.collection.CSMongoCollection
     :param: src_coll: the mongodb collection that the source document resides in
-    :type: (pymongo.collection.Collection, None)
+    :type: (pymongo.collection.CSMongoCollection, None)
     :return: minimum connection settings needed to connect to the target collection
     :rtype: dict
 
@@ -100,7 +100,7 @@ def test_connection(connection=None, *args, **kwargs):
         raise
 
 
-class Collection:
+class CSMongoCollection:
     ## DEFAULTS
     # Overriding a list of messy list of default, class attributes is safer than overriding a dictionary of defaults
 
@@ -214,7 +214,7 @@ class Collection:
         Formats all the necessary data to link a mongo document to another mongo document
         :param uid: "_id" of the target document
         :param collection: the mongodb collection tht the target document resides in
-        :type: pymongo.collection.Collection
+        :type: pymongo.collection.CSMongoCollection
         :return: minimum connection settings needed to connect to the target collection
         :rtype: dict
 
@@ -241,7 +241,7 @@ class Collection:
                 print(attr, ":", getattr(self, attr))
 
 
-class CSMaster(Collection):
+class CSMaster(CSMongoCollection):
     """
     A random, unique-uid is generated when this class is initialized. This uid does not exist in database. Manually
     changing the uid to an existing id will also set the path

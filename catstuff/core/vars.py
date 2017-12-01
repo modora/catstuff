@@ -19,14 +19,16 @@ class VarPool:
         except KeyError:
             self.__dict[var] = {self.app: value}
 
-    def get(self, var, app=None, default=...):
-        app_vars = self.__dict.get(var, {})
+    @classmethod
+    def get(cls, var, app=None, default=...):
+        app_vars = cls.__dict.get(var, {})
         if app:
             return app_vars[app] if default is ... else app_vars.get(app, default)
         else:
             return app_vars
 
     def delete(self, var):
+        """ Deletes a variable set by app, requires instance to be that app"""
         try:
             del self.__dict.get(var, {})[self.app]
             if self.__dict[var] is {}:  # cleanup empty dicts
@@ -34,34 +36,44 @@ class VarPool:
         except KeyError:
             pass
 
-    def dump(self):
-        """ Returns a copy of all variables"""
-        return self.__dict.copy()
+    @classmethod
+    def reset(cls):
+        """ Removes all variables in the pool"""
+        cls.__dict = {}
 
-    def get_app_vars(self, app: str):
+    @classmethod
+    def dump(cls):
+        """ Returns a copy of all variables"""
+        return cls.__dict.copy()
+
+    @classmethod
+    def get_app_vars(cls, app: str):
         """ Returns a dictionary of all variables set by some app"""
         d = {}
-        for var in self.__dict:
+        for var in cls.__dict:
             try:
-                d.update({var: self.get(var, app)})
+                d.update({var: cls.get(var, app)})
             except KeyError:
                 pass
         return d
 
-    def get_apps(self, var):
+    @classmethod
+    def get_apps(cls, var):
         """ Returns the set of apps in the var pool for a given variable"""
-        return set(self.__dict.get(var, {}).keys())
+        return set(cls.__dict.get(var, {}).keys())
 
-    def get_all_apps(self):
+    @classmethod
+    def get_all_apps(cls):
         """ Returns the set of apps in the var pool for all variables"""
-        return {var.keys() for var in self.__dict}
+        return {var.keys() for var in cls.__dict}
 
-    def get_var_priority(self, var, app_list, default=...):
+    @classmethod
+    def get_var_priority(cls, var, app_list, default=...):
         """ Gets the value of a variable given a priority list of apps"""
         # Lower index values of app_list are given greater priority
         for app in app_list:
             try:
-                return self.get(var, app=app)
+                return cls.get(var, app=app)
             except KeyError:
                 pass
         if default is ...:

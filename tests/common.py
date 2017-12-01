@@ -1,2 +1,2 @@
 from nose.tools import *
-from .classes import CSDB
+from .classes import CSDB, StrFormatter

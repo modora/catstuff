@@ -2,6 +2,6 @@ from catstuff.tools.plugins import StrMethod
 
 
 class Display(StrMethod):
-    def mirror(self):
+    def reverse(self):
         """ Return a mirror of the string"""
         return self[::-1]

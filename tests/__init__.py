@@ -1,1 +1,1 @@
-import tests.files as files
+from .files import *
