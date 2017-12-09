@@ -1,5 +1,5 @@
 class VarPool:
-    __dict = {}
+    pool = {}
 
     def __init__(self, app=None):
         self._app = app
@@ -13,15 +13,15 @@ class VarPool:
 
     def set(self, var, value):
         try:
-            self.__dict[var].update({
+            self.pool[var].update({
                 self.app: value
             })
         except KeyError:
-            self.__dict[var] = {self.app: value}
+            self.pool[var] = {self.app: value}
 
     @classmethod
     def get(cls, var, app=None, default=...):
-        app_vars = cls.__dict.get(var, {})
+        app_vars = cls.pool.get(var, {})
         if app:
             return app_vars[app] if default is ... else app_vars.get(app, default)
         else:
@@ -30,27 +30,27 @@ class VarPool:
     def delete(self, var):
         """ Deletes a variable set by app, requires instance to be that app"""
         try:
-            del self.__dict.get(var, {})[self.app]
-            if self.__dict[var] is {}:  # cleanup empty dicts
-                del self.__dict[var]
+            del self.pool.get(var, {})[self.app]
+            if self.pool[var] is {}:  # cleanup empty dicts
+                del self.pool[var]
         except KeyError:
             pass
 
     @classmethod
     def reset(cls):
         """ Removes all variables in the pool"""
-        cls.__dict = {}
+        cls.pool = {}
 
     @classmethod
     def dump(cls):
         """ Returns a copy of all variables"""
-        return cls.__dict.copy()
+        return cls.pool.copy()
 
     @classmethod
     def get_app_vars(cls, app: str):
         """ Returns a dictionary of all variables set by some app"""
         d = {}
-        for var in cls.__dict:
+        for var in cls.pool:
             try:
                 d.update({var: cls.get(var, app)})
             except KeyError:
@@ -60,12 +60,12 @@ class VarPool:
     @classmethod
     def get_apps(cls, var):
         """ Returns the set of apps in the var pool for a given variable"""
-        return set(cls.__dict.get(var, {}).keys())
+        return set(cls.pool.get(var, {}).keys())
 
     @classmethod
     def get_all_apps(cls):
         """ Returns the set of apps in the var pool for all variables"""
-        return {var.keys() for var in cls.__dict}
+        return {var.keys() for var in cls.pool}
 
     @classmethod
     def get_var_priority(cls, var, app_list, default=...):

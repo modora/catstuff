@@ -1,5 +1,5 @@
 import pymongo
-import time, uuid, bson
+import time, uuid, bson, collections
 from .tools import property_getter, is_path_exists_or_creatable
 
 
