@@ -1,13 +1,10 @@
-from .manager import CSPluginManager
-from .vars import VarPool
+from .vars import CSVarPool
 import pyparsing as pp
 from collections import namedtuple
 
-class _Globals:
-    Func = namedtuple('Func', 'name args kwargs')
-    CSVar = namedtuple('CSVar', 'name funcs')
-    PoolVar = namedtuple('PoolVar', 'name')
-    CSStr = CSStrConstructor()
+_Expression = namedtuple('Expression', 'name args kwargs')
+_CSVar = namedtuple('CSVar', 'name funcs')
+_PoolVar = namedtuple('PoolVar', 'var')
 
 
 def CSStrConstructor(remap=None):
@@ -21,7 +18,7 @@ def CSStrConstructor(remap=None):
     """
     remap = remap or {}
     assert isinstance(remap, dict)
-    manager = VarPool().get('manager', app='catstuff', default=CSPluginManager())
+    manager = CSVarPool.get('manager', app='catstuff')
     bases = set()
     dict_ = {}
 
@@ -43,6 +40,7 @@ def CSStrConstructor(remap=None):
 
     return type('CSStr', tuple(bases), dict_)
 
+
 class _Parsers:
     """ Container for numerous pyparsing parsers"""
     '''
@@ -50,48 +48,75 @@ class _Parsers:
 
     Changes:
         Renamed some of the variables
-        Added boolean, None, set, and string as types
+        Added bool_literal, NoneType, set, and string as types
+        More robust forms of builtins
 
     Copyright, 2006, by Paul McGuire
     '''
-    integer = pp.Combine(pp.Optional(pp.oneOf("+ -")) + pp.Word(pp.nums)) \
-        .setName("integer").setParseAction(lambda toks: int(toks[0]))
-    real = pp.Combine(pp.Optional(pp.oneOf("+ -")) + pp.Word(pp.nums) + "." +
-                      pp.Optional(pp.Word(pp.nums)) +
-                      pp.Optional(pp.oneOf("e E") + pp.Optional(pp.oneOf("+ -")) + pp.Word(pp.nums))) \
-        .setName("real").setParseAction(lambda toks: float(toks[0]))
-    boolean = pp.Literal('True').setParseAction(lambda x: True) | pp.Literal('False').setParseAction(
-        lambda x: False)
 
-    # TODO: NoneStr doesn't work
-    # pyparsing seems to have an internal method that checks if it's returning None and replaces it with the string
-    # literal
-    NoneStr = pp.Literal('None').setParseAction(lambda x: None)
+    '''
+    Real cases:
+    Case 1: optional_sign + int + dot + optionals (1.0, 1., 1.e3, +1.0)
+    Case 2: optionals + dot + int + optionals (.101, -.1e-2)
+    Case 3: int + e + int (1e3)
+    '''
+    real_literal = (
+        pp.Combine(pp.Optional(pp.oneOf("+ -")) + pp.Word(pp.nums) + "." +
+                   pp.Optional(pp.Word(pp.nums)) +
+                   pp.Optional(pp.oneOf("e E") + pp.Optional(pp.oneOf("+ -")) + pp.Word(pp.nums))) |
+        pp.Combine(pp.Optional(pp.oneOf("+ -")) + pp.Optional(pp.Word(pp.nums)) + "." +
+                   pp.Word(pp.nums) +
+                   pp.Optional(pp.oneOf("e E") + pp.Optional(pp.oneOf("+ -")) + pp.Word(pp.nums))) |
+        pp.Combine(pp.Optional(pp.oneOf("+ -")) + pp.Word(pp.nums) +
+                   pp.oneOf("e E") + pp.Optional(pp.oneOf("+ -")) + pp.Word(pp.nums))
+    )
+    real_literal.setName("real").setParseAction(lambda toks: float(toks[0]))
 
-    string = pp.quotedString.setParseAction(pp.removeQuotes)
-    tupleStr = pp.Forward()
-    listStr = pp.Forward()
-    dictStr = pp.Forward()
-    setStr = pp.Forward()
+    int_literal = pp.Combine(pp.Optional(pp.oneOf("+ -")) + pp.Word(pp.nums))
+    int_literal.setName("int_literal").setParseAction(lambda toks: int(toks[0]))
 
-    builtins = real | integer | boolean | NoneStr | string | \
-               pp.Group(listStr) | tupleStr | dictStr | setStr
+    bool_literal = pp.Keyword('True').setParseAction(pp.replaceWith(True)) | \
+                   pp.Keyword('False').setParseAction(pp.replaceWith(False))
 
-    tupleStr << (pp.Suppress("(") + pp.Optional(pp.delimitedList(builtins)) +
-                 pp.Optional(pp.Suppress(",")) + pp.Suppress(")"))
-    tupleStr.setParseAction(lambda toks: tuple(toks.asList()))
+    None_literal = pp.Keyword('None').setParseAction(pp.replaceWith(None))
 
-    listStr << (pp.Suppress('[') + pp.Optional(pp.delimitedList(builtins) +
-                                               pp.Optional(pp.Suppress(","))) + pp.Suppress(']'))
+    string_literal = (pp.QuotedString("'", escChar='\\') | pp.QuotedString('"', escChar='\\'))
+    list_literal = pp.Forward()
+    tuple_literal = pp.Forward()
+    dict_literal = pp.Forward()
+    set_literal = pp.Forward()
+
+    builtins = real_literal | int_literal | bool_literal | None_literal | string_literal | \
+               list_literal | tuple_literal | dict_literal | set_literal
+    _set_literal_builtins = real_literal | int_literal | bool_literal | None_literal | string_literal | \
+               list_literal | tuple_literal | dict_literal  # sets within sets are not permitted
+
+    # Using pp.Group is necessary to handle nested lists
+    list_literal << pp.Group(pp.Suppress('[') + (
+        pp.delimitedList(builtins) + pp.Optional(pp.Suppress(",")) |
+        pp.Empty()
+    ) + pp.Suppress(']'))
+    list_literal.setParseAction(lambda toks: list(toks.asList()))
+
+    tuple_literal << (pp.Suppress("(") + (
+        pp.delimitedList(builtins) + pp.Optional(pp.Suppress(",")) |
+        pp.Empty()
+    ) + pp.Suppress(")"))
+    tuple_literal.setParseAction(lambda toks: tuple(toks.asList()))
 
     dictEntry = pp.Group(builtins + pp.Suppress(':') + builtins)
-    dictStr << (pp.Suppress('{') + pp.Optional(pp.delimitedList(dictEntry) +
-                                               pp.Optional(pp.Suppress(","))) + pp.Suppress('}'))
-    dictStr.setParseAction(lambda toks: dict(toks.asList()))
+    dict_literal << (pp.Suppress('{') + (
+        pp.delimitedList(dictEntry) + pp.Optional(pp.Suppress(",")) |
+        pp.Empty()
+    ) + pp.Suppress('}'))
+    dict_literal.setParseAction(lambda toks: dict(toks.asList()))
 
-    setStr << (pp.Suppress("{") + pp.Optional(pp.delimitedList(builtins)) +
-               pp.Optional(pp.Suppress(",")) + pp.Suppress("}"))
-    setStr.setParseAction(lambda toks: set(toks.asList()))
+    set_literal << (
+        (pp.Suppress("{") + (
+            pp.delimitedList(_set_literal_builtins) + pp.Optional(pp.Suppress(","))
+        ) + pp.Suppress("}")).setParseAction(lambda toks: set(toks.asList())) |
+        pp.Keyword('set()').setParseAction(pp.replaceWith(set()))
+    )
 
     def __init__(self, allow_private=False):
         self._allow_private = allow_private
@@ -125,20 +150,29 @@ class _Parsers:
         else:
             identifier = pp.Word(pp.alphas, pp.alphanums + "_")
 
-        func_name = identifier
-        keyword = identifier
+        func_name = identifier.copy()
+        keyword = identifier.copy()
+        pool_var = identifier.copy().setParseAction(lambda toks: _PoolVar(var=toks[0]))
         # example: In 'func(a,b)', arg is a single argument: 'a' or 'b'
 
         '''
         The named argument wraps the output in a dict
         The parsed output of arg is wrapped in a tuple so the filter won't mistake an dict type arg
         '''
-        arg = (pp.Group(expression) | identifier | _Parsers.builtins).setParseAction(lambda toks: (toks[0],))
+        arg = (expression | pool_var | _Parsers.builtins).setParseAction(lambda toks: (toks[0],))
         named_arg = (keyword + pp.Suppress('=') + arg).setParseAction(lambda toks: {toks[0]: toks[1][0]})
 
         expression << (func_name + pp.Suppress('(') +
                        pp.Optional(pp.delimitedList(named_arg | arg)).setParseAction(filter_args) +
                        pp.Suppress(')'))
+
+        # TODO: We can do a messy implementation of the expression parser
+        # Assume parens are suppressed in the example implementations below
+        # The parse action will occur at the delim list
+        # Case 1: All args (func_name + '(' + delimitedList(arg) + ')')
+        # Case 2: All kwargs (func_name + '(' + delimitedList(named_arg) + ')')
+        # Case 3: No args/kwargs -- technically a subset of case 1
+        # Case 4: Mixed (to be tested -- func_name + '(' + delimitedList(arg) + ',' + delimitedList(named_arg) + ')' )
 
         def expression_parseaction(toks):
             name = toks[0]
@@ -148,7 +182,7 @@ class _Parsers:
             except IndexError:
                 args = []
                 kwargs = {}
-            return _Globals.Func(name=name, args=args, kwargs=kwargs)
+            return _Expression(name=name, args=args, kwargs=kwargs)
 
         expression.setParseAction(expression_parseaction)
 
@@ -160,12 +194,12 @@ class _Parsers:
             identifier = pp.Word(pp.alphas + "_", pp.alphanums + "_")
         else:
             identifier = pp.Word(pp.alphas, pp.alphanums + "_")
-        var = _Parsers.builtins | identifier.setParseAction(lambda name: _Globals.PoolVar(name))
-        special_chars = pp.Literal('$$').setParseAction(lambda x: '$')
-        template = pp.Suppress('$') + pp.Suppress('{') + \
-                   var + \
-                   pp.ZeroOrMore(pp.Suppress('.') + _Parsers.expression(allow_private=allow_private)) + \
-                   pp.Suppress('}')
+        var = _Parsers.builtins | identifier.setParseAction(lambda name: _PoolVar(name))
+        special_chars = pp.Keyword('$$').setParseAction(pp.replaceWith('$'))
+        template = pp.Group(pp.Suppress('$') + pp.Suppress('{') +
+                            var +
+                            pp.ZeroOrMore(pp.Suppress('.') + _Parsers.expression(allow_private=allow_private)) +
+                            pp.Suppress('}'))
 
         def template_parse_action(toks):
             name = toks[0]
@@ -173,16 +207,17 @@ class _Parsers:
                 funcs = toks[1:]
             except IndexError:
                 funcs = []
-            return _Globals.CSVar(name, funcs)
+            return _CSVar(name, funcs)
 
         template.setParseAction(template_parse_action)
 
         restricted_chars = '$'
         printables = ''.join(c for c in (set(pp.printables) - set(restricted_chars)))
-        string = pp.ZeroOrMore(special_chars | pp.Group(template) |
+        string = pp.ZeroOrMore(special_chars | template |
                                pp.Combine(pp.Word(printables + ' ')).leaveWhitespace())
 
         return string
+
 
 class StringParser:
     def __init__(self, allow_private=False):
@@ -190,23 +225,33 @@ class StringParser:
         self.allow_private = allow_private
         self._parsers = _Parsers(allow_private=allow_private)
 
-    def parse(self, instring: str) -> list:
+    def parse(self, instring: str):
         return self._parsers.string.parseString(instring)
 
-    def eval_var(self, var: _Globals.CSVar, pool=None):
-        name, funcs = var
-        if isinstance(name, _Globals.PoolVar):
+    def get_var(self, var, *, app_list, pool=None, default=...):
+        pool = CSVarPool if pool is None else pool
+        return pool.get_var_priority(var, app_list=app_list, default=default)
+
+    def eval_var(self, var, funcs=(), CSStr=None, **kwargs):
+        if CSStr is None:
+            CSStr = CSStrConstructor()
+
+        if isinstance(var, _PoolVar):
+            var = self.get_var(var[0], **kwargs)
             # TODO: TO BE IMPLEMENTED
 
-        obj = _Globals.CSStr(name)
+        obj = var
         for func in funcs:
-            func_name, args, kwargs = func
-            args = [self.eval_var(arg) if isinstance(arg, _Globals.CSVar) else arg for arg in args]
-            kwargs = {key: (self.eval_var(value) if isinstance(value, _Globals.CSVar) else value) for key, value in
-                      kwargs.items()}
+            func_name, args, kws = func
+            args = [self.eval_var(arg) if isinstance(arg, _CSVar) else arg for arg in args]
+            kws = {key: (self.eval_var(value) if isinstance(value, _CSVar) else value) for key, value in
+                      kws.items()}
 
-            obj = getattr(obj, func_name)(*args, **kwargs)  # Evaluate the object
+            obj = getattr(CSStr(obj), func_name)(*args, **kws)  # Evaluate the object
 
         return obj
+
+    def eval_string(self):
+        raise NotImplementedError
 
 # TODO: allow python formatter to be used on templates

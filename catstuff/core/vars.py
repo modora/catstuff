@@ -1,4 +1,7 @@
 class VarPool:
+    # Reinit this variable to make pool independent (check independence using id())
+    # admittedly, a defaultdict would be easier to implement but slightly more work for the developer
+    # abiet, it's only two lines of code to add but the dev would have to know what a default dict is
     pool = {}
 
     def __init__(self, app=None):
@@ -23,7 +26,12 @@ class VarPool:
     def get(cls, var, app=None, default=...):
         app_vars = cls.pool.get(var, {})
         if app:
-            return app_vars[app] if default is ... else app_vars.get(app, default)
+            try:
+                return app_vars[app] if default is ... else app_vars.get(app, default)
+            except KeyError:
+                raise KeyError("No app named '{app}' found in variable '{var}' in '{pool}'".format(
+                    app=app, var=var, pool=cls.__name__
+                ))
         else:
             return app_vars
 
@@ -37,9 +45,9 @@ class VarPool:
             pass
 
     @classmethod
-    def reset(cls):
+    def clear(cls):
         """ Removes all variables in the pool"""
-        cls.pool = {}
+        cls.pool.clear()
 
     @classmethod
     def dump(cls):
@@ -80,3 +88,19 @@ class VarPool:
             raise KeyError('{} is undefined in app_list'.format(var))
         else:
             return default
+
+
+class CSVarPool(VarPool):
+    @classmethod
+    def setup(cls, data=..., app='catstuff'):
+        if data is ...:  # default setup data
+
+            from .manager import CSPluginManager
+
+            data = {
+                'varpool': cls,
+                'manager': CSPluginManager()
+            }
+        for var, value in data.items():
+            cls(app=app).set(var, value)
+

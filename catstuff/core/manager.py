@@ -1,5 +1,5 @@
 from yapsy.PluginManager import PluginManager
-from catstuff.core.categories import CSTask, CSAction, StrMethod
+from catstuff.core.plugin_categories import CSTask, CSAction, StrMethod
 import os
 
 _dir = os.path.dirname(os.path.realpath(__file__))

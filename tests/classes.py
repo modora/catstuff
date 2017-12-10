@@ -3,7 +3,6 @@ import subprocess, platform
 from glob import glob
 from catstuff.tools.db import test_connection
 from catstuff.tools.vars import VarPool
-from catstuff.core.parser import setup as parser_setup
 import pymongo
 
 
@@ -31,11 +30,6 @@ class StrFormatter:
         'par+': '(foo',
         'pars+': '(foo)',
     }
-
-    @classmethod
-    def setup_class(cls):
-        parser_setup()
-        return cls()
 
     def setup(self):
         var_pool = VarPool(app='test')
