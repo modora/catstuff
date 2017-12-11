@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0b5636e-c119-4526-81d5-e5e8adc2af9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/core/test_vars.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/__init__.py" afterPath="$PROJECT_DIR$/catstuff/core/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/manager.py" afterPath="$PROJECT_DIR$/catstuff/core/manager.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/str_formatter.py" afterPath="$PROJECT_DIR$/catstuff/core/str_formatter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/vars.py" afterPath="$PROJECT_DIR$/catstuff/core/vars.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/tools/_core.py" afterPath="$PROJECT_DIR$/catstuff/tools/_core.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/classes.py" afterPath="$PROJECT_DIR$/tests/classes.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/common.py" afterPath="$PROJECT_DIR$/tests/common.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/core/test_str_fomatter.py" afterPath="$PROJECT_DIR$/tests/core/test_str_fomatter.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +32,8 @@
           <file leaf-file-name="str_formatter.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/catstuff/core/str_formatter.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="551">
-                  <caret line="254" column="33" lean-forward="false" selection-start-line="254" selection-start-column="33" selection-end-line="254" selection-end-column="33" />
+                <state relative-caret-position="262">
+                  <caret line="203" column="25" lean-forward="true" selection-start-line="203" selection-start-column="25" selection-end-line="203" selection-end-column="25" />
                   <folding>
                     <element signature="e#0#27#0" expanded="true" />
                   </folding>
@@ -55,22 +48,31 @@
           <file leaf-file-name="test_str_fomatter.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/tests/core/test_str_fomatter.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="534">
-                  <caret line="319" column="30" lean-forward="false" selection-start-line="319" selection-start-column="30" selection-end-line="319" selection-end-column="30" />
+                <state relative-caret-position="412">
+                  <caret line="141" column="10" lean-forward="true" selection-start-line="141" selection-start-column="10" selection-end-line="141" selection-end-column="10" />
                   <folding>
                     <element signature="e#0#24#0" expanded="true" />
-                    <element signature="e#1503#1938#0" expanded="false" />
-                    <element signature="e#1962#2048#0" expanded="false" />
-                    <element signature="e#2072#2145#0" expanded="false" />
-                    <element signature="e#2169#2210#0" expanded="false" />
-                    <element signature="e#2234#2410#0" expanded="false" />
-                    <element signature="e#2434#2735#0" expanded="false" />
-                    <element signature="e#2759#3064#0" expanded="false" />
-                    <element signature="e#3088#3411#0" expanded="false" />
-                    <element signature="e#3435#3540#0" expanded="false" />
-                    <element signature="e#3564#5413#0" expanded="false" />
-                    <element signature="e#5603#5829#0" expanded="false" />
+                    <element signature="e#1602#2037#0" expanded="false" />
+                    <element signature="e#2061#2147#0" expanded="false" />
+                    <element signature="e#2171#2244#0" expanded="false" />
+                    <element signature="e#2268#2309#0" expanded="false" />
+                    <element signature="e#2333#2509#0" expanded="false" />
+                    <element signature="e#2533#2834#0" expanded="false" />
+                    <element signature="e#2858#3163#0" expanded="false" />
+                    <element signature="e#3187#3510#0" expanded="false" />
+                    <element signature="e#3534#3639#0" expanded="false" />
+                    <element signature="e#6088#6314#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="case.py" pinned="false" current-in-tab="false">
+            <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/nose/case.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="207">
+                  <caret line="197" column="0" lean-forward="false" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -89,8 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>connect</find>
-      <find>connect(</find>
       <find>Mongoc</find>
       <find>check</find>
       <find>obj</find>
@@ -119,6 +119,8 @@
       <find>pool</find>
       <find>_poolvar</find>
       <find>displ</find>
+      <find>_Expression(name='reverse', args=[], kwargs={})</find>
+      <find>_Expression('reverse', [], {})</find>
     </findStrings>
     <replaceStrings>
       <replace>test2</replace>
@@ -221,7 +223,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="Scratches" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -869,44 +871,50 @@
       <option name="project" value="LOCAL" />
       <updated>1512802039131</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Tested str_formatter">
+      <created>1512894798327</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1512894798327</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.09 at 23h 42m 43s.xml">
+    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 21h 34m 44s.xml">
       <configuration name="Nosetests in test_str_fomatter.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.09 at 23h 47m 35s.xml">
+    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 21h 35m 33s.xml">
       <configuration name="Nosetests in test_str_fomatter.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 00h 03m 25s.xml">
+    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 21h 39m 27s.xml">
       <configuration name="Nosetests in test_str_fomatter.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 00h 04m 27s.xml">
+    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 21h 42m 38s.xml">
       <configuration name="Nosetests in test_str_fomatter.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 00h 06m 29s.xml">
+    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 22h 02m 56s.xml">
       <configuration name="Nosetests in test_str_fomatter.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 00h 07m 44s.xml">
+    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 22h 04m 45s.xml">
       <configuration name="Nosetests in test_str_fomatter.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 00h 18m 40s.xml">
+    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 22h 13m 53s.xml">
       <configuration name="Nosetests in test_str_fomatter.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 00h 26m 36s.xml">
+    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 22h 23m 33s.xml">
       <configuration name="Nosetests in test_str_fomatter.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 00h 28m 14s.xml">
+    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 22h 25m 31s.xml">
       <configuration name="Nosetests in test_str_fomatter.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 00h 31m 54s.xml">
+    <history-entry file="Nosetests_in_test_str_fomatter_py - 2017.12.10 at 22h 28m 34s.xml">
       <configuration name="Nosetests in test_str_fomatter.py" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31465518" sideWeight="0.29555085" order="12" side_tool="true" content_ui="tabs" />
@@ -914,7 +922,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31461865" sideWeight="0.70520836" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.33081895" sideWeight="0.4941302" order="2" side_tool="true" content_ui="tabs" x="0" y="22" width="1920" height="1018" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31461865" sideWeight="0.29479167" order="14" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15208334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15208334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32415253" sideWeight="0.49791667" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273305" sideWeight="0.46197918" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -959,7 +967,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added test files" />
     <MESSAGE value="Simplified api and added cmdline parser" />
     <MESSAGE value="modified tools, broke plugins, list commands action working!" />
     <MESSAGE value="Fixed version action, started action: plugin manager" />
@@ -984,25 +991,26 @@
     <MESSAGE value="Restricted core tools access" />
     <MESSAGE value="Code cleanup" />
     <MESSAGE value="WIP: str_formatter" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP: str_formatter" />
+    <MESSAGE value="Tested str_formatter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tested str_formatter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/core/test_str_fomatter.py</url>
+          <line>323</line>
+          <option name="timeStamp" value="275" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="275" />
+      <option name="time" value="278" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/actions/plugins/version.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/plugins/test_checksum.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1364,14 +1372,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/nose/case.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="197" column="0" lean-forward="false" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
@@ -1379,14 +1379,6 @@
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/pyparsing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="1048" column="0" lean-forward="false" selection-start-line="1048" selection-start-column="0" selection-end-line="1048" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1398,10 +1390,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/nose/case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="197" column="0" lean-forward="false" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/IPython/core/interactiveshell.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="2909" column="0" lean-forward="false" selection-start-line="2909" selection-start-column="0" selection-end-line="2909" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Python36-32/Lib/site-packages/pyparsing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="1048" column="0" lean-forward="false" selection-start-line="1048" selection-start-column="0" selection-end-line="1048" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/catstuff/core/str_formatter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="254" column="33" lean-forward="false" selection-start-line="254" selection-start-column="33" selection-end-line="254" selection-end-column="33" />
+        <state relative-caret-position="262">
+          <caret line="203" column="25" lean-forward="true" selection-start-line="203" selection-start-column="25" selection-end-line="203" selection-end-column="25" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
@@ -1410,21 +1426,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/core/test_str_fomatter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="319" column="30" lean-forward="false" selection-start-line="319" selection-start-column="30" selection-end-line="319" selection-end-column="30" />
+        <state relative-caret-position="412">
+          <caret line="141" column="10" lean-forward="true" selection-start-line="141" selection-start-column="10" selection-end-line="141" selection-end-column="10" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
-            <element signature="e#1503#1938#0" expanded="false" />
-            <element signature="e#1962#2048#0" expanded="false" />
-            <element signature="e#2072#2145#0" expanded="false" />
-            <element signature="e#2169#2210#0" expanded="false" />
-            <element signature="e#2234#2410#0" expanded="false" />
-            <element signature="e#2434#2735#0" expanded="false" />
-            <element signature="e#2759#3064#0" expanded="false" />
-            <element signature="e#3088#3411#0" expanded="false" />
-            <element signature="e#3435#3540#0" expanded="false" />
-            <element signature="e#3564#5413#0" expanded="false" />
-            <element signature="e#5603#5829#0" expanded="false" />
+            <element signature="e#1602#2037#0" expanded="false" />
+            <element signature="e#2061#2147#0" expanded="false" />
+            <element signature="e#2171#2244#0" expanded="false" />
+            <element signature="e#2268#2309#0" expanded="false" />
+            <element signature="e#2333#2509#0" expanded="false" />
+            <element signature="e#2533#2834#0" expanded="false" />
+            <element signature="e#2858#3163#0" expanded="false" />
+            <element signature="e#3187#3510#0" expanded="false" />
+            <element signature="e#3534#3639#0" expanded="false" />
+            <element signature="e#6088#6314#0" expanded="false" />
           </folding>
         </state>
       </provider>

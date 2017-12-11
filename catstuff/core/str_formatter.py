@@ -3,7 +3,7 @@ import pyparsing as pp
 from collections import namedtuple
 
 _Expression = namedtuple('Expression', 'name args kwargs')
-_CSVar = namedtuple('CSVar', 'name funcs')
+_TemplateVar = namedtuple('TemplateVar', 'var funcs')
 _PoolVar = namedtuple('PoolVar', 'var')
 
 
@@ -194,12 +194,16 @@ class _Parsers:
             identifier = pp.Word(pp.alphas + "_", pp.alphanums + "_")
         else:
             identifier = pp.Word(pp.alphas, pp.alphanums + "_")
-        var = _Parsers.builtins | identifier.setParseAction(lambda name: _PoolVar(name))
+
+        template = pp.Forward()
+
+        pool_var = identifier.copy()
+        var = _Parsers.builtins | pool_var.setParseAction(lambda name: _PoolVar(name)) | template
         special_chars = pp.Keyword('$$').setParseAction(pp.replaceWith('$'))
-        template = pp.Group(pp.Suppress('$') + pp.Suppress('{') +
-                            var +
-                            pp.ZeroOrMore(pp.Suppress('.') + _Parsers.expression(allow_private=allow_private)) +
-                            pp.Suppress('}'))
+        template << (pp.Suppress('$') + pp.Suppress('{') +
+                    var +
+                    pp.ZeroOrMore(pp.Suppress('.') + _Parsers.expression(allow_private=allow_private)) +
+                    pp.Suppress('}'))
 
         def template_parse_action(toks):
             name = toks[0]
@@ -207,7 +211,7 @@ class _Parsers:
                 funcs = toks[1:]
             except IndexError:
                 funcs = []
-            return _CSVar(name, funcs)
+            return _TemplateVar(name, funcs)
 
         template.setParseAction(template_parse_action)
 
@@ -243,9 +247,9 @@ class StringParser:
         obj = var
         for func in funcs:
             func_name, args, kws = func
-            args = [self.eval_var(arg) if isinstance(arg, _CSVar) else arg for arg in args]
-            kws = {key: (self.eval_var(value) if isinstance(value, _CSVar) else value) for key, value in
-                      kws.items()}
+            args = [self.eval_var(arg) if isinstance(arg, _TemplateVar) else arg for arg in args]
+            kws = {key: (self.eval_var(value) if isinstance(value, _TemplateVar) else value) for key, value in
+                   kws.items()}
 
             obj = getattr(CSStr(obj), func_name)(*args, **kws)  # Evaluate the object
 

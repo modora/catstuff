@@ -1,7 +1,7 @@
 from nose.tools import *
 from catstuff.core.vars import CSVarPool
 from catstuff.core.str_formatter import CSStrConstructor, StringParser
-from catstuff.core.str_formatter import _Parsers, _Expression, _CSVar, _PoolVar
+from catstuff.core.str_formatter import _Parsers, _Expression, _TemplateVar, _PoolVar
 import pyparsing as pp
 
 
@@ -46,6 +46,9 @@ class TestCSStr(StrFormatter):
 
 
 class TestParsers:
+    class Clipboard:
+        expr_reverse = _Expression(name='reverse', args=[], kwargs={})
+
     from collections import defaultdict
     strings = defaultdict(list)
     invalid_strings = defaultdict(list)
@@ -140,6 +143,12 @@ class TestParsers:
         'input': [
             ('literal string', ['literal string']),
             ('string with $$ in it', ['string with ', '$', ' in it']),
+            ("string with ${'template'.reverse()} in it",
+             ['string with ', _TemplateVar('template', [Clipboard.expr_reverse]), ' in it']),
+            ("string with ${${'nested'.reverse()}.reverse()} template",
+             ['string with ',
+              _TemplateVar(_TemplateVar('nested', [Clipboard.expr_reverse]), [Clipboard.expr_reverse]),
+              ' template'])
         ],
     })
 
