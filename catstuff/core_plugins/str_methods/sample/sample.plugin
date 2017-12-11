@@ -1,0 +1,7 @@
+[Core]
+Name = Sample StrMethod
+Module = main
+
+[Documentation]
+Description = This is a sample StrMethod plugin
+Version = 1.0
