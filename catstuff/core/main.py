@@ -1,14 +1,14 @@
 import traceback, shutil, time
 from catstuff.core.manager import CSPluginManager
 from catstuff.core.vars import VarPool
-from .parser import CoreArgParser
+from catstuff.core.parser import CoreArgParser
 
 app = 'catstuff'
 parser = CoreArgParser()
 
 
 def setup():
-    VarPool.reset()
+    VarPool.clear()
     vars_ = VarPool(app=app)
     vars_.set('manager', CSPluginManager())
 

@@ -8,5 +8,5 @@ class Parser(CSArgParser):
         super().__init__()
         self.add_argument('--version', action='version', version=__version__)
         self.add_argument('args', nargs='*', default=['Name', 'Version', 'Description'])
-        self.add_argument('-t', default=4)
+        self.add_argument('-t', default=4, help='tab width (default=4)')
         self.set_defaults(func=print_wrapper)
