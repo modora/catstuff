@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0b5636e-c119-4526-81d5-e5e8adc2af9f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core/main.py" afterPath="$PROJECT_DIR$/catstuff/core/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core_plugins/actions/commands/parser.py" afterPath="$PROJECT_DIR$/catstuff/core_plugins/actions/commands/parser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core_plugins/actions/plugins/list.py" afterPath="$PROJECT_DIR$/catstuff/core_plugins/actions/plugins/list.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catstuff/core_plugins/actions/plugins/parser.py" afterPath="$PROJECT_DIR$/catstuff/core_plugins/actions/plugins/parser.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,21 +40,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="parser.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/actions/plugins/parser.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-115">
                   <caret line="16" column="47" lean-forward="true" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="list.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/actions/plugins/list.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-384">
-                  <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
@@ -860,7 +846,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512974213571</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Added functionality for actions">
+      <created>1512980398116</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1512980398116</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -950,7 +943,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="modified tools, broke plugins, list commands action working!" />
     <MESSAGE value="Fixed version action, started action: plugin manager" />
     <MESSAGE value="Worded on plugin manager action, broken atm" />
     <MESSAGE value="Reworking action: plugin manager" />
@@ -975,7 +967,8 @@
     <MESSAGE value="WIP: str_formatter" />
     <MESSAGE value="Tested str_formatter" />
     <MESSAGE value="Added support for nested templates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added support for nested templates" />
+    <MESSAGE value="Added functionality for actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality for actions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1430,18 +1423,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/actions/plugins/parser.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/actions/plugins/list.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-115">
-          <caret line="16" column="47" lean-forward="true" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+        <state relative-caret-position="-51">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/actions/plugins/list.py">
+    <entry file="file://$PROJECT_DIR$/catstuff/core_plugins/actions/plugins/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-384">
-          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        <state relative-caret-position="-115">
+          <caret line="16" column="47" lean-forward="true" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
           <folding />
         </state>
       </provider>

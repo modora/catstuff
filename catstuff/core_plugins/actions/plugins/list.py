@@ -27,11 +27,9 @@ def print_info(attrs: list, tab_width=4, sort_attr='name', sort_order='ascending
 
     sort_rev = {'ascending': False, 'descending': True}.get(sort_order, False)
     try:
-        plugins.sort(key=lambda plugin: str(get_info(sort_attr, plugin)).lower(),
-                     reverse=sort_rev)
+        plugins.sort(key=lambda plugin: str(get_info(sort_attr, plugin)).lower(), reverse=sort_rev)
     except AttributeError:  # sort by name, case-insensitive
-        plugins.sort(key=lambda plugin: plugin.name.lower(),
-                     reverse=sort_rev)
+        plugins.sort(key=lambda plugin: plugin.name.lower(), reverse=sort_rev)
 
     format_list = []  # list of tuples in the form (attr_name, str_length)
     for attr in attrs:
