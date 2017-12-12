@@ -1,9 +1,8 @@
-from catstuff.core.manager import CSPluginManager
 from catstuff.tools.config import PluginConfig
 from catstuff.tools.vars import VarPool
 # from shutil import get_terminal_size
 
-__version__ = '1.2'
+__version__ = '1.2.1'
 
 
 def print_info(attrs: list, tab_width=4, sort_by='name', sort_order='ascending'):

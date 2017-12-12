@@ -6,4 +6,4 @@ class Random(plugins.StrMethod):
     def shuffle(self):
         l = list(self)
         random.shuffle(l)
-        return str(l)
+        return ''.join(l)
