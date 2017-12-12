@@ -24,3 +24,7 @@ class CSPluginManager(PluginManager):
             plugin_info_ext=self.extensions
         )
         self.collectPlugins()
+
+
+class MissingPluginException(Exception):
+    pass

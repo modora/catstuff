@@ -129,8 +129,6 @@ class CSMongoCollection:
         self.db = db
         self.coll = pymongo.collection.Collection(self.db, self.name, **kwargs)
 
-        test_connection(self.conn)
-
         self.__uid_generate_method = uid_generate_method
 
     @property
@@ -256,11 +254,11 @@ class CSMaster(CSMongoCollection):
 
         self.path = path
 
-        self.coll.create_indexes([
-            pymongo.IndexModel([(index, pymongo.ASCENDING)], name=index)
-            for index in self.special_names
-            if index != '_id'
-        ])
+        # self.coll.create_indexes([
+        #     pymongo.IndexModel([(index, pymongo.ASCENDING)], name=index)
+        #     for index in self.special_names
+        #     if index != '_id'
+        # ])
 
     @property
     def path(self):

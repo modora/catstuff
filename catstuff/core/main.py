@@ -1,28 +1,31 @@
 import traceback, shutil, time
-from catstuff.core.manager import CSPluginManager
-from catstuff.core.vars import VarPool
+import logging  # replace with logger
+from catstuff.core.manager import CSPluginManager, MissingPluginException
+from catstuff.core.vars import CSVarPool
 from catstuff.core.parser import CoreArgParser
 
 app = 'catstuff'
-parser = CoreArgParser()
 
 
 def setup():
-    VarPool.clear()
-    vars_ = VarPool(app=app)
+    CSVarPool.clear()
+    vars_ = CSVarPool(app=app)
     vars_.set('manager', CSPluginManager())
 
 
 def main():
+    parser = CoreArgParser()
     args = parser.parse_args()
+
+    if args.debug:
+        logging.basicConfig()
+
     setup()
 
-    vars_ = VarPool()
-
     try:
-        action = vars_.get('manager', app=app).getPluginByName(name=args.action, category='Action')
+        action = CSVarPool.get('manager', app=app).getPluginByName(name=args.action, category='Action')
         if action is None:  # plugin does not exist
-            raise AttributeError('unrecognized action {}'.format(args.action))
+            raise MissingPluginException('unrecognized action {}'.format(args.action))
         action.plugin_object.main(args.args)
     except Exception as e:
         if args.debug:
