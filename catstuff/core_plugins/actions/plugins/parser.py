@@ -29,7 +29,8 @@ class ListParser:
     def make(parser=CSArgParser()):
         parser.add_argument('-t', help='tab width (default=4)', default=4, type=int)
         parser.add_argument('--sort-by', help='attribute to sort by (default=name)', default='name')
-        parser.add_argument('--sort-order', help='sort direction (default=ascending)', default='ascending')
+        parser.add_argument('--sort-order', help='sort direction (default=ascending)', default='ascending',
+                            choices={'ascending', 'descending', 'asc', 'desc'})
         parser.add_argument('args', nargs='*', default=['Name', 'Category', 'Version', 'Description'])
         parser.set_defaults(func=list_print_wrapper)
         return parser

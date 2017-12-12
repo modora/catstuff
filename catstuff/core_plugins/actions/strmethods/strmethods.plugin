@@ -1,0 +1,7 @@
+# Core is the only required section. The options 'name' and 'module' must be filled. All other sections are optional
+[Core]
+Name = strmethods
+Module = main
+
+[Documentation]
+Description = Manages StrMethods

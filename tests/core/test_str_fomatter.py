@@ -35,14 +35,13 @@ class TestCSStr(StrFormatter):
         ok_(isinstance(CSStr('test str'), str), 'testing with an actual string failed')
 
     def test_a_function(self):
-        """ Requires the 'display' plugin"""
         s = 'literal string'
         s = self.CSStr(s)
 
         try:
-            eq_(s.reverse(), s[::-1])
+            eq_(s.foo(), 'bar')
         except AttributeError:
-            ok_(False, 'The reverse() function not found, aborting test -- install the display plugin for it')
+            ok_(False, 'The foo() function not found, aborting test -- install the sample plugin for it')
 
 
 class TestParsers:
