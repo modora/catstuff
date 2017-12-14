@@ -13,7 +13,6 @@ def expandpath(path):
         os.path.expandvars,
         os.path.expanduser,
         os.path.realpath,
-        os.path.abspath
     ]
 
     for f in func:

@@ -3,14 +3,28 @@ import logging  # replace with logger
 from catstuff.core.manager import CSPluginManager, MissingPluginException
 from catstuff.core.vars import CSVarPool
 from catstuff.core.parser import CoreArgParser
+from catstuff.core.config import Config
+import catstuff.tools as tools
 
 app = 'catstuff'
 
 
-def setup():
+def setup(config_path: str=None):
+    def init_config(path: str=None):
+        if path is None:
+            try:
+                return Config.load_default()
+            except FileNotFoundError:
+                tools.path.touch(Config.default_path)
+                return Config({})
+        else:
+            return Config.load_config(path)
+
     CSVarPool.clear()
     vars_ = CSVarPool(app=app)
     vars_.set('manager', CSPluginManager())
+    vars_.set('config', init_config(config_path))
+
 
 
 def main():

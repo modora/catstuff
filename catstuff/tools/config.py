@@ -90,12 +90,13 @@ def import_ini(path):
 
 
 def load_yaml(path):
+
     with open(path, 'r') as f:
         d = yaml.load(f)
     return {} if d is None else d
 
 
-def try_get(config: dict, keys: (list, str), **default):
+def try_get(d: dict, keys: (list, str), **default):
     """
     Evaluates the value of some key or nested key in a config
     :param config: Config file
@@ -110,7 +111,7 @@ def try_get(config: dict, keys: (list, str), **default):
 
     if isinstance(keys, str):
         keys = {keys}
-    conf = config.copy()
+    conf = d.copy()
     for key in keys:
         try:
             conf = conf[key]

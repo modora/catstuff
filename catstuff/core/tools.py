@@ -1,6 +1,25 @@
 import errno, os, sys
 
 
+def expandpath(path):
+    """
+    Expands the variables in the path and return the absolute path
+    :param path:
+    :return:
+    """
+
+    func = [
+        os.path.expandvars,
+        os.path.expanduser,
+        os.path.realpath,
+    ]
+
+    for f in func:
+        path = f(path)
+
+    return path
+
+
 def property_getter(obj, name, default=None, setter=True):
     """
     Returns the value an object attribute and sets it if it doesn't exist
