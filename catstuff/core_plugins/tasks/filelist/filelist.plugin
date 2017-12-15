@@ -1,6 +1,6 @@
 [Core]
 Name = filelist
-Module = main
+Module = filelist
 Build = 1
 
 [Documentation]

@@ -1,6 +1,6 @@
 [Core]
 Name = commands
-Module = main
+Module = commands
 
 [Documentation]
 Description = Lists all the available CatStuff commands

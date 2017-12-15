@@ -1,6 +1,6 @@
 [Core]
 Name = fstat
-Module = main
+Module = fstat
 Build = 1
 
 [Documentation]

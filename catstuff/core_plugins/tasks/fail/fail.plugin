@@ -1,6 +1,6 @@
 [Core]
 Name = Fail
-Module = main
+Module = fail
 
 [Documentation]
 Version = 1.0

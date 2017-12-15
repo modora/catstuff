@@ -1,6 +1,6 @@
 [Core]
 Name = Success
-Module = main
+Module = success
 
 [Documentation]
 Version = 1.0

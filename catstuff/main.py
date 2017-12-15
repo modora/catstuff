@@ -5,6 +5,7 @@ import catstuff
 
 from catstuff import core, tools
 
+
 class CoreArgParser(tools.argparser.CSArgParser):
     description = 'Core parser for catstuff'
 
@@ -25,12 +26,14 @@ def main():
     args = parser.parse_args()
 
     if args.debug:
-        logging.basicConfig()
+        # TODO: Implement logger
+        # logging.basicConfig(level=logging.DEBUG)
+        pass
 
     core.init(config_path=args.config)
 
     try:
-        action = core.vars.CSVarPool.get('manager', app=app).getPluginByName(name=args.action, category='Action')
+        action = core.vars.CSVarPool.get('manager', app='catstuff').getPluginByName(name=args.action, category='Action')
         if action is None:  # plugin does not exist
             raise core.plugins.MissingPluginException('unrecognized action {}'.format(args.action))
         action.plugin_object.main(args.args)

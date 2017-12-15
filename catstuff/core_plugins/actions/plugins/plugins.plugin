@@ -1,6 +1,6 @@
 [Core]
 Name = plugins
-Module = main
+Module = plugins
 
 [Documentation]
 Description = Manages CatStuff plugins
