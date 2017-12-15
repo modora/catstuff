@@ -1,4 +1,4 @@
-from catstuff.tools import plugins
+from catstuff.core import plugins
 from catstuff.core_plugins.tasks.checksum.config import mod_name, build
 
 

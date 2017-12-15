@@ -1,5 +1,5 @@
 from catstuff.core_plugins.tasks.move.config import mod_name, build
-from catstuff.tools import plugins
+from catstuff.core import plugins
 from catstuff import tools
 import shutil
 

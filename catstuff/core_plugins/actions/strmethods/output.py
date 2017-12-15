@@ -1,9 +1,8 @@
-from catstuff.tools.vars import VarPool
-from catstuff.tools.strings import CSStrConstructor
 import inspect, collections, re
+from catstuff import core
 # from shutil import get_terminal_size
 
-__version__ = '1.1.2'
+__version__ = '1.1.3'
 
 
 def print_info(attrs: list, show_replaced=False, show_builtins=False,
@@ -82,11 +81,10 @@ def print_info(attrs: list, show_replaced=False, show_builtins=False,
             max_len = max(max_len, len(str(value)))
         return max_len
 
-    vars_ = VarPool()
-    manager = vars_.get('manager', app='catstuff')
+    manager = core.vars.CSVarPool.get('manager', app='catstuff')
     plugins = manager.getPluginsOfCategory('StrMethod')
 
-    CSStr = CSStrConstructor()
+    CSStr = core.str_formatter.CSStrConstructor()
 
     method_attrs = {}  # a dict containing details of all of the methods found in some StrMethod plugin class
     # method_attrs = {

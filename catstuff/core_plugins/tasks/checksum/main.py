@@ -2,7 +2,8 @@ import collections
 import hashlib
 import zlib
 
-from catstuff.tools import plugins
+from catstuff import core
+
 from catstuff.core_plugins.tasks.checksum.config import mod_name, build
 
 hashlib_methods = {'sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'blake2b', 'blake2s', 'md5',
@@ -82,9 +83,10 @@ def chunk_size(method):
         raise NotImplementedError("default block size not set for {} method".format(method))
 
 
-class Checksum(plugins.CSCollection):
-    def __init__(self, **kwargs):
-        super().__init__(mod_name, build, **kwargs)
+class Checksum(core.plugins.CSTask, core.dbs.CSCollection):
+    def __init__(self):
+        core.plugins.CSTask.__init__(self, mod_name, build)
+        core.dbs.CSCollection.__init__(self, mod_name)
 
     @staticmethod
     def data(path, methods, block_size=None, hex=True):

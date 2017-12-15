@@ -8,7 +8,7 @@ pyparsing
 
 # ------------ Testing ----------------------------
 # musicbrainz api
-musicbrainzngs
+# musicbrainzngs
 
 # taglib wrapper -- requires taglib library to be installed
 # http://taglib.github.io/

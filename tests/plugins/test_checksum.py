@@ -127,9 +127,9 @@ class TestFilled(Hashlib, Zlib):
         Library.__init__(self, files.filled_file, actuals=self.actuals)
 
 
-class TestPlugin(tests.common.CSDB):
+class TestPlugin(tests.common.CSDBBaseTest):
     def setup(self):
-        self.obj = Checksum(database=self.db)
+        self.obj = Checksum()
 
     def test_main(self):
         pass # TODO: test this

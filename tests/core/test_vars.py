@@ -40,7 +40,7 @@ class TestMultiplePools:
         """ pool attribute overwritten"""
         app = 'test'
 
-        ok_(id(CSVarPool.pool) != id(VarPool.pool), 'mem address of pools should be different')
+        ok_(id(CSVarPool.pool) != id(OtherPool.pool), 'mem address of pools should be different')
 
         cs_pool = CSVarPool(app=app)
         other_pool = OtherPool(app=app)

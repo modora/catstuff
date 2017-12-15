@@ -1,4 +1,4 @@
-from catstuff.tools.plugins import StrMethod
+from catstuff.core.plugins import StrMethod
 
 
 class Display(StrMethod):

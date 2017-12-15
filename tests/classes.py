@@ -1,12 +1,19 @@
 import os
 import subprocess, platform
 from glob import glob
-from catstuff.tools.db import test_connection
-from catstuff.tools.vars import VarPool
+from catstuff import tools, core
 import pymongo
 
 
-class StrFormatter:
+class CatStuffBaseTest:
+    config_path = core.config.CSConfig.default_path
+
+    @classmethod
+    def setup_class(cls):
+        core.init(cls.config_path)
+
+
+class StrFormatter(CatStuffBaseTest):
     vars_ = {
         'foo': 'bar',
         'hello': 'word',
@@ -32,13 +39,13 @@ class StrFormatter:
     }
 
     def setup(self):
-        var_pool = VarPool(app='test')
+        var_pool = core.vars.CSVarPool(app='test')
         for var, value in self.vars_.items():
             var_pool.set(var, value)
 
 
 
-class Mongo:
+class MongoBaseTest(CatStuffBaseTest):
     system = platform.system()
     conn_settings = {'serverSelectionTimeoutMS': 10000}
     '''
@@ -64,11 +71,11 @@ class Mongo:
         conn = self.conn
 
         try:
-            test_connection(conn)  # wait until daemon is ready to listen
-        except pymongo.errors.ServerSelectionTimeoutError:
+            # The ismaster command is cheap and does not require auth.
+            conn.admin.command('ismaster')
+        except pymongo.errors.ConnectionFailure:
+            print("Server not available")
             self.process.kill()
-        finally:
-            conn.close()
 
     def stop(self):
         # this is an unsafe shutdown but this is a test so i don't really care
@@ -78,8 +85,8 @@ class Mongo:
         self.process.kill()
 
 
-class CSDB:
-    mongo = Mongo()
+class CSDBBaseTest(CatStuffBaseTest):
+    mongo = MongoBaseTest()
     db_settings = {'name': 'catstuff_test'}
 
     @property
@@ -88,6 +95,7 @@ class CSDB:
 
     @classmethod
     def setup_class(cls):
+        super().setup_class()
         cls.mongo.start()
 
     @classmethod

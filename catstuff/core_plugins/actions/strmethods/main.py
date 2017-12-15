@@ -1,4 +1,4 @@
-from catstuff.tools import plugins
+from catstuff.core import plugins
 from catstuff.core_plugins.actions.strmethods.config import mod_name, __version__
 from catstuff.core_plugins.actions.strmethods.parser import Parser
 

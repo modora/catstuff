@@ -2,9 +2,75 @@ import yaml
 import configparser
 import collections
 
+import catstuff.tools
 
 class ConfigError(Exception):
     pass
+
+
+class Config:
+    def __init__(self, config: dict):
+        self._config = config
+
+    def __getitem__(self, item):
+        return self.config[item]
+
+    @property
+    def config(self):
+        return self._config
+
+    @classmethod
+    def load_config(cls, path):
+        from catstuff.tools import path as path_
+
+        conf = cls(import_yaml(path_.expandpath(path)))
+        return conf
+
+    def get(self, keys: list, default=None):
+        """ Get the value of some key in the config"""
+        conf = self.config.copy()
+        """ Walk into config"""
+        for key in keys:
+            try:
+                conf = conf[key]  # update subconfig
+            except (KeyError, TypeError):
+                return default
+        return conf
+
+
+class ConfigGroup:
+    # TODO: This is a placeholder object for when groups are supported
+    def __init__(self):
+        self.configs = collections.OrderedDict()
+
+    def set_config(self, name: str, config: Config):
+        self.configs.update({name: config})
+
+    def delete_config(self, name: str):
+        try:
+            del self.configs[name]
+        except KeyError:
+            pass
+
+    def get_config(self, name, **kwargs):
+        try:
+            return self.configs[name]
+        except KeyError as e:
+            try:
+                return kwargs['default']
+            except KeyError:
+                return e
+
+    def get(self, keys: list, **kwargs):
+        for config in self.configs:  # prioritizes the oldest configs
+            try:
+                return config.get(keys)
+            except KeyError:
+                pass
+        try:
+            return kwargs['default']
+        except KeyError:
+            raise KeyError('{keys} key not found in any configs'.format(keys=keys))
 
 
 class PluginConfig:
@@ -39,24 +105,34 @@ class PluginConfig:
         except KeyError:
             raise configparser.NoSectionError
 
-    def get(self, option: str, section=None, **default):
+    def get(self, option: str, section=None, **kwargs):
         """
         Gets the value of an option
         :param option: Name of option (option name is case-insensitive)
         :param section: (default=None)  Sections to look though. If None is specified, then search through all sections
-        :param default: return value if option not found; must be entered using named parameter
+        :param kwargs: return value if option not found; must be entered using named parameter
         :return:
         :raise: KeyError: if option not found
         """
+
         if section is not None:
-            return try_get(self.config, [section, option], **default)
+            try:
+                return self.config[section][option]
+            except KeyError as e:
+                try:
+                    return kwargs['default']
+                except KeyError:
+                    raise e
         else:  # look through all sections
             for section in self.config:
                 try:
-                    return try_get(self.config[section], option)
+                    return self.config[section][option]
                 except KeyError:
                     pass
-            return default['default']
+            try:
+                return kwargs['default']
+            except KeyError:
+                raise KeyError('Option [} not found in any section of config'.format(option))
 
 
 def import_ini(path):
@@ -81,71 +157,17 @@ def import_ini(path):
     config = configparser.ConfigParser()
     config.read(path)
 
-    d = {}
+    d = collections.defaultdict(dict)
     for section in config.sections():
-        d[section] = {}
         for option in config.options(section):
             d[section][option] = config.get(section, option)
-    return d
+    return dict(d)
 
 
-def load_yaml(path):
-
+def import_yaml(path):
     with open(path, 'r') as f:
         d = yaml.load(f)
     return {} if d is None else d
-
-
-def try_get(d: dict, keys: (list, str), **default):
-    """
-    Evaluates the value of some key or nested key in a config
-    :param config: Config file
-    :param keys:
-    :type str or list
-    :param default: return value if key not found
-    :return:
-    """
-
-    # Using **default to emulate a function overload so that if the default keyword
-    # is not specified in the input, an exception is raised
-
-    if isinstance(keys, str):
-        keys = {keys}
-    conf = d.copy()
-    for key in keys:
-        try:
-            conf = conf[key]
-        except KeyError as e:
-            try:
-                return default['default']
-            except KeyError:
-                raise e
-    return conf
-
-
-class ConfigGroup:
-    def __init__(self):
-        self.group = collections.OrderedDict()
-
-    def set_config(self, name: str, config: dict):
-        self.group.update({name: config})
-
-    def delete_config(self, name: str):
-        try:
-            del self.group[name]
-        except KeyError:
-            pass
-
-    def get_config(self, name, **kwargs):
-        return try_get(self.group, name, **kwargs)
-
-    def get(self, keys, **default):
-        for config in self.group:  # prioritizes the oldest configs
-            try:
-                return try_get(config, keys)
-            except KeyError:
-                pass
-        return default['default']
 
 
 class ExplicitDumper(yaml.SafeDumper):

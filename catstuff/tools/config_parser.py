@@ -1,5 +1,5 @@
 import catstuff
-from .config import try_get, load_yaml
+from .config import import_yaml
 from .path import expandpath
 import os
 import inspect
@@ -8,7 +8,7 @@ import inspect
 import pymongo
 
 default_config_path = os.path.join(os.path.dirname(expandpath(catstuff.__file__)), 'config/default.yml')
-default_config = load_yaml(default_config_path)
+default_config = import_yaml(default_config_path)
 version = '1.0'  # config version
 
 

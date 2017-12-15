@@ -1,5 +1,5 @@
 from catstuff.core_plugins.tasks.success import mod_name, build
-from catstuff.tools import plugins
+from catstuff.core import plugins
 
 
 class Success(plugins.CSTask):

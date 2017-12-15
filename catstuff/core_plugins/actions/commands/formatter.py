@@ -1,10 +1,11 @@
-from catstuff.tools.config import PluginConfig
-from catstuff.tools.vars import VarPool
+import catstuff.tools as tools
+import catstuff.core as core
+
 # from shutil import get_terminal_size)
 
 
 def print_info(attrs: list, tab_width=4):
-    vars_ = VarPool()
+    vars_ = core.vars.VarPool()
     manager = vars_.get('manager', 'catstuff')
     actions = manager.getPluginsOfCategory('Action')
     format_list = []  # list of tuples in the form (attr_name, str_length)
@@ -12,7 +13,7 @@ def print_info(attrs: list, tab_width=4):
         max_len = len(attr)
 
         for action in actions:
-            config = PluginConfig.from_yapsy(action)
+            config = tools.config.PluginConfig.from_yapsy(action)
             value = config.get(attr.lower(), default='')  # ini options imported as lower
 
             max_len = max(max_len, len(value))
@@ -25,7 +26,7 @@ def print_info(attrs: list, tab_width=4):
     print("\t".join(["{attr:{str_len}}".format(attr='-'*format[1], str_len=format[1])
                      for format in format_list]).replace("\t", " "*tab_width))  # border
     for action in actions:
-        config = PluginConfig.from_yapsy(action)
+        config = tools.config.PluginConfig.from_yapsy(action)
         print("\t".join(["{attr:{str_len}}".format(attr=config.get(format[0].lower(), default=''), str_len=format[1])
                          for format in format_list]).replace("\t", " "*tab_width))
 

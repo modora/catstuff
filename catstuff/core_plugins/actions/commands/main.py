@@ -1,9 +1,9 @@
-import catstuff.tools.plugins
+import catstuff.core.plugins
 from catstuff.core_plugins.actions.commands.parser import Parser
 from catstuff.core_plugins.actions.commands.config import mod_name
 
 
-class Commands(catstuff.tools.plugins.CSAction):
+class Commands(catstuff.core.plugins.CSAction):
     def __init__(self):
         super().__init__(mod_name)
 

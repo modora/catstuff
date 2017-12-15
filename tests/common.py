@@ -1,1 +1,1 @@
-from .classes import CSDB, StrFormatter
+from .classes import CSDBBaseTest, StrFormatter

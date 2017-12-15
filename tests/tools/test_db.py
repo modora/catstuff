@@ -1,21 +1,22 @@
-from tests.common import *
-from catstuff.tools import core, db
+from nose.tools import *
+from tests.classes import CSDBBaseTest
+from catstuff import core, tools
 import pymongo
 
 
 @raises(NotImplementedError)
 def test_unknown_uid_gene_method():
-    db.generate_uid('unknown method')
+    tools.db.generate_uid('unknown method')
 
 
-class TestCSCollection(CSDB):
+class TestCSCollection(CSDBBaseTest):
     coll_name = 'test'
 
     def setup(self):
         super().setup()
         # using object attributes is a safe way of passing classes between the
         # test function
-        self.obj = core.Collection(self.coll_name, db=self.db)
+        self.obj = core.dbs.CSCollection(self.coll_name, database=self.db)
 
     def test_empty(self):
         assert_equal(self.obj.db.collection_names(), [], "Test database is not empty")
@@ -27,6 +28,7 @@ class TestCSCollection(CSDB):
 
     def test_insert(self):
         data = {'insert': 'method'}
+        self.obj.path = '/fake_path'
         self.obj.insert(data)
         assert_equal({**data, **self.obj.pre_data}, self.obj.get())
 
@@ -42,6 +44,7 @@ class TestCSCollection(CSDB):
 
     def test_get_arg_passthru(self):
         data = {'123': 'abc'}
+        self.obj.path = '/fake_path'
         self.obj.insert(data)
         doc = self.obj.get({"_id": 0})  # arg projection results in no id field returned
         assert_equal(doc, data, 'Something else was added to the predata')
@@ -60,6 +63,7 @@ class TestCSCollection(CSDB):
     def test_update(self):
         """ Same as test_insert"""
         data = {'update': 'method'}
+        self.obj.path = '/fake_path'
         self.obj.update(data)
         assert_equal({**data, **self.obj.pre_data}, self.obj.coll.find_one({"_id": self.obj.uid}))
 
@@ -68,6 +72,8 @@ class TestCSCollection(CSDB):
         link_coll.insert_one({"_id": 123, 'foo': 'bar', 'linked': 'data'})
         link_data = self.obj.link_data(123, link_coll)
         data = {'source': 'document', 'link': link_data}
+
+        self.obj.path = '/fake_path'
         self.obj.insert(data)
 
         doc = self.obj.get()

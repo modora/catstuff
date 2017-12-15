@@ -1,4 +1,4 @@
-from catstuff.tools import plugins
+from catstuff.core import plugins
 import random
 
 

@@ -2,7 +2,7 @@ import os
 import shutil
 
 from catstuff import tools
-from catstuff.tools import plugins
+from catstuff.core import plugins
 from catstuff.core_plugins.tasks.copy.config import mod_name, build
 
 

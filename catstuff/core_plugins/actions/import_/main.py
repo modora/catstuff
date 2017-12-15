@@ -1,10 +1,8 @@
 from datetime import datetime
 
-from catstuff import tools
-from catstuff.core import CSMaster
-from catstuff.core_plugins.actions.import_ import __version__, mod_name
-from catstuff.tools.config import PluginConfig
+from catstuff import core, tools
 
+from catstuff.core_plugins.actions.import_ import __version__, mod_name
 
 class Parser(tools.argparser.CSArgParser):
     def __init__(self):
@@ -16,15 +14,15 @@ class Parser(tools.argparser.CSArgParser):
         self.add_argument('path')
 
 
-class CSImportVarPool(tools.vars.VarPool):
-    pass
+class CSImportVarPool(core.vars.VarPool):
+    pool = {}
 
 
-class Import(tools.plugins.CSAction):
+class Import(core.plugins.CSAction):
     mod_name = mod_name
     app = 'cs_import'
     parser = Parser()
-    var_groups = {tools.vars.VarPool, CSImportVarPool}
+    var_groups = [core.vars.CSVarPool, CSImportVarPool]
 
     def __init__(self):
         super().__init__(self.mod_name)
@@ -33,24 +31,18 @@ class Import(tools.plugins.CSAction):
         """ Generates the variable space required for this action"""
         args = self.parser.parse_args(args=args, namespace=namespace)
 
-        try:
-            config = tools.config.load_yaml(args.config)
-        except FileNotFoundError:
-            tools.path.touch(self.parser.get_default('config'))
-            config = {}
-        config = tools.config_parser._Config(config)  # allows monkey patching of dicts
-        config.globals = tools.config_parser.GlobalParser.parse(config)
+        config = core.vars.CSVarPool.get('config', app='catstuff')
 
         filelist = tools.path.import_file_list(args.path, **config.globals.importer)
 
-        var_group = tools.vars.GroupVarPools(*self.var_groups, app=self.app)
+        var_group = core.vars.GroupVarPools(*self.var_groups, app=self.app)
         var_group.set('config', config)
-        var_group.set('mongo_client', config.globals.mongo_client)
-        var_group.set('mongo_db', config.globals.mongo_db)
         var_group.set('filelist', filelist)
-        var_group.set('output', {})
+        var_group.set('output', [])
 
     def main(self, *args):
+        # TODO: Rewrite this
+
         args = self.parser.parse_args(*args)
         self.setup(namespace=args)
 
@@ -58,8 +50,7 @@ class Import(tools.plugins.CSAction):
 
         vars_ = CSImportVarPool()
 
-        manager = tools.vars.VarPool().get('manager', 'catstuff')
-        master_coll = CSMaster(vars_.get('mongo_db', self.app))
+        manager = core.vars.CSVarPool.get('manager', 'catstuff')
         filelist = vars_.get('filelist', self.app)
         config = vars_.get('config')
 

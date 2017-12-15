@@ -1,6 +1,6 @@
 raise NotImplementedError("BROKEN")
 
-import catstuff.tools.plugins
+import catstuff.core.manager
 import os
 import musicbrainzngs
 
@@ -8,14 +8,14 @@ default_version = '0.1'
 
 __dir__ = os.path.dirname(os.path.realpath(__file__))
 __plugin_file__ = os.path.join(__dir__, "musicbrainz.plugin")
-__mod__, __build__, _ = catstuff.tools.plugins.import_core(__plugin_file__)
-__version__ = catstuff.tools.plugins.import_documentation(__plugin_file__).get('Version') or default_version
+__mod__, __build__, _ = catstuff.core.plugins.import_core(__plugin_file__)
+__version__ = catstuff.core.plugins.import_documentation(__plugin_file__).get('Version') or default_version
 
 username = 'dersal'
 password = '$G0M4KrvG60sFsO7'
 
 
-class Musicbrainz(catstuff.tools.plugins.Collection):
+class Musicbrainz(catstuff.core.plugins.Collection):
     def __init__(self, **kwargs):
         super().__init__(__mod__, __build__)
         self.version = __version__

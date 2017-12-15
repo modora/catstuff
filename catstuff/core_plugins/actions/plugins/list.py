@@ -1,5 +1,4 @@
-from catstuff.tools.config import PluginConfig
-from catstuff.tools.vars import VarPool
+from catstuff import tools, core
 # from shutil import get_terminal_size
 
 __version__ = '1.2.1'
@@ -17,7 +16,7 @@ def print_info(attrs: list, tab_width=4, sort_by='name', sort_order='ascending')
         try:
             return special_attrs[attr]
         except KeyError:
-            return PluginConfig.from_yapsy(plugin).get(attr, default='')
+            return tools.config.PluginConfig.from_yapsy(plugin).get(attr, default='')
 
     def max_str_len(attr, plugin_attrs):
         """ Returns the max string length for some attribute"""
@@ -27,8 +26,7 @@ def print_info(attrs: list, tab_width=4, sort_by='name', sort_order='ascending')
             max_len = max(max_len, len(plugin_attr[attr]))
         return max_len
 
-    vars_ = VarPool()
-    manager = vars_.get('manager', app='catstuff')
+    manager = core.vars.CSVarPool.get('manager', app='catstuff')
     plugins = manager.getAllPlugins()
 
 

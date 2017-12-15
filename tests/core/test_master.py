@@ -1,12 +1,12 @@
-from tests.common import *
-from catstuff.core.master_db import CSMaster
-from catstuff.tools import db
+from nose.tools import *
+from tests.classes import CSDBBaseTest
+from catstuff import core, tools
 
 
-class TestMaster(CSDB):
+class TestMaster(CSDBBaseTest):
     def setup(self):
         super().setup()
-        self.obj = CSMaster(db=self.db)
+        self.obj = core.dbs.CSMaster(db=self.db)
 
     @raises(AttributeError)
     def test_unset_path(self):
@@ -51,8 +51,11 @@ class TestMaster(CSDB):
     def test_get(self):
         obj = self.obj
 
-        mod1 = db.Collection('mod1', db=self.db)
-        mod2 = db.Collection('mod2', db=self.db)
+        mod1 = core.dbs.CSCollection('mod1', database=self.db)
+        mod2 = core.dbs.CSCollection('mod2', database=self.db)
+
+        mod1.path = '/fake_path1'
+        mod2.path = '/fake_path2'
 
         mod1.insert({"a": 'b'})
         mod2.insert({"1": '2'})

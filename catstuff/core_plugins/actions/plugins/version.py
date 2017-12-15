@@ -1,4 +1,4 @@
-import catstuff.core.manager as manager
+from catstuff import core
 import catstuff.core_plugins.actions.plugins.list as list_version
 
 __version__ = '1.0'
@@ -6,7 +6,7 @@ __version__ = '1.0'
 
 def print_versions():
     version_list = [
-        ('PluginManager', manager.__version__),
+        ('PluginManager', core.plugins.PluginManager.__version__),
         ('List', list_version.__version__),
         ('Version', __version__)
     ]

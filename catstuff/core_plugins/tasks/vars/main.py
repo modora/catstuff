@@ -1,6 +1,5 @@
 from catstuff.core_plugins.tasks.vars import mod_name, build
-from catstuff.tools import plugins
-from catstuff import tools
+from catstuff.core import plugins, vars
 
 
 class Vars(plugins.CSTask):
@@ -21,7 +20,7 @@ class Vars(plugins.CSTask):
 
         pools = []  # TODO: currently, defining pools is unsupported
         # TODO: currently, specifying the app name is unsupported
-        var_pool = tools.vars.GroupVarPools(tools.vars.VarPool, *pools, app=mod_name)
+        var_pool = vars.GroupVarPools(vars.VarPool, *pools, app=mod_name)
         for name, value in kwargs.items():
             var_pool.set(name, value)
         return
