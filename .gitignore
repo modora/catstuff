@@ -83,11 +83,11 @@ celerybeat-schedule
 venv/
 ENV/
 
-# PyCharm project settings
-.idea/**/workspace.xml
 
 # Spyder project settings
 .spyderproject
+
+/.idea/
 
 # Rope project settings
 .ropeproject
