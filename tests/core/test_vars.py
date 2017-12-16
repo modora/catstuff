@@ -3,7 +3,7 @@ from catstuff.core.vars import VarPool, CSVarPool
 
 
 class OtherPool(VarPool):
-    pool = {}
+    pool = super().pool.clear()
 
 
 def test_is_pool_empty():

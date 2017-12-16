@@ -67,14 +67,12 @@ Use the __doc__ attribute to see a description for each
 """
 
 import inspect
+import collections
 import catstuff.core
 
 
 class VarPool:
-    # Reinit this variable to make pool independent (check independence using id())
-    # admittedly, a defaultdict would be easier to implement but slightly more work for the developer
-    # abiet, it's only two lines of code to add but the dev would have to know what a default dict is
-    pool = {}
+    pool = collections.defaultdict(collections.OrderedDict)
 
     def __init__(self, app=None):
         self._app = app
@@ -87,12 +85,8 @@ class VarPool:
             raise AttributeError('App name not set')
 
     def set(self, var, value):
-        try:
-            self.pool[var].update({
-                self.app: value
-            })
-        except KeyError:
-            self.pool[var] = {self.app: value}
+        """ Sets a variable"""
+        self.pool[var].update({self.app: value})
 
     def set_many(self, data: dict):
         """ Convenience method for setting many variables at once"""
@@ -101,22 +95,29 @@ class VarPool:
 
     @classmethod
     def get(cls, var, app=None, default=...):
-        app_vars = cls.pool.get(var, {})
-        if app:
-            try:
-                return app_vars[app] if default is ... else app_vars.get(app, default)
-            except KeyError:
-                raise KeyError("No app named '{app}' found in variable '{var}' in '{pool}'".format(
-                    app=app, var=var, pool=cls.__name__
-                ))
-        else:
+        app_vars = cls.pool[var]
+        if not app:  # if no app is specified, return all the app values
             return app_vars
+        if app == '*':
+            apps = list(app_vars.keys())
+            try:
+                app = apps[0]
+            except IndexError:
+                pass
+            else:
+                return app_vars[app]
+        if default is not ...:
+            return default
+        else:
+            raise KeyError("Var '{var}' not found with with app'{app}' in '{pool}'".format(
+                app=app, var=var, pool=cls.__name__
+            ))
 
     def delete(self, var):
         """ Deletes a variable set by app, requires instance to be that app"""
         try:
-            del self.pool.get(var, {})[self.app]
-            if self.pool[var] is {}:  # cleanup empty dicts
+            del self.pool[var][self.app]
+            if len(self.pool[var]) == 0:  # cleanup empty dicts
                 del self.pool[var]
         except KeyError:
             pass
@@ -129,7 +130,7 @@ class VarPool:
     @classmethod
     def dump(cls):
         """ Returns a copy of all variables"""
-        return cls.pool.copy()
+        return dict(cls.pool)
 
     @classmethod
     def get_app_vars(cls, app: str):
@@ -143,24 +144,35 @@ class VarPool:
         return d
 
     @classmethod
-    def get_apps(cls, var):
+    def get_apps(cls, var) -> set:
         """ Returns the set of apps in the var pool for a given variable"""
-        return set(cls.pool.get(var, {}).keys())
+        return set(cls.pool[var].keys())
 
     @classmethod
-    def get_all_apps(cls):
+    def get_all_apps(cls) -> set:
         """ Returns the set of apps in the var pool for all variables"""
         return {var.keys() for var in cls.pool}
 
     @classmethod
-    def get_var_priority(cls, var, app_list, default=...):
+    def get_var_priority(cls, var, app_list: list, default=...):
         """ Gets the value of a variable given a priority list of apps"""
-        # Lower index values of app_list are given greater priority
+        '''
+        Lower index values of app_list are given greater priority
+        An app specified by '*' will be interpreted as 'all others'
+        '''
+        apps = cls.get_apps(var)
+
         for app in app_list:
-            try:
+            if app in apps:
                 return cls.get(var, app=app)
-            except KeyError:
-                pass
+            elif app == '*':
+                other_apps = apps - set(app_list)
+                try:
+                    app = next(iter(other_apps))  # select some app
+                except StopIteration:
+                    continue
+                else:
+                    return cls.get(var, app=app)
         if default is ...:
             raise KeyError('{} is undefined in app_list'.format(var))
         else:
@@ -193,7 +205,7 @@ class GroupVarPools:
     def remove_pool(self, *pools):
         self.pools.difference_update(self.__check_pools(*pools))
 
-    def __check_pools(self, *pools):
+    def __check_pools(self, *pools) -> set:
         """ Checks if all pools are Var pools and returns the set of pools"""
         if not all([VarPool in (inspect.getmro(pool) if type(pool) is type else pool.mro())
                     for pool in pools]):
@@ -208,7 +220,7 @@ class GroupVarPools:
         for pool in self.pools:
             pool.set(var, value)
 
-    def get(self, var, app=None, default=..., skip_missing=False):
+    def get(self, var, app=None, default=..., skip_missing=False) -> dict:
         if skip_missing:
             d = {}
             for pool in self.pools:
@@ -225,23 +237,23 @@ class GroupVarPools:
         for pool in self.pools:
             pool(app=self.app).clear(var)
 
-    def dump(self):
+    def dump(self) -> dict:
         """ Returns a copy of all variables"""
         return {pool.__class__.__name__: pool.dump() for pool in self.pools}
 
-    def get_app_vars(self, app: str):
+    def get_app_vars(self, app: str) -> dict:
         """ Returns a dictionary of all variables set by some app"""
         return {pool.__class__.__name__: pool.get_app_vars(app) for pool in self.pools}
 
-    def get_apps(self, var):
+    def get_apps(self, var) -> set:
         """ Returns the set of apps in the var pool for a given variable"""
         return {pool.__class__.__name__: pool.get_apps(var) for pool in self.pools}
 
-    def get_all_apps(self):
+    def get_all_apps(self) -> set:
         """ Returns the set of apps in the var pool for all variables"""
         return {pool.__class__.__name__: pool.get_all_apps() for pool in self.pools}
 
-    def get_var_priority(self, *args, skip_missing=False, **kwargs):
+    def get_var_priority(self, *args, skip_missing=False, **kwargs) -> dict:
         """ Gets the value of a variable given a priority list of apps"""
         if skip_missing:
             d = {}
