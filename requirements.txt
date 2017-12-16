@@ -5,6 +5,7 @@ sphinx
 pyyaml
 pymongo
 pyparsing
+yapsy
 
 # ------------ Testing ----------------------------
 # musicbrainz api
