@@ -6,6 +6,8 @@
 Welcome to catstuff's documentation!
 ====================================
 
+Learn how to use sphinx
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
