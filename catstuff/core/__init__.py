@@ -19,8 +19,6 @@ def init(config_path: str=None):
         else:
             return config.CSConfig.load_config(config_path)
 
-    data = {
-        'config': init_config()
-    }
-    vars.CSVarPool.setup(data, app='catstuff')
-    vars.CSVarPool.setup()
+    vars_ = vars.CSVarPool(app='catstuff')
+    vars_.set('config', init_config())
+    vars_.set('manager', plugins.CSPluginManager())

@@ -12,3 +12,6 @@ def test_true():
 
 def test_false():
     assert_equals(1, 0, 'This should FAIL')
+
+def test_ok():
+    ok_(True, 'shorthand for assert')

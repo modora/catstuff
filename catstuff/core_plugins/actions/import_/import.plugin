@@ -1,6 +1,6 @@
 [Core]
 Name = import
-Module = import_
+Module = .
 Build = 1
 
 [Documentation]

@@ -30,3 +30,7 @@ class Sample(plugins.StrMethod):
     def args(self, *args):
         """ Returns the list of arguments entered"""
         return args
+
+    def reverse(self):
+        """ Reverses the contents of a string"""
+        return self[::-1]

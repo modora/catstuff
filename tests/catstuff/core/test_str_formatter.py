@@ -1,31 +1,47 @@
-from nose.tools import *
-from catstuff.core.vars import CSVarPool
-from catstuff.core.str_formatter import CSStrConstructor, StringParser
-from catstuff.core.str_formatter import _Parsers, _Expression, _TemplateVar, _PoolVar
 import pyparsing as pp
 
+from nose.tools import *
+from catstuff import core
+import tests
 
-class StrFormatter:
+
+class StrFormatter(tests.classes.CatStuffBaseTest):
+    vars_ = {
+        'foo': 'bar',
+        'hello': 'word',
+        'lorem': 'ipsum',
+        '1': 1,
+        '2': 2,
+        '3': 3,
+        '4': 4,
+        'a': 'alpha',
+        'b': 'beta',
+        'c': 'gamma',
+        'd': 'delta',
+        'dollar': '$',
+        'quote': '\'',
+        'quotes': '\'\'',
+        'par': '(',
+        'pars': '()',
+        'dollar+': '$foo',
+        'quote+': '\'foo',
+        'quotes+': '\'foo\'',
+        'par+': '(foo',
+        'pars+': '(foo)',
+    }
+
     app = 'test'
 
     def setup(self):
-        CSVarPool.setup()
-        vars = {
-            'foo': 'bar',
-            'hello': 'world',
-            'one': 1,
-            'two': 2,
-        }
-        CSVarPool.setup(data=vars, app=self.app)  # setup additional vars
-
-    def teardown(self):
-        CSVarPool.clear()
+        var_pool = core.vars.CSVarPool(app=self.app)
+        for var, value in self.vars_.items():
+            var_pool.set(var, value)
 
 
 class TestCSStr(StrFormatter):
     def setup(self):
         super().setup()
-        self.CSStr = CSStrConstructor()
+        self.CSStr = core.str_formatter.CSStrConstructor()
 
     def test_func(self):
         import inspect
@@ -35,18 +51,49 @@ class TestCSStr(StrFormatter):
         ok_(isinstance(CSStr('test str'), str), 'testing with an actual string failed')
 
     def test_a_function(self):
+        import inspect
+        from catstuff.core_plugins.str_methods.sample import Sample
+
+        CSStr = self.CSStr
+        for base in inspect.getmro(CSStr):
+            if base.__name__ == Sample.__name__:
+                break
+        else:
+            ok_(False, 'Sample str_method plugin not found, aborting test')
+
         s = 'literal string'
-        s = self.CSStr(s)
+        s = CSStr(s)
 
         try:
             eq_(s.foo(), 'bar')
         except AttributeError:
             ok_(False, 'The foo() function not found, aborting test -- install the sample plugin for it')
 
+    def test_reverse(self):
+        import inspect
+        from catstuff.core_plugins.str_methods.sample import Sample
+
+        CSStr = self.CSStr
+        for base in inspect.getmro(CSStr):
+            if base.__name__ == Sample.__name__:
+                break
+        else:
+            ok_(False, 'Sample str_method plugin not found, aborting test')
+
+        s = 'literal string'
+        s = CSStr(s)
+
+        try:
+            eq_(s.reverse(), 'gnirts laretil')
+        except AttributeError:
+            ok_(False, 'The reverse() function not found')
+
 
 class TestParsers:
-    class Clipboard:
-        expr_reverse = _Expression(name='reverse', args=[], kwargs={})
+    _Expression = core.str_formatter._Expression
+    _PoolVar = core.str_formatter._PoolVar
+    _TemplateVar = core.str_formatter._TemplateVar
+    _Parsers = core.str_formatter._Parsers
 
     from collections import defaultdict
     strings = defaultdict(list)
@@ -143,10 +190,11 @@ class TestParsers:
             ('literal string', ['literal string']),
             ('string with $$ in it', ['string with ', '$', ' in it']),
             ("string with ${'template'.reverse()} in it",
-             ['string with ', _TemplateVar('template', [Clipboard.expr_reverse]), ' in it']),
+             ['string with ', _TemplateVar('template', [_Expression(name='reverse', args=[], kwargs={})]), ' in it']),
             ("string with ${${'nested'.reverse()}.reverse()} template",
              ['string with ',
-              _TemplateVar(_TemplateVar('nested', [Clipboard.expr_reverse]), [Clipboard.expr_reverse]),
+              _TemplateVar(_TemplateVar('nested', [_Expression(name='reverse', args=[], kwargs={})]),
+                           [_Expression(name='reverse', args=[], kwargs={})]),
               ' template'])
         ],
     })
@@ -169,6 +217,7 @@ class TestParsers:
 
     @staticmethod
     def parse_string(parser, string, **kwargs):
+        _Parsers = core.str_formatter._Parsers
         obj = _Parsers(**kwargs)
         return getattr(obj, parser).parseString(string)
 
@@ -282,15 +331,19 @@ class TestParsers:
 class TestStringParser(StrFormatter):
     def setup(self):
         super().setup()
-        self.obj = StringParser()
+        self.obj = core.str_formatter.StringParser()
 
     def test_var_getter(self):
         # Get foo
-        foo = self.obj.get_var('foo', pool=CSVarPool, app_list=[self.app])
+        foo = self.obj.get_var('foo', pool=core.vars.CSVarPool, app_list=[self.app])
         eq_(foo, 'bar')
 
     def test_eval_var(self):
         from collections import namedtuple
+
+        _Expression = core.str_formatter._Expression
+        _PoolVar = core.str_formatter._PoolVar
+
         Env = namedtuple('Env', 'var, kwargs, expected')
         env = [
             # (var, **kwargs, expected)

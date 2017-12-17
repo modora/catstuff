@@ -1,6 +1,6 @@
 [Core]
 Name = version
-Module = version
+Module = .
 
 [Documentation]
 Version = 1.0.0

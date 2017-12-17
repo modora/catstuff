@@ -1,36 +1,18 @@
 from nose.tools import *
+import tests
+from catstuff import core
 from catstuff.core.vars import VarPool, CSVarPool
 
 
 class OtherPool(VarPool):
-    pool = super().pool.clear()
+    pool = {}
 
 
 def test_is_pool_empty():
     eq_(VarPool.dump(), {}, 'Varpool is not empty')
 
 
-class TestCSVarPool:
-    def teardown(self):
-        CSVarPool.clear()
-
-    def setup(self):
-        CSVarPool.setup()
-
-    def test_setup(self):
-        CSVarPool.clear()
-
-        app = 'catstuff'
-        data = {
-            'varpool': CSVarPool
-        }
-
-        CSVarPool.setup(data=data, app=app)
-        for var, value in data.items():
-            eq_(CSVarPool.get(var, app=app), value)
-
-
-class TestMultiplePools:
+class TestMultiplePools(tests.classes.CatStuffBaseTest):
     def teardown(self):
         VarPool.clear()
         OtherPool.clear()

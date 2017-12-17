@@ -1,1 +1,3 @@
-from .files import *
+from . import catstuff
+from . import files
+from . import classes

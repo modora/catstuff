@@ -72,7 +72,7 @@ import catstuff.core
 
 
 class VarPool:
-    pool = collections.defaultdict(collections.OrderedDict)
+    pool = {}
 
     def __init__(self, app=None):
         self._app = app
@@ -86,7 +86,11 @@ class VarPool:
 
     def set(self, var, value):
         """ Sets a variable"""
-        self.pool[var].update({self.app: value})
+        try:
+            self.pool[var].update({self.app: value})
+        except KeyError:
+            self.pool[var] = collections.OrderedDict()
+            self.pool[var].update({self.app: value})
 
     def set_many(self, data: dict):
         """ Convenience method for setting many variables at once"""
@@ -95,21 +99,26 @@ class VarPool:
 
     @classmethod
     def get(cls, var, app=None, default=...):
-        app_vars = cls.pool[var]
+        try:
+            app_vars = cls.pool[var]
+        except KeyError:
+            app_vars = collections.OrderedDict()
+
         if not app:  # if no app is specified, return all the app values
             return app_vars
-        if app == '*':
+        elif app == '*':
             apps = list(app_vars.keys())
             try:
-                app = apps[0]
+                app = apps[-1]  # prefer most recent app added
+                return app_vars[app]
             except IndexError:
                 pass
-            else:
-                return app_vars[app]
+        else:
+            return app_vars[app]
         if default is not ...:
             return default
         else:
-            raise KeyError("Var '{var}' not found with with app'{app}' in '{pool}'".format(
+            raise KeyError("Cannot find var '{var}' with app name '{app}' in {pool}".format(
                 app=app, var=var, pool=cls.__name__
             ))
 
@@ -130,7 +139,7 @@ class VarPool:
     @classmethod
     def dump(cls):
         """ Returns a copy of all variables"""
-        return dict(cls.pool)
+        return cls.pool
 
     @classmethod
     def get_app_vars(cls, app: str):
@@ -180,18 +189,7 @@ class VarPool:
 
 
 class CSVarPool(VarPool):
-    @classmethod
-    def setup(cls, data=..., app='catstuff'):
-        from catstuff.core import plugins
-
-        if data is ...:  # default setup data
-
-            data = {
-                'varpool': cls,
-                'manager': plugins.CSPluginManager(),
-            }
-        for var, value in data.items():
-            cls(app=app).set(var, value)
+    pass
 
 
 class GroupVarPools:

@@ -10,38 +10,7 @@ class CatStuffBaseTest:
 
     @classmethod
     def setup_class(cls):
-        core.init(cls.config_path)
-
-
-class StrFormatter(CatStuffBaseTest):
-    vars_ = {
-        'foo': 'bar',
-        'hello': 'word',
-        'lorem': 'ipsum',
-        '1': 1,
-        '2': 2,
-        '3': 3,
-        '4': 4,
-        'a': 'alpha',
-        'b': 'beta',
-        'c': 'gamma',
-        'd': 'delta',
-        'dollar': '$',
-        'quote': '\'',
-        'quotes': '\'\'',
-        'par': '(',
-        'pars': '()',
-        'dollar+': '$foo',
-        'quote+': '\'foo',
-        'quotes+': '\'foo\'',
-        'par+': '(foo',
-        'pars+': '(foo)',
-    }
-
-    def setup(self):
-        var_pool = core.vars.CSVarPool(app='test')
-        for var, value in self.vars_.items():
-            var_pool.set(var, value)
+        core.init(config_path=cls.config_path)
 
 
 
