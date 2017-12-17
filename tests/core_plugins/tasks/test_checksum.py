@@ -3,7 +3,7 @@ from nose.tools import *
 import tests
 from tests import files
 
-from catstuff.core_plugins.tasks.checksum.checksum.main import *
+from catstuff.core_plugins.tasks.checksum.main import *
 
 
 @raises(NotImplementedError)
