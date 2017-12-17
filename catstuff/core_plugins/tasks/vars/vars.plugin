@@ -1,6 +1,6 @@
 [Core]
 Name = vars
-Module = vars
+Module = .
 Build = 1
 
 [Documentation]

@@ -1,6 +1,6 @@
 [Core]
 Name = Copy
-Module = copy
+Module = .
 Build = 1
 
 [Documentation]

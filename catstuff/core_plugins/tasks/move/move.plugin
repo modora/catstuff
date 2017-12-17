@@ -1,6 +1,6 @@
 [Core]
 Name = Move
-Module = move
+Module = .
 
 [Documentation]
 Description = Moves a file or directory

@@ -1,6 +1,6 @@
 [Core]
 Name = checksum
-Module = checksum
+Module = .
 Build = 1
 
 [Documentation]
