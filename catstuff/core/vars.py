@@ -83,8 +83,8 @@ class VarPool:
         else:
             raise AttributeError('App name not set')
 
-    def __getitem__(cls, item):
-        cls.get(cls, item)
+    def __getitem__(self, item):
+        self.get(self, item)
 
     def __setitem__(self, key, value):
         self.set(key, value)
