@@ -11,11 +11,6 @@ resources:
 db: mongodb  # database driver
 
 # LOCAL SETTINGS (These settings get overwritten by groups/subgroups)
-tasks: []  # default tasks to perform
-plugins: {}  # plugin settings
-#  plugin_name:
-#    setting_1: value
-#    setting_2: value
 
 plugins:  # user default plugin settings
   db:
@@ -34,6 +29,9 @@ plugins:  # user default plugin settings
       mode: 'whitelist'
 
 tasks: []  # override user plugin settings
+
+CSStr: {}
+  # function: plugin
 
 ## Group settings (unsupported at this time)
 groups:

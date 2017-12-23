@@ -19,6 +19,13 @@ def init(config_path: str=None):
         else:
             return config.CSConfig.load_config(config_path)
 
+    def init_CSStr(config: config.CSConfig):
+        remap = config.get(['CSStr'], default={})
+        return str_formatter.CSStrConstructor(remap)
+
+
     vars_ = vars.CSVarPool(app='catstuff')
-    vars_.set('config', init_config())
-    vars_.set('manager', plugins.CSPluginManager())
+    conf = init_config()
+    vars_['config'] = conf
+    vars_['manager'] = plugins.CSPluginManager()
+    vars_['CSStr'] = init_CSStr(conf)

@@ -1,3 +1,10 @@
+""" Custom string formatter"""
+
+'''
+Admittedly, this was some pretty sloppy coding. A lot of the time, it felt weird when parsing and handling
+'''
+
+
 from .vars import CSVarPool
 import pyparsing as pp
 from collections import namedtuple
@@ -234,13 +241,10 @@ class StringParser:
         pool = CSVarPool if pool is None else pool
         return pool.get_var_priority(var, app_list=app_list, default=default)
 
-    def eval_var(self, var, funcs=(), CSStr=None, **kwargs):
-        if CSStr is None:
-            CSStr = CSStrConstructor()
-
+    def eval_var(self, var, funcs=(), **kwargs):
+        CSStr = CSVarPool.get('CSStr', app='catstuff')
         if isinstance(var, _PoolVar):
             var = self.get_var(var[0], **kwargs)
-            # TODO: TO BE IMPLEMENTED
         elif isinstance(var, _TemplateVar):
             v, funcs = var
             var = self.eval_var(v, funcs, **kwargs)
