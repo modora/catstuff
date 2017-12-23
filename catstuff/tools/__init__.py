@@ -15,6 +15,4 @@ from . import db
 from . import debug
 from . import misc
 from . import path
-
-
-# from . import config_parser
+from . import checkpoint

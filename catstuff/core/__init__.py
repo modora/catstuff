@@ -3,7 +3,6 @@ from . import plugins
 from . import str_formatter
 from . import vars
 from . import config
-from . import checkpoint
 
 
 def init(config_path: str=None):

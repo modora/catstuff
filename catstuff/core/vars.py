@@ -66,7 +66,6 @@ Other methods included are:
 Use the __doc__ attribute to see a description for each
 """
 
-import inspect
 import collections
 import catstuff.core
 
@@ -205,8 +204,7 @@ class GroupVarPools:
 
     def __check_pools(self, *pools) -> set:
         """ Checks if all pools are Var pools and returns the set of pools"""
-        if not all([VarPool in (inspect.getmro(pool) if type(pool) is type else pool.mro())
-                    for pool in pools]):
+        if not all([issubclass(pool, VarPool) for pool in pools]):
             raise TypeError('Invalid var pool specified')
         return {pool(self.app) if type(pool) is type else pool for pool in pools}
 

@@ -88,8 +88,6 @@ class _Parsers:
 
     builtins = real_literal | int_literal | bool_literal | None_literal | string_literal | \
                list_literal | tuple_literal | dict_literal | set_literal
-    _set_literal_builtins = real_literal | int_literal | bool_literal | None_literal | string_literal | \
-               list_literal | tuple_literal | dict_literal  # sets within sets are not permitted
 
     # Using pp.Group is necessary to handle nested lists
     list_literal << pp.Group(pp.Suppress('[') + (
@@ -113,7 +111,7 @@ class _Parsers:
 
     set_literal << (
         (pp.Suppress("{") + (
-            pp.delimitedList(_set_literal_builtins) + pp.Optional(pp.Suppress(","))
+            pp.delimitedList(builtins) + pp.Optional(pp.Suppress(","))
         ) + pp.Suppress("}")).setParseAction(lambda toks: set(toks.asList())) |
         pp.Keyword('set()').setParseAction(pp.replaceWith(set()))
     )
@@ -243,6 +241,9 @@ class StringParser:
         if isinstance(var, _PoolVar):
             var = self.get_var(var[0], **kwargs)
             # TODO: TO BE IMPLEMENTED
+        elif isinstance(var, _TemplateVar):
+            v, funcs = var
+            var = self.eval_var(v, funcs, **kwargs)
 
         obj = var
         for func in funcs:
@@ -255,7 +256,12 @@ class StringParser:
 
         return obj
 
-    def eval_string(self):
-        raise NotImplementedError
+    def eval_string(self, instring, **kwargs):
+        strings = self.parse(instring).asList()
+        for i, string in enumerate(strings):
+            if isinstance(string, _TemplateVar):
+                var, funcs = string
+                strings[i] = self.eval_var(var, funcs, **kwargs)
+        return ''.join(strings)
 
 # TODO: allow python formatter to be used on templates

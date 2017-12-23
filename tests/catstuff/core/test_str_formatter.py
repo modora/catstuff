@@ -44,9 +44,8 @@ class TestCSStr(StrFormatter):
         self.CSStr = core.str_formatter.CSStrConstructor()
 
     def test_func(self):
-        import inspect
         CSStr = self.CSStr
-        ok_(str in inspect.getmro(CSStr), 'str not in CSStr base class')
+        ok_(issubclass(CSStr, str), 'str not in CSStr base class')
         ok_(CSStr is not str, 'CSStr and str are the same object')
         ok_(isinstance(CSStr('test str'), str), 'testing with an actual string failed')
 
@@ -197,6 +196,12 @@ class TestParsers:
                            [_Expression(name='reverse', args=[], kwargs={})]),
               ' template'])
         ],
+        'eval_input': [
+            ('literal string', 'literal string'),
+            ('string with $$ in it', 'string with $ in it'),
+            ("string with ${'template'.reverse()} in it", "string with etalpmet in it"),
+            ("string with ${${'nested'.reverse()}.reverse()} template", "string with nested template"),
+        ],
     })
 
     invalid_strings.update({
@@ -239,8 +244,7 @@ class TestParsers:
 
     @nottest
     def test_invalid_template(self, strings: list, parser):
-        # strings = [(string, expected), ...]
-        @raises(pp.ParseException)
+        @raises(Exception)
         def parse_invalid_string(parser, string):
             self.parse_string(parser, string)
 
@@ -376,6 +380,8 @@ class TestStringParser(StrFormatter):
             result = self.obj.parse(string).asList()
             eq_(result, expected)
 
-    @raises(NotImplementedError)
     def test_eval_string(self):
-        self.obj.eval_string()
+        strings = TestParsers.strings['eval_input']
+        for string, expected in strings:
+            result = self.obj.eval_string(string)
+            eq_(result, expected)
