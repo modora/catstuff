@@ -77,23 +77,24 @@ def eval_link(src_data: pymongo.collection.Collection, link_data: dict, *args, *
 
 
 def generate_uid(method):
+    import bson, uuid
+
     try:
-        import bson, uuid
         return {
-            'objectid': lambda : bson.ObjectId,
-            'uuid': uuid.uuid4
+            'objectid': lambda : bson.ObjectId(),
+            'uuid': lambda : str(uuid.uuid4())
         }[method]()
     except KeyError:
         raise NotImplementedError('Unknown method')
 
 
 def test_connection(connection=None, *args, **kwargs):
-    connection = pymongo.MongoClient(*args, **kwargs) if connection is None else connection
+    from pymongo.errors import ConnectionFailure
+
+    client = pymongo.MongoClient(*args, **kwargs) if connection is None else connection
     assert isinstance(connection, pymongo.MongoClient)
     try:
-        connection.server_info()
-    except pymongo.errors.ServerSelectionTimeoutError:
+        client.admin.command('ismaster')
+    except ConnectionFailure:
         # should do logging here
         raise
-
-

@@ -1,9 +1,9 @@
-import catstuff.tools as tools
+import catstuff.tools
 
-
-class CSConfig(tools.config.Config):
+print(catstuff.tools)
+class CSConfig(catstuff.tools.config.Config):
     default_path = '~/.conf/catstuff.yml'
 
     @classmethod
     def load_default(cls):
-        return cls.load_config(tools.path.expandpath(cls.default_path))
+        return cls.load_config(catstuff.tools.path.expandpath(cls.default_path))

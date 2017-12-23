@@ -1,34 +1,14 @@
 ## Global settings -- these settings persist for all groups
-# version specifies the config version -- if not specified, assumed to be the most recent
-version: '1.0'
+version: '1.0'  # parser config version
 
 # imports other configs (uses relative dirs)
-# import: [] -- unsupported right now -- too many issues in the import parser
+# import: [] -- unsupported right now -- issues with whether to override or merge settings
 
 resources:
   max_memory: -1
   max_threads: -1
 
-mongodb:
-  client:  # connection settings
-    host: 'localhost'
-    port: 27017
-  db:
-    name: 'catstuff'
-
-importer:
-  max_depth: 0
-  followlinks: False
-  include: []
-  exclude: []
-  mode: 'whitelist'
-
-# Used to enable developer settings
-#  - build qry now >= from >  (so you don't have to keep incrementing build number)
-dev_mode: no
-# RESERVED VARIABLES
-# path:
-# group:
+db: mongodb  # database driver
 
 # LOCAL SETTINGS (These settings get overwritten by groups/subgroups)
 tasks: []  # default tasks to perform
@@ -36,7 +16,25 @@ plugins: {}  # plugin settings
 #  plugin_name:
 #    setting_1: value
 #    setting_2: value
-  
-## Group settings
+
+plugins:  # user default plugin settings
+  db:
+    mongodb:
+      client:
+        host: 'localhost'
+        port: 27017
+      db:
+        name: 'catstuff'
+  actions:
+    import:  # import plugin
+      max_depth: 0
+      followlinks: False
+      include: []
+      exclude: []
+      mode: 'whitelist'
+
+tasks: []  # override user plugin settings
+
+## Group settings (unsupported at this time)
 groups:
   default: {}

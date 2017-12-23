@@ -1,11 +1,12 @@
+import collections
+import time
+
 import pymongo
-import time, collections
+
 
 # These unused are left here for documentation purposes
 # The actual imports happen within the function statements but
 # I like to keep these here so I know there are cross-module dependencies
-import catstuff.core
-import catstuff.tools
 
 
 class _CSBaseCollection:
@@ -21,7 +22,7 @@ class _CSBaseCollection:
             return self.__default_conn
         except AttributeError:
             config = vars.CSVarPool.get('config', app='catstuff')
-            settings = config.get(['mongodb', 'client'], default={})
+            settings = config.get(['plugins', 'db', 'mongodb', 'client'], default={})
             host = settings.pop('host', 'localhost')
             self.__default_conn = pymongo.MongoClient(host, **settings)
             return self._default_conn
@@ -34,7 +35,7 @@ class _CSBaseCollection:
             return self.__default_db
         except AttributeError:
             config = vars.CSVarPool.get('config', app='catstuff')
-            settings = config.get(['mongodb', 'db'], default={})
+            settings = config.get(['plugins', 'db', 'mongodb', 'db'], default={})
             name = settings.pop('name', 'catstuff')
             self.__default_db = pymongo.database.Database(self._default_conn, name, **settings)
             return self._default_db

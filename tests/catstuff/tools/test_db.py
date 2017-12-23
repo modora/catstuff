@@ -1,4 +1,7 @@
 from nose.tools import *
+
+import catstuff.core.dbs
+import catstuff.tools.db
 from tests.classes import CSDBBaseTest
 from catstuff import core, tools
 import pymongo
@@ -16,7 +19,7 @@ class TestCSCollection(CSDBBaseTest):
         super().setup()
         # using object attributes is a safe way of passing classes between the
         # test function
-        self.obj = core.dbs.CSCollection(self.coll_name, database=self.db)
+        self.obj = catstuff.core.dbs.CSCollection(self.coll_name, database=self.db)
 
     def test_empty(self):
         assert_equal(self.obj.db.collection_names(), [], "Test database is not empty")

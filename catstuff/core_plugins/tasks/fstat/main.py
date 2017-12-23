@@ -1,17 +1,19 @@
 import os
 import pymongo
 
+import catstuff.core.dbs
+import catstuff.tools.db
 from catstuff import core
 
 from .config import mod_name, build
 
 
-class FStat(core.plugins.CSTask, core.dbs.CSCollection):
+class FStat(core.plugins.CSTask, catstuff.core.dbs.CSCollection):
     indexes = ("device", "inode", "size", "mod_time")
 
     def __init__(self):
         core.plugins.CSTask.__init__(self, mod_name, build)
-        core.dbs.CSCollection.__init__(self, mod_name)
+        catstuff.core.dbs.CSCollection.__init__(self, mod_name)
 
         self.coll.create_indexes([
             pymongo.IndexModel([(index, pymongo.ASCENDING)], name=index) for index in self.indexes

@@ -1,4 +1,7 @@
 from nose.tools import *
+
+import catstuff.core.dbs
+import catstuff.tools.db
 from tests.classes import CSDBBaseTest
 from catstuff import core, tools
 
@@ -51,8 +54,8 @@ class TestMaster(CSDBBaseTest):
     def test_get(self):
         obj = self.obj
 
-        mod1 = core.dbs.CSCollection('mod1', database=self.db)
-        mod2 = core.dbs.CSCollection('mod2', database=self.db)
+        mod1 = catstuff.core.dbs.CSCollection('mod1', database=self.db)
+        mod2 = catstuff.core.dbs.CSCollection('mod2', database=self.db)
 
         mod1.path = '/fake_path1'
         mod2.path = '/fake_path2'

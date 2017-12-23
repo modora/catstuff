@@ -39,7 +39,7 @@ class Config:
 
 
 class ConfigGroup:
-    # TODO: This is a placeholder object for when groups are supported
+    # This is a placeholder object for when groups are supported
     def __init__(self):
         self.configs = collections.OrderedDict()
 
@@ -74,8 +74,12 @@ class ConfigGroup:
 
 
 class PluginConfig:
+    """ Convenience parser for plugin configs"""
     def __init__(self, config: dict):
         self._config = config
+
+    def __getitem__(self, item):
+        return self.get(item)
 
     @property
     def config(self):
@@ -83,6 +87,7 @@ class PluginConfig:
 
     @classmethod
     def from_yapsy(cls, yapsy_obj):
+        """ Initilalize using a yapsy loaded plugin"""
         config = {}
         for section in yapsy_obj.details.sections():
             for option in yapsy_obj.details.options(section):
@@ -95,13 +100,15 @@ class PluginConfig:
 
     @classmethod
     def from_path(cls, path):
+        """ Initilize using the path to config"""
         config = cls(import_ini(path))
         config.path = path
         return config
 
-    def get_section(self, section):
+    def get_section(self, section) -> dict:
+        """ Returns all options for some section of a config"""
         try:
-            self.config[section]
+            return self.config[section]
         except KeyError:
             raise configparser.NoSectionError
 
@@ -135,7 +142,7 @@ class PluginConfig:
                 raise KeyError('Option [} not found in any section of config'.format(option))
 
 
-def import_ini(path):
+def import_ini(path: str) -> dict:
     """
     Reads an ini config file and returns it as a dict
     :param path:
@@ -151,7 +158,7 @@ def import_ini(path):
     Version = 1.0
 
     >>> import_ini("sample.plugin")
-    {'Core': {'Name': 'Hello World'}, 'Documentation': {'Version': '1.0'}}
+    {'Core': {'name': 'Hello World'}, 'Documentation': {'version': '1.0'}}
 
     """
     config = configparser.ConfigParser()
@@ -164,13 +171,13 @@ def import_ini(path):
     return dict(d)
 
 
-def import_yaml(path):
+def import_yaml(path: str) -> dict:
     with open(path, 'r') as f:
         d = yaml.load(f)
     return {} if d is None else d
 
 
-class ExplicitDumper(yaml.SafeDumper):
+class YamlExplicitDumper(yaml.SafeDumper):
     """
     A dumper that will never emit aliases. -- Found from pyyaml ticket #91
     Usage: yaml.dump(..., Dumper=ExplicitDumper)

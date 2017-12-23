@@ -2,6 +2,8 @@ import collections
 import hashlib
 import zlib
 
+import catstuff.core.dbs
+import catstuff.tools.db
 from catstuff import core
 
 from .config import mod_name, build
@@ -83,10 +85,10 @@ def chunk_size(method):
         raise NotImplementedError("default block size not set for {} method".format(method))
 
 
-class Checksum(core.plugins.CSTask, core.dbs.CSCollection):
+class Checksum(core.plugins.CSTask, catstuff.core.dbs.CSCollection):
     def __init__(self):
         core.plugins.CSTask.__init__(self, mod_name, build)
-        core.dbs.CSCollection.__init__(self, mod_name)
+        catstuff.core.dbs.CSCollection.__init__(self, mod_name)
 
     @staticmethod
     def data(path, methods, block_size=None, hex=True):
