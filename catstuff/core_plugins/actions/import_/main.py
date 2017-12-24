@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from catstuff import core, tools
-
+from catstuff.core.vars import CSVarPool
 from .config import __version__, mod_name
 
 
@@ -15,7 +15,7 @@ class Parser(tools.argparser.CSArgParser):
         self.add_argument('path')
 
 
-class CSImportVarPool(core.vars.VarPool):
+class ImportVarPool(core.vars.VarPool):
     pool = {}
 
 
@@ -23,7 +23,7 @@ class Import(core.plugins.CSAction):
     mod_name = mod_name
     app = 'cs_import'
     parser = Parser()
-    var_groups = [core.vars.CSVarPool, CSImportVarPool]
+    var_groups = [CSVarPool, ImportVarPool]
 
     def __init__(self):
         super().__init__(self.mod_name)
@@ -32,12 +32,12 @@ class Import(core.plugins.CSAction):
         """ Generates the variable space required for this action"""
         args = self.parser.parse_args(args=args, namespace=namespace)
 
-        config = core.vars.CSVarPool.get('config', app='catstuff')
+        config = CSVarPool.get('config', app='catstuff')
+        import_settings = config.get(['plugins', 'actions', 'import'], {})
 
-        filelist = tools.path.import_file_list(args.path, **config.globals.importer)
+        filelist = tools.path.import_file_list(args.path, **import_settings)
 
         var_group = core.vars.GroupVarPools(*self.var_groups, app=self.app)
-        var_group.set('config', config)
         var_group.set('filelist', filelist)
         var_group.set('output', [])
 
@@ -49,11 +49,11 @@ class Import(core.plugins.CSAction):
 
         # TODO: classify groups
 
-        vars_ = CSImportVarPool()
+        var_group = core.vars.GroupVarPools(*self.var_groups, app=self.app)
 
-        manager = core.vars.CSVarPool.get('manager', 'catstuff')
-        filelist = vars_.get('filelist', self.app)
-        config = vars_.get('config')
+        manager = CSVarPool.get('manager', 'catstuff')
+        filelist = CSVarPool.get('filelist', self.app)
+        config = CSVarPool.get('config')
 
         if args.dry_run:
             for file in filelist:

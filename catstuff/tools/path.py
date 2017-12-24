@@ -32,9 +32,6 @@ def path_filter(path, include=None, exclude=None, mode='whitelist'):
     :return:
     """
     if mode == 'whitelist':
-        # Include if in include and not in exclude, return True
-        assert isinstance(include, (collections.Iterable, type(None)))
-        assert isinstance(exclude, (collections.Iterable, type(None)))
 
         # preformatting -- generate of set of all items in include and exclude (if defined)
         include = {
@@ -54,10 +51,6 @@ def path_filter(path, include=None, exclude=None, mode='whitelist'):
                         return False
         return True
     elif mode == 'blacklist':
-        # Include if in include and not in exclude, return True
-        assert isinstance(include, (collections.Iterable, type(None)))
-        assert isinstance(exclude, (collections.Iterable, type(None)))
-
         # preformatting
         include = {
             type(None): lambda x: set(),
@@ -98,13 +91,11 @@ def import_file_list(top, max_depth=0, followlinks=False,
 
     default_max_depth = 8
 
-    filelist = []
     top = expandpath(top)
     if os.path.isfile(top):
-        filelist.append(top) if path_filter(top, include=include, exclude=exclude, mode=mode) else None
-        return filelist
-    # top is dir
-    assert isinstance(max_depth, int)
+        if path_filter(top, include=include, exclude=exclude, mode=mode):
+            return top
+
     if max_depth < 0:
         max_depth = 64  # shouldn't expect anything much more
 
@@ -133,8 +124,8 @@ def import_file_list(top, max_depth=0, followlinks=False,
         for file in files:
             f = os.path.join(root, file)
             if path_filter(f, include=include, exclude=exclude, mode=mode):
-                filelist.append(f)
-    return filelist
+                yield f
+    return
 
 
 def touch(path):
