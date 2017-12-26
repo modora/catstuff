@@ -106,7 +106,7 @@ class VarPool:
             self.set(var, value)
 
     @classmethod
-    def get(cls, var, app=None, default=...) -> dict:
+    def get(cls, var, app=None, default=...):
         try:
             app_vars = cls.pool[var]
         except KeyError:

@@ -176,10 +176,10 @@ class CSMaster(_CSBaseCollection):
     index_keys = {"status", "build", "last_updated"}
     special_names = {'_id', 'group', 'path'}
 
-    def __init__(self, path='', db=None, uid_generate_method='uuid'):
+    def __init__(self, path='', uid_generate_method='uuid'):
         assert isinstance(path, (str, type(None)))
 
-        super().__init__('master', db=db, uid_generate_method=uid_generate_method)
+        super().__init__('master', db=None, uid_generate_method=uid_generate_method)
 
         self.path = path
 
@@ -245,13 +245,13 @@ class CSMaster(_CSBaseCollection):
     def delete_link(self, mod_name):
         self.coll.update_one({"_id": self.uid}, {'$unset': {mod_name: ""}})
 
-    def get_raw(self, default=None) -> dict:
+    def get_raw(self, *args, default=None, **kwargs) -> dict:
         # Returns the mongodb document
-        return super().get(default=default)
+        return super().get(*args, default=default, **kwargs)
 
-    def get(self, default=None, eval_links=True, **kwargs) -> dict:
+    def get(self, *args, default=None, eval_links=True, **kwargs) -> dict:
         # Returns the mongodb document and evaluates all the links
-        master_doc = self.get_raw()
+        master_doc = self.get_raw(*args, default=default, **kwargs)
         if master_doc is None:
             return default
         if not eval_links:

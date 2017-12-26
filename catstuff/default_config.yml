@@ -20,6 +20,7 @@ plugins:  # user default plugin settings
         port: 27017
       db:
         name: 'catstuff'
+      id: uuid
   actions:
     import:  # import plugin
       max_depth: 0
